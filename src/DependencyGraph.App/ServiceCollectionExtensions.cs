@@ -16,7 +16,9 @@ namespace DependencyGraph.App
 
       var commands = assemblies
           .SelectMany(_ => _.GetExportedTypes())
-          .Where(type => commandType.IsAssignableFrom(type) && !rootCommandType.IsAssignableFrom(type));
+          .Where(type => commandType.IsAssignableFrom(type) )
+          .Where(type => !rootCommandType.IsAssignableFrom(type))
+          .Where(type => !type.IsAbstract);
 
       foreach (var command in commands)
         services.AddSingleton(commandType, command);

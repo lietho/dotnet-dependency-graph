@@ -31,6 +31,10 @@ namespace DependencyGraph.App
         {
           await Console.Error.WriteLineAsync(ex.Message);
         }
+        catch (ApplicationException ex)
+        {
+          await Console.Error.WriteLineAsync(ex.Message);
+        }
       });
 
       commandLineBuilder.UseDefaults();
