@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using DependencyGraph.Core.Graph;
-using DependencyGraph.Core.Visualizer;
 using DependencyGraph.Core.Visualizer.Dgml.Models;
 
 namespace DependencyGraph.Core.Visualizer.Dgml
@@ -25,19 +25,19 @@ namespace DependencyGraph.Core.Visualizer.Dgml
       _dgmlDependencyGraphVisualizerOptions = dgmlDependencyGraphVisualizerOptions;
     }
 
-    public Task VisualizeAsync(IDependencyGraphNode node)
+    public Task VisualizeAsync(IDependencyGraph graph)
     {
-      var graph = CreateGraph(node);
+      var directedGraph = CreateDirectedGraph(graph.RootNodes.First());
 
-      CreateCategories(graph);
-      CreateNodesAndLinks(node, graph);
+      CreateCategories(directedGraph);
+      CreateNodesAndLinks(graph.RootNodes.First(), directedGraph);
 
-      SerializeGraph(graph, _dgmlDependencyGraphVisualizerOptions.OutputFilePath);
+      SerializeGraph(directedGraph, _dgmlDependencyGraphVisualizerOptions.OutputFilePath);
 
       return Task.CompletedTask;
     }
 
-    private static DirectedGraph CreateGraph(IDependencyGraphNode rootNode) => new()
+    private static DirectedGraph CreateDirectedGraph(IDependencyGraphNode rootNode) => new()
     {
       Title = $"Dependencies of {rootNode}",
       GraphDirection = GraphDirectionEnum.TopToBottom,

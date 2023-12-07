@@ -7,6 +7,6 @@ namespace DependencyGraph.Core.Graph.Factory
 {
   public interface IDependencyGraphFactory
   {
-    IDependencyGraphNode FromLockFile(LockFile lockFile, string[] includes, string[] excludes, int? maxDepth);
+    IDependencyGraph FromLockFile(LockFile lockFile, string[] includes, string[] excludes, int? maxDepth);
   }
 }

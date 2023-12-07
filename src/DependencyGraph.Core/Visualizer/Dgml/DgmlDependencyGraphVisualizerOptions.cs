@@ -17,7 +17,7 @@ namespace DependencyGraph.Core.Visualizer.Dgml
 
     public required string OutputFilePath { get; set; }
 
-    public IList<DirectedGraphCategory> Categories =
+    public IList<DirectedGraphCategory> Categories { get; set; } =
       [
         new DirectedGraphCategory
         {

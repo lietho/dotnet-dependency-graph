@@ -8,7 +8,7 @@ namespace DependencyGraph.Core.Graph
 {
   public abstract class DependencyGraphNodeBase : IDependencyGraphNode
   {
-    IReadOnlyCollection<IDependencyGraphNode> IDependencyGraphNode.Dependencies => Dependencies.ToArray();
+    IReadOnlyCollection<IDependencyGraphNode> IDependencyGraphNode.Dependencies => [.. Dependencies];
     public IList<IDependencyGraphNode> Dependencies { get; } = new List<IDependencyGraphNode>();
   }
 }

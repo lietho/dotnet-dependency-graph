@@ -3,6 +3,7 @@
 
 using System;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using DependencyGraph.Core.Graph;
 using DependencyGraph.Core.Visualizer;
 
@@ -19,7 +20,13 @@ namespace DependencyGraph.Core.Visualizer.Console
       _options = options;
     }
 
-    public Task VisualizeAsync(IDependencyGraphNode node) => VisualizeInternalAsync(node, _options);
+    public async Task VisualizeAsync(IDependencyGraph graph)
+    {
+      foreach (var rootNode in graph.RootNodes)
+      {
+        await VisualizeInternalAsync(rootNode, _options);
+      }
+    }
 
     private static async Task VisualizeInternalAsync(IDependencyGraphNode node, ConsoleDependencyGraphVisualizerOptions options, int currentIndent = 0)
     {

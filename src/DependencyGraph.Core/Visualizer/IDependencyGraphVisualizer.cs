@@ -9,6 +9,6 @@ namespace DependencyGraph.Core.Visualizer
 {
   public interface IDependencyGraphVisualizer
   {
-    Task VisualizeAsync(IDependencyGraphNode node);
+    Task VisualizeAsync(IDependencyGraph graph);
   }
 }

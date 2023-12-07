@@ -16,17 +16,17 @@ namespace DependencyGraph.App.Commands
   {
     private readonly Argument<FileInfo?> _projectFileArgument;
     private readonly ILogger _nugetLogger;
-    private readonly IDependencyGraphFactory _DependencyGraphFactory;
+    private readonly IDependencyGraphFactory _dependencyGraphFactory;
     private readonly Option<VisualizerType> _visualizerOption;
     private readonly Option<FileInfo?> _outputFileOption;
     private readonly Option<string[]> _includeOption;
     private Option<string[]> _excludeOption;
     private Option<int?> _maxDepthOption;
 
-    public ProjectFileDependenciesCommand(ILogger nugetLogger, IDependencyGraphFactory DependencyGraphFactory) : base("project", "Shows the dependencies of a project file.")
+    public ProjectFileDependenciesCommand(ILogger nugetLogger, IDependencyGraphFactory dependencyGraphFactory) : base("project", "Shows the dependencies of a project file.")
     {
       _nugetLogger = nugetLogger;
-      _DependencyGraphFactory = DependencyGraphFactory;
+      _dependencyGraphFactory = dependencyGraphFactory;
 
       _projectFileArgument = new Argument<FileInfo?>("project file", GetDefault, "The project file you want to analyze.");
       AddArgument(_projectFileArgument);
@@ -74,14 +74,11 @@ namespace DependencyGraph.App.Commands
       if (outputFile == null && visualizerType == VisualizerType.Dgml)
         throw new CommandException("An output file path must be specified when using the DGML visualizer.");
 
-      var lockFileInfo = GetLockFileInfo(projectFile.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName);
-
-      if (lockFileInfo == null)
-        throw new CommandException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.");
+      var lockFileInfo = GetLockFileInfo(projectFile.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName) ?? throw new CommandException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.");
 
       var lockFileFormat = new LockFileFormat();
       var lockFile = lockFileFormat.Read(lockFileInfo.FullName, _nugetLogger);
-      var graph = _DependencyGraphFactory.FromLockFile(lockFile, includes.Select(WildcardToRegex).ToArray(), excludes.Select(WildcardToRegex).ToArray(), maxDepth);
+      var graph = _dependencyGraphFactory.FromLockFile(lockFile, includes.Select(WildcardToRegex).ToArray(), excludes.Select(WildcardToRegex).ToArray(), maxDepth);
       await GetVisualizer(visualizerType, outputFile).VisualizeAsync(graph);
     }
 

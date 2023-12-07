@@ -5,24 +5,32 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using NuGet.ProjectModel;
+using NuGet.Versioning;
 
 namespace DependencyGraph.Core.Graph.Factory
 {
   public class DependencyGraphFactory : IDependencyGraphFactory
   {
-    public IDependencyGraphNode FromLockFile(LockFile lockFile, string[] includes, string[] excludes, int? maxDepth) => CreateForMultipleDependencyGroups(lockFile, includes, excludes, maxDepth);
+    public IDependencyGraph FromLockFile(LockFile lockFile, string[] includes, string[] excludes, int? maxDepth)
+    {
+      var graph = new DependencyGraph();
 
-    private static IDependencyGraphNode CreateForMultipleDependencyGroups(LockFile lockFile, string[] includes, string[] excludes, int? maxDepth)
+      AddProjectToGraph(graph, lockFile, includes, excludes, maxDepth);
+
+      return graph;
+    }
+
+    private static void AddProjectToGraph(DependencyGraph graph, LockFile lockFile, string[] includes, string[] excludes, int? maxDepth)
     {
       var rootNode = new ProjectDependencyGraphNode(lockFile.PackageSpec.RestoreMetadata.ProjectName);
+
+      graph.RootNodes.Add(rootNode);
 
       foreach (var dependencyGroup in lockFile.ProjectFileDependencyGroups)
       {
         var targetFrameworkDependencyGraphNode = CreateNodeFor(dependencyGroup, lockFile.Targets.First(_ => _.Name == dependencyGroup.FrameworkName), includes, excludes, maxDepth);
         rootNode.Dependencies.Add(targetFrameworkDependencyGraphNode);
       }
-
-      return rootNode;
     }
 
     private static IDependencyGraphNode CreateNodeFor(ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, string[] includes, string[] excludes, int? maxDepth)
@@ -68,8 +76,8 @@ namespace DependencyGraph.Core.Graph.Factory
 
     private static DependencyGraphNode CreateNode(LockFileTargetLibrary library) => library.Type switch
     {
-      "package" => new PackageDependencyGraphNode(library.Name, library.Version),
-      "project" => new ProjectDependencyGraphNode(library.Name),
+      "package" => new PackageDependencyGraphNode(library.Name ?? string.Empty, library.Version ?? new NuGetVersion(0, 0, 1)),
+      "project" => new ProjectDependencyGraphNode(library.Name ?? string.Empty),
       _ => throw new NotSupportedException($"Library type '{library.Type}' is not supported yet")
     };
   }
