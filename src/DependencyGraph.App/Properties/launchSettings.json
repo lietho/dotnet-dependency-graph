@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DependencyGraph.App": {
+      "commandName": "Project",
+      "commandLineArgs": "project ..\\..\\..\\DependencyGraph.App.csproj -v dgml -o ..\\..\\..\\DependencyGraph.App.dgml -e Microsoft.Extensions.*"
+    }
+  }
+}
