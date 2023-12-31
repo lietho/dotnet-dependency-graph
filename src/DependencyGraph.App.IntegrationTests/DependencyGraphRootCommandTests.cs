@@ -9,13 +9,13 @@ namespace DependencyGraph.App.IntegrationTests
     {
       get
       {
-        yield return new TestCaseData("DependencyGraph.App.csproj.dgml", new[] { @"../../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "dgml", "-o", "graph.dgml", "--no-restore" });
+        yield return new TestCaseData("DependencyGraph.App.csproj.dgml", new[] { @"../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "dgml", "-o", "graph.dgml", "--no-restore" });
 
-        yield return new TestCaseData("DependencyGraph.App.csproj_Exclude.dgml", new[] { @"../../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "dgml", "-o", "graph.dgml", "-e", "Microsoft.Extensions*", "--no-restore" });
+        yield return new TestCaseData("DependencyGraph.App.csproj_Exclude.dgml", new[] { @"../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "dgml", "-o", "graph.dgml", "-e", "Microsoft.Extensions*", "--no-restore" });
 
-        yield return new TestCaseData("DependencyGraph.App.csproj_Include.dgml", new[] { @"../../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "dgml", "-o", "graph.dgml", "-i", "DependencyGraph*", "*NuGet*", "--no-restore" });
+        yield return new TestCaseData("DependencyGraph.App.csproj_Include.dgml", new[] { @"../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "dgml", "-o", "graph.dgml", "-i", "DependencyGraph*", "*NuGet*", "--no-restore" });
 
-        yield return new TestCaseData("DependencyGraph.App.csproj_MaxDepth.dgml", new[] { @"../../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "dgml", "-o", "graph.dgml", "-d", "2", "--no-restore" });
+        yield return new TestCaseData("DependencyGraph.App.csproj_MaxDepth.dgml", new[] { @"../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "dgml", "-o", "graph.dgml", "-d", "2", "--no-restore" });
       }
     }
 
@@ -31,13 +31,13 @@ namespace DependencyGraph.App.IntegrationTests
     {
       get
       {
-        yield return new TestCaseData("DependencyGraph.App.csproj.txt", new[] { @"../../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "console", "--no-restore" });
+        yield return new TestCaseData("DependencyGraph.App.csproj.txt", new[] { @"../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "console", "--no-restore" });
 
-        yield return new TestCaseData("DependencyGraph.App.csproj_Exclude.txt", new[] { @"../../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "console", "-e", "Microsoft.Extensions*", "--no-restore" });
+        yield return new TestCaseData("DependencyGraph.App.csproj_Exclude.txt", new[] { @"../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "console", "-e", "Microsoft.Extensions*", "--no-restore" });
 
-        yield return new TestCaseData("DependencyGraph.App.csproj_Include.txt", new[] { @"../../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "console", "-i", "DependencyGraph*", "*NuGet*", "--no-restore" });
+        yield return new TestCaseData("DependencyGraph.App.csproj_Include.txt", new[] { @"../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "console", "-i", "DependencyGraph*", "*NuGet*", "--no-restore" });
 
-        yield return new TestCaseData("DependencyGraph.App.csproj_MaxDepth.txt", new[] { @"../../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "console", "-d", "2", "--no-restore" });
+        yield return new TestCaseData("DependencyGraph.App.csproj_MaxDepth.txt", new[] { @"../../../DependencyGraph.App/DependencyGraph.App.csproj", "-v", "console", "-d", "2", "--no-restore" });
       }
     }
 
