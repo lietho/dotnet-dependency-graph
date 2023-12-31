@@ -75,4 +75,4 @@ jobs:
         GITHUB_TOKEN: ${{ github.TOKEN }}
       if:  env.GITHUB_TOKEN != ''
       run: |
-          gh release create ${{env.CURRENT_VERSION}} **/*.nupkg --prerelease --generate-notes
+          gh release create --prerelease --generate-notes ./DependencyGraph.App/bin/Release/*.nupkg ./DependencyGraph.Core/bin/Release/*.nupkg
