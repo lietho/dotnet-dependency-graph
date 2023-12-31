@@ -38,11 +38,21 @@ jobs:
       run: dotnet test --no-build --verbosity normal
 
   deploy-release-test:
-    if: github.ref == 'main'
+    if: github.ref != 'main'
+
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./src
+
     needs: build 
+
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        clean: true
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -54,14 +64,15 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: NugetPush
       env:
-          NUGET_TOKEN_EXISTS: ${{ secrets.NUGET_TOKEN }}
+          NUGET_TOKEN_EXISTS: ${{ secrets.NUGET_TEST_TOKEN }}
       if:  env.NUGET_TOKEN_EXISTS != ''
       run: |
-          dotnet nuget push --skip-duplicate --api-key ${{secrets.NUGET_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
-    - name: Github prerelease
-      shell: bash
-      env:
-        GITHUB_TOKEN: ${{ github.TOKEN }}
-      if:  env.GITHUB_TOKEN != ''
-      run: |
-          gh release create ${{env.CURRENT_VERSION}} *.*nupkg --prerelease --generate-notes
+          dotnet nuget push ./DependencyGraph.Core/bin/Release/*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TEST_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
+          dotnet nuget push ./DependencyGraph.App/bin/Release/*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TEST_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
+    # - name: Github prerelease
+    #   shell: bash
+    #   env:
+    #     GITHUB_TOKEN: ${{ github.TOKEN }}
+    #   if:  env.GITHUB_TOKEN != ''
+    #   run: |
+    #       gh release create --prerelease --generate-notes ./DependencyGraph.App/bin/Release/*.nupkg ./DependencyGraph.Core/bin/Release/*.nupkg

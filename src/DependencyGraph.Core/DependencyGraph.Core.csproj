@@ -9,10 +9,13 @@
     <PackageDescription>Allows you to create dependency graphs for .NET SDK style projects.</PackageDescription>
 
     <PackageId>DependencyGraph.Core</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <DebugType>embedded</DebugType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
