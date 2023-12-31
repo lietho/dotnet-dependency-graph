@@ -38,9 +38,16 @@ jobs:
       run: dotnet test --no-build --verbosity normal
 
   deploy-release-test:
-    if: github.ref == 'main'
+    if: github.ref != 'main'
+
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./src
+
     needs: build 
+    
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
