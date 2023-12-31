@@ -2,10 +2,8 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using NuGet.LibraryModel;
 using NuGet.ProjectModel;
 using NuGet.Versioning;
 
@@ -13,14 +11,6 @@ namespace DependencyGraph.Core.Graph.Factory
 {
   public class DependencyGraphFactory : IDependencyGraphFactory
   {
-    //public IDependencyGraph CreateForProject(FileInfo projectFile, string[] includes, string[] excludes, int? maxDepth)
-    //{
-    //  var dependencyGraphSpec = DependencyGraphSpec.Load(DependencyGraphSpec.GetDGSpecFileName(projectFile.Name));
-
-    //  var projectSpec = dependencyGraphSpec.GetProjectSpec(projectFile.FullName);
-    //}
-
-
     public IDependencyGraph FromLockFile(LockFile lockFile, string[] includes, string[] excludes, int? maxDepth)
     {
       var graph = new DependencyGraph();
@@ -49,7 +39,6 @@ namespace DependencyGraph.Core.Graph.Factory
 
       foreach (var dependency in dependencyGroup.Dependencies)
       {
-        // TODO: find better solution; how is the string "{project|nuget} >= {version}" created
         var libraryName = dependency.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0];
         var versionRange = lockFile.PackageSpec.TargetFrameworks.Single(framework => framework.TargetAlias.Equals(dependencyGroup.FrameworkName, StringComparison.OrdinalIgnoreCase)).Dependencies.FirstOrDefault(dep => dep.Name.Equals(libraryName, StringComparison.OrdinalIgnoreCase))?.LibraryRange.VersionRange;
 

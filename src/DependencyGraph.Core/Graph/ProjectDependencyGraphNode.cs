@@ -2,7 +2,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using NuGet.Versioning;
 
 namespace DependencyGraph.Core.Graph
 {
