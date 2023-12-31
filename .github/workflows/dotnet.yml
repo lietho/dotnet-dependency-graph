@@ -69,10 +69,10 @@ jobs:
       run: |
           dotnet nuget push ./DependencyGraph.Core/bin/Release/*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TEST_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
           dotnet nuget push ./DependencyGraph.App/bin/Release/*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TEST_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
-    - name: Github prerelease
-      shell: bash
-      env:
-        GITHUB_TOKEN: ${{ github.TOKEN }}
-      if:  env.GITHUB_TOKEN != ''
-      run: |
-          gh release create --prerelease --generate-notes ./DependencyGraph.App/bin/Release/*.nupkg ./DependencyGraph.Core/bin/Release/*.nupkg
+    # - name: Github prerelease
+    #   shell: bash
+    #   env:
+    #     GITHUB_TOKEN: ${{ github.TOKEN }}
+    #   if:  env.GITHUB_TOKEN != ''
+    #   run: |
+    #       gh release create --prerelease --generate-notes ./DependencyGraph.App/bin/Release/*.nupkg ./DependencyGraph.Core/bin/Release/*.nupkg
