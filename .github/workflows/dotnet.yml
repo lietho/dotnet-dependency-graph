@@ -47,9 +47,12 @@ jobs:
         working-directory: ./src
 
     needs: build 
-    
+
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        clean: true
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
