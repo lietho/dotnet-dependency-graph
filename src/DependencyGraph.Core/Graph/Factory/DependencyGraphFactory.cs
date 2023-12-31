@@ -2,8 +2,10 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using NuGet.LibraryModel;
 using NuGet.ProjectModel;
 using NuGet.Versioning;
 
@@ -11,6 +13,14 @@ namespace DependencyGraph.Core.Graph.Factory
 {
   public class DependencyGraphFactory : IDependencyGraphFactory
   {
+    //public IDependencyGraph CreateForProject(FileInfo projectFile, string[] includes, string[] excludes, int? maxDepth)
+    //{
+    //  var dependencyGraphSpec = DependencyGraphSpec.Load(DependencyGraphSpec.GetDGSpecFileName(projectFile.Name));
+
+    //  var projectSpec = dependencyGraphSpec.GetProjectSpec(projectFile.FullName);
+    //}
+
+
     public IDependencyGraph FromLockFile(LockFile lockFile, string[] includes, string[] excludes, int? maxDepth)
     {
       var graph = new DependencyGraph();
@@ -24,16 +34,16 @@ namespace DependencyGraph.Core.Graph.Factory
     {
       var rootNode = new ProjectDependencyGraphNode(lockFile.PackageSpec.RestoreMetadata.ProjectName);
 
-      graph.RootNodes.Add(rootNode);
+      graph.AddRoot(rootNode);
 
       foreach (var dependencyGroup in lockFile.ProjectFileDependencyGroups)
       {
-        var targetFrameworkDependencyGraphNode = CreateNodeFor(dependencyGroup, lockFile.Targets.First(_ => _.Name == dependencyGroup.FrameworkName), includes, excludes, maxDepth);
-        rootNode.Dependencies.Add(targetFrameworkDependencyGraphNode);
+        var targetFrameworkDependencyGraphNode = CreateNodeForDependencyGroup(dependencyGroup, lockFile.GetTarget(dependencyGroup.FrameworkName, null), lockFile, includes, excludes, maxDepth);
+        graph.AddDependency(rootNode, targetFrameworkDependencyGraphNode);
       }
     }
 
-    private static IDependencyGraphNode CreateNodeFor(ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, string[] includes, string[] excludes, int? maxDepth)
+    private static IDependencyGraphNode CreateNodeForDependencyGroup(ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, LockFile lockFile, string[] includes, string[] excludes, int? maxDepth)
     {
       var node = new TargetFrameworkDependencyGraphNode(dependencyGroup.FrameworkName);
 
@@ -41,11 +51,13 @@ namespace DependencyGraph.Core.Graph.Factory
       {
         // TODO: find better solution; how is the string "{project|nuget} >= {version}" created
         var libraryName = dependency.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0];
+        var versionRange = lockFile.PackageSpec.TargetFrameworks.Single(framework => framework.TargetAlias.Equals(dependencyGroup.FrameworkName, StringComparison.OrdinalIgnoreCase)).Dependencies.FirstOrDefault(dep => dep.Name.Equals(libraryName, StringComparison.OrdinalIgnoreCase))?.LibraryRange.VersionRange;
 
         if (ShouldInclude(libraryName, includes, excludes) == false)
           continue;
 
-        var directDependencyNode = CreateNodeForLibrary(libraryName, lockFileTarget, includes, excludes, 1, maxDepth);
+        var directDependencyNode = CreateNodeForLibrary(libraryName, versionRange, lockFileTarget, includes, excludes, 1, maxDepth);
+        
         node.Dependencies.Add(directDependencyNode);
       }
 
@@ -55,9 +67,13 @@ namespace DependencyGraph.Core.Graph.Factory
     private static bool ShouldInclude(string libraryName, string[] includes, string[] excludes)
       => includes.Any(_ => Regex.IsMatch(libraryName, _)) && excludes.Any(_ => Regex.IsMatch(libraryName, _)) == false;
 
-    private static IDependencyGraphNode CreateNodeForLibrary(string libraryName, LockFileTarget lockFileTarget, string[] includes, string[] excludes, int currentDepth, int? maxDepth)
+    private static IDependencyGraphNode CreateNodeForLibrary(string name, VersionRange? versionRange, LockFileTarget lockFileTarget, string[] includes, string[] excludes, int currentDepth, int? maxDepth)
     {
-      var library = lockFileTarget.Libraries.First(lib => lib.Name == libraryName);
+      var library = lockFileTarget.Libraries
+        .Where(lib => name.Equals(lib.Name, StringComparison.OrdinalIgnoreCase))
+        .FindBestMatch(versionRange, lib => lib.Version ?? new NuGetVersion(0, 0, 1)) 
+        ?? throw new ApplicationException($"Can not find best match for version range '{versionRange}' of library '{name}'.");
+
       var node = CreateNode(library);
 
       if (currentDepth >= (maxDepth ?? int.MaxValue))
@@ -68,7 +84,7 @@ namespace DependencyGraph.Core.Graph.Factory
         if (ShouldInclude(dependency.Id, includes, excludes) == false)
           continue;
 
-        node.Dependencies.Add(CreateNodeForLibrary(dependency.Id, lockFileTarget, includes, excludes, currentDepth + 1, maxDepth));
+        node.Dependencies.Add(CreateNodeForLibrary(dependency.Id, dependency.VersionRange, lockFileTarget, includes, excludes, currentDepth + 1, maxDepth));
       }
 
       return node;

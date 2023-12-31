@@ -2,6 +2,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.IO;
 using DependencyGraph.Core.Graph;
 
 namespace DependencyGraph.Core.Visualizer.Console

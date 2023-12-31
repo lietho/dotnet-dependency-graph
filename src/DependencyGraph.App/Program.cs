@@ -7,30 +7,37 @@ using DependencyGraph.Core.Graph.Factory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NuGet.Common;
-using Application = DependencyGraph.App.Application;
 
-using var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((_, services) =>
-    {
-      services.AddTransient<Application>();
-      services.AddCommands(typeof(Program).Assembly);
-      services.AddRootCommand<DependencyGraphRootCommand>();
-      services.AddSingleton(NullLogger.Instance);
-      services.AddSingleton<IDependencyGraphFactory, DependencyGraphFactory>();
-    })
-    .Build();
+namespace DependencyGraph.App;
 
-using (var serviceScope = host.Services.CreateScope())
+public class Program
 {
-  var services = serviceScope.ServiceProvider;
+  public static async Task Main(string[] args)
+  {
+    using var host = Host.CreateDefaultBuilder(args)
+        .ConfigureServices((_, services) =>
+        {
+          services.AddTransient<Application>();
+          services.AddCommands(typeof(Program).Assembly);
+          services.AddRootCommand<DependencyGraphRootCommand>();
+          services.AddSingleton(NullLogger.Instance);
+          services.AddSingleton<IDependencyGraphFactory, DependencyGraphFactory>();
+        })
+        .Build();
 
-  try
-  {
-    var app = services.GetRequiredService<Application>();
-    await app.RunAsync(args);
-  }
-  catch (Exception ex)
-  {
-    await Console.Error.WriteLineAsync($"An error occured: {ex.Message}");
+    using (var serviceScope = host.Services.CreateScope())
+    {
+      var services = serviceScope.ServiceProvider;
+
+      try
+      {
+        var app = services.GetRequiredService<Application>();
+        await app.RunAsync(args);
+      }
+      catch (Exception ex)
+      {
+        await Console.Error.WriteLineAsync($"An error occured: {ex.Message}");
+      }
+    }
   }
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Title="Dependencies of DependencyGraph.App" GraphDirection="TopToBottom" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="DependencyGraph.App" Category="ProjectDependency" Label="DependencyGraph.App" />
+    <Node Id="net8.0" Category="FrameworkDependency" Label="net8.0" />
+    <Node Id="DependencyGraph.Core" Category="ProjectDependency" Label="DependencyGraph.Core" />
+    <Node Id="NuGet.ProjectModel@6.8.0" Category="PackageDependency" Label="NuGet.ProjectModel@6.8.0" />
+    <Node Id="NuGet.DependencyResolver.Core@6.8.0" Category="PackageDependency" Label="NuGet.DependencyResolver.Core@6.8.0" />
+    <Node Id="NuGet.Configuration@6.8.0" Category="PackageDependency" Label="NuGet.Configuration@6.8.0" />
+    <Node Id="NuGet.Common@6.8.0" Category="PackageDependency" Label="NuGet.Common@6.8.0" />
+    <Node Id="NuGet.Frameworks@6.8.0" Category="PackageDependency" Label="NuGet.Frameworks@6.8.0" />
+    <Node Id="NuGet.LibraryModel@6.8.0" Category="PackageDependency" Label="NuGet.LibraryModel@6.8.0" />
+    <Node Id="NuGet.Versioning@6.8.0" Category="PackageDependency" Label="NuGet.Versioning@6.8.0" />
+    <Node Id="NuGet.Protocol@6.8.0" Category="PackageDependency" Label="NuGet.Protocol@6.8.0" />
+    <Node Id="NuGet.Packaging@6.8.0" Category="PackageDependency" Label="NuGet.Packaging@6.8.0" />
+  </Nodes>
+  <Links>
+    <Link Source="DependencyGraph.App" Target="net8.0" />
+    <Link Source="net8.0" Target="DependencyGraph.Core" />
+    <Link Source="DependencyGraph.Core" Target="NuGet.ProjectModel@6.8.0" />
+    <Link Source="NuGet.ProjectModel@6.8.0" Target="NuGet.DependencyResolver.Core@6.8.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.Configuration@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.LibraryModel@6.8.0" />
+    <Link Source="NuGet.LibraryModel@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.LibraryModel@6.8.0" Target="NuGet.Versioning@6.8.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.Protocol@6.8.0" />
+    <Link Source="NuGet.Protocol@6.8.0" Target="NuGet.Packaging@6.8.0" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="NuGet.Configuration@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="NuGet.Versioning@6.8.0" />
+    <Link Source="net8.0" Target="NuGet.ProjectModel@6.8.0" />
+    <Link Source="NuGet.ProjectModel@6.8.0" Target="NuGet.DependencyResolver.Core@6.8.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.Configuration@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.LibraryModel@6.8.0" />
+    <Link Source="NuGet.LibraryModel@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.LibraryModel@6.8.0" Target="NuGet.Versioning@6.8.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.Protocol@6.8.0" />
+    <Link Source="NuGet.Protocol@6.8.0" Target="NuGet.Packaging@6.8.0" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="NuGet.Configuration@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="NuGet.Versioning@6.8.0" />
+  </Links>
+  <Categories>
+    <Category Id="Dependency" Stroke="Black" />
+    <Category Id="FrameworkDependency" BasedOn="Dependency" Background="#FF502CCD" />
+    <Category Id="ProjectDependency" BasedOn="Dependency" Background="DarkOrange" />
+    <Category Id="PackageDependency" BasedOn="Dependency" Background="#FF06487D" />
+  </Categories>
+</DirectedGraph>

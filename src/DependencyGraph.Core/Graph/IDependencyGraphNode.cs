@@ -7,6 +7,6 @@ namespace DependencyGraph.Core.Graph
 {
   public interface IDependencyGraphNode
   {
-    IReadOnlyCollection<IDependencyGraphNode> Dependencies { get; }
+    IReadOnlySet<IDependencyGraphNode> Dependencies { get; }
   }
 }

@@ -3,9 +3,7 @@
 
 using System;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using DependencyGraph.Core.Graph;
-using DependencyGraph.Core.Visualizer;
 
 namespace DependencyGraph.Core.Visualizer.Console
 {
