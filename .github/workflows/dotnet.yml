@@ -67,11 +67,11 @@ jobs:
           NUGET_TOKEN_EXISTS: ${{ secrets.NUGET_TOKEN }}
       if:  env.NUGET_TOKEN_EXISTS != ''
       run: |
-          dotnet nuget push --skip-duplicate --api-key ${{secrets.NUGET_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
+          dotnet nuget push **/*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
     - name: Github prerelease
       shell: bash
       env:
         GITHUB_TOKEN: ${{ github.TOKEN }}
       if:  env.GITHUB_TOKEN != ''
       run: |
-          gh release create ${{env.CURRENT_VERSION}} *.*nupkg --prerelease --generate-notes
+          gh release create ${{env.CURRENT_VERSION}} **/*.nupkg --prerelease --generate-notes
