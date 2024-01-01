@@ -1,5 +1,7 @@
 # About
 
+[![Nuget](https://img.shields.io/nuget/v/DependencyGraph.Core.svg)](https://www.nuget.org/packages/DependencyGraph.Core/)
+
 Allows you to create dependency graphs for .NET SDK-style projects. The most notable difference to other libraries providing such functionality is that dotnet-dependency-graph also includes transitive dependencies, thus creating a complete dependency graph.
 
 ## Usage
