@@ -6,9 +6,9 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageDescription>Allows you to create dependency graphs for .NET SDK style projects.</PackageDescription>
-
+    <PackageDescription>Allows you to create dependency graphs for .NET SDK-style projects.</PackageDescription>
     <PackageId>DependencyGraph.Core</PackageId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
     <Folder Include="Visualizer\Dgml\Models\" />
   </ItemGroup>
 

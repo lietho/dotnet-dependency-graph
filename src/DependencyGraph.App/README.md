@@ -1,4 +1,4 @@
-## About
+# About
 
 Allows you to create dependency graphs for .NET SDK-style projects. This is the .NET Global Tool allowing usage of dependency-graph from the command line. The most notable difference to other tools providing such functionality is that dotnet-dependency-graph also includes transitive dependencies, thus creating a complete dependency graph.
 

@@ -11,7 +11,7 @@
     <PackageId>DependencyGraph.App</PackageId>
     <PackAsTool>true</PackAsTool>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageDescription>Allows you to create dependency graphs for .NET SDK style projects. This is the .NET Global Tool allowing usage of dependency-graph from command line.</PackageDescription>
+    <PackageDescription>Allows you to create dependency graphs for .NET SDK-style projects. This is the .NET Global Tool allowing usage of dependency-graph from command line.</PackageDescription>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <ToolCommandName>dependency-graph</ToolCommandName>
