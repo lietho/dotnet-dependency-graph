@@ -26,7 +26,7 @@ namespace DependencyGraph.App.Commands
     private readonly Option<string[]?> _excludeOption;
     private readonly Option<int?> _maxDepthOption;
 
-    public DependencyGraphRootCommand(IEnumerable<Command> commands, ILogger nugetLogger, IDependencyGraphFactory dependencyGraphFactory) : base ("Dependency-graph helps you analyze the dependencies of .NET SDK style projects.")
+    public DependencyGraphRootCommand(IEnumerable<Command> commands, ILogger nugetLogger, IDependencyGraphFactory dependencyGraphFactory) : base("Dependency-graph helps you analyze the dependencies of .NET SDK-style projects.")
     {
       _nugetLogger = nugetLogger;
       _dependencyGraphFactory = dependencyGraphFactory;
@@ -70,7 +70,7 @@ namespace DependencyGraph.App.Commands
 
     private static FileInfo GetSingleProjectFile()
     {
-      var projectFilePatterns = new[] { "*.csproj", "*.vbproj"};
+      var projectFilePatterns = new[] { "*.csproj", "*.vbproj" };
       var allFiles = projectFilePatterns.SelectMany(pattern => new DirectoryInfo(".").EnumerateFiles(pattern)).ToArray();
 
       if (allFiles.Length > 1)

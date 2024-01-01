@@ -11,11 +11,11 @@ namespace DependencyGraph.Core.Graph.Factory
 {
   public class DependencyGraphFactory : IDependencyGraphFactory
   {
-    public IDependencyGraph FromLockFile(LockFile lockFile, string[] includes, string[] excludes, int? maxDepth)
+    public IDependencyGraph FromLockFile(LockFile lockFile, string[]? includes = null, string[]? excludes = null, int? maxDepth = null)
     {
       var graph = new DependencyGraph();
 
-      AddProjectToGraph(graph, lockFile, includes, excludes, maxDepth);
+      AddProjectToGraph(graph, lockFile, includes ?? [".*"], excludes ?? [], maxDepth);
 
       return graph;
     }
