@@ -13,6 +13,8 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <DebugType>embedded</DebugType>
+    <Authors>Thomas Lielacher</Authors>
+    
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
