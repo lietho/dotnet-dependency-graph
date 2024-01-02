@@ -4,10 +4,6 @@
 using System.CommandLine;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using DependencyGraph.Core.Graph.Factory;
-using DependencyGraph.Core.Visualizer.Console;
-using DependencyGraph.Core.Visualizer.Dgml;
-using DependencyGraph.Core.Visualizer;
 using NuGet.Common;
 using NuGet.ProjectModel;
 
@@ -16,8 +12,8 @@ namespace DependencyGraph.App.Commands
   public class DependencyGraphRootCommand : RootCommand
   {
     private readonly ILogger _nugetLogger;
-    private readonly IDependencyGraphFactory _dependencyGraphFactory;
-
+    private readonly DependencyGraphFactoryFactory _dependencyGraphFactoryFactory;
+    private readonly DependencyGraphVisualizerFactory _dependencyGraphVisualizerFactory;
     private readonly Argument<FileInfo?> _projectFileArgument;
     private readonly Option<bool?> _noRestoreOption;
     private readonly Option<VisualizerType> _visualizerOption;
@@ -26,10 +22,15 @@ namespace DependencyGraph.App.Commands
     private readonly Option<string[]?> _excludeOption;
     private readonly Option<int?> _maxDepthOption;
 
-    public DependencyGraphRootCommand(IEnumerable<Command> commands, ILogger nugetLogger, IDependencyGraphFactory dependencyGraphFactory) : base("Dependency-graph helps you analyze the dependencies of .NET SDK-style projects.")
+    public DependencyGraphRootCommand(
+      IEnumerable<Command> commands, 
+      ILogger nugetLogger, 
+      DependencyGraphFactoryFactory dependencyGraphFactoryFactory,
+      DependencyGraphVisualizerFactory dependencyGraphVisualizerFactory) : base("Dependency-graph helps you analyze the dependencies of .NET SDK-style projects.")
     {
       _nugetLogger = nugetLogger;
-      _dependencyGraphFactory = dependencyGraphFactory;
+      _dependencyGraphFactoryFactory = dependencyGraphFactoryFactory;
+      _dependencyGraphVisualizerFactory = dependencyGraphVisualizerFactory;
 
       // add child commands
       foreach (var command in commands)
@@ -99,23 +100,19 @@ namespace DependencyGraph.App.Commands
 
       var lockFileFormat = new LockFileFormat();
       var lockFile = lockFileFormat.Read(lockFileInfo.FullName, _nugetLogger);
-      var graph = _dependencyGraphFactory.FromLockFile(lockFile, (includes ?? ["*"]).Select(WildcardToRegex).ToArray(), (excludes ?? []).Select(WildcardToRegex).ToArray(), maxDepth);
-      await GetVisualizer(visualizerType, outputFile).VisualizeAsync(graph);
+      var graph = _dependencyGraphFactoryFactory.Create(new()
+      {
+        Includes = (includes ?? ["*"]).Select(WildcardToRegex).ToArray(),
+        Excludes = (excludes ?? []).Select(WildcardToRegex).ToArray(),
+        MaxDepth = maxDepth
+      }).FromLockFile(lockFile);
+
+      await _dependencyGraphVisualizerFactory.Create(visualizerType, outputFile).VisualizeAsync(graph);
     }
 
     public static string WildcardToRegex(string pattern) => $"^{Regex.Escape(pattern).Replace(@"\*", ".*").Replace(@"\?", ".")}$";
 
     private static FileInfo? GetLockFileInfo(DirectoryInfo? directory, string assetsFileName) => directory?.GetFiles(assetsFileName)?.FirstOrDefault();
-
-    private static IDependencyGraphVisualizer GetVisualizer(VisualizerType visualizerType, FileInfo? outputFile)
-    {
-      return visualizerType switch
-      {
-        VisualizerType.Console => new ConsoleDependencyGraphVisualizer(new ConsoleDependencyGraphVisualizerOptions()),
-        VisualizerType.Dgml => new DgmlDependencyGraphVisualizer(new DgmlDependencyGraphVisualizerOptions { OutputFilePath = outputFile!.FullName }),
-        _ => throw new ArgumentOutOfRangeException(nameof(visualizerType)),
-      };
-    }
 
     private static async Task RestoreIfNecessary(FileInfo projectOrSulutionFile, bool? noRestore)
     {

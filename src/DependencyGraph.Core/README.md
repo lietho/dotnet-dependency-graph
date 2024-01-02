@@ -11,26 +11,29 @@ Allows you to create dependency graphs for .NET SDK-style projects. The most not
 var lockFileFormat = new LockFileFormat();
 var lockFile = lockFileFormat.Read("project.assets.json", NullLogger.Instance);
 
-// create dependency graph
+// create dependency graph with default options
 var dependencyGraphFactory = new DependencyGraphFactory();
 var graph = dependencyGraphFactory.FromLockFile(lockFile);
 
 // print dependency graph to the console
-var visualizer = new ConsoleDependencyGraphVisualizer(new ConsoleDependencyGraphVisualizerOptions());
+IDependencyGraphVisualizer visualizer = new ConsoleDependencyGraphVisualizer(new ConsoleDependencyGraphVisualizerOptions());
 await visualizer.VisualizeAsync(graph);
 
 // create DGML file for the dependency graph
-visualizer = new DgmlDependencyGraphVisualizer(new DgmlDependencyGraphVisualizerOptions { OutputFilePath = "graph.dgml" })
+visualizer = new DgmlDependencyGraphVisualizer(new DgmlDependencyGraphVisualizerOptions { OutputFilePath = "graph.dgml" });
 await visualizer.VisualizeAsync(graph);
 
 // exclude dependencies starting with "Microsoft" or "System"
-graph = dependencyGraphFactory.FromLockFile(lockFile, excludes: ["Microsoft.*", "System.*"]);
+dependencyGraphFactory = new DependencyGraphFactory(new DependencyGraphFactoryOptions { Excludes = ["Microsoft.*", "System.*"] });
+graph = dependencyGraphFactory.FromLockFile(lockFile);
 
 // only include dependencies starting with "YourCompany"
-graph = dependencyGraphFactory.FromLockFile(lockFile, includes: ["YourCompany.*"]);
+dependencyGraphFactory = new DependencyGraphFactory(new DependencyGraphFactoryOptions { Includes = ["YourCompany.*"] });
+graph = dependencyGraphFactory.FromLockFile(lockFile);
 
 // limit the graph depth
-graph = dependencyGraphFactory.FromLockFile(lockFile, maxDepth: 2);
+dependencyGraphFactory = new DependencyGraphFactory(new DependencyGraphFactoryOptions { MaxDepth = 2 });
+graph = dependencyGraphFactory.FromLockFile(lockFile);
 
 // modify console visualizer options
 var consoleVisualizerOptions = new ConsoleDependencyGraphVisualizerOptions
