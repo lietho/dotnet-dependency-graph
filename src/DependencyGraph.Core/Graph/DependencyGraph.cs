@@ -11,13 +11,11 @@ namespace DependencyGraph.Core.Graph
     {
     }
 
-    public HashSet<IDependencyGraphNode> RootNodes { get; } = [];
+    public HashSet<IDependencyGraphNode> RootNodes { get; } = new HashSet<IDependencyGraphNode>();
 
-    public HashSet<IDependencyGraphNode> Nodes { get; } = [];
+    public HashSet<IDependencyGraphNode> Nodes { get; } = new HashSet<IDependencyGraphNode>();
 
-    IReadOnlySet<IDependencyGraphNode> IDependencyGraph.RootNodes => RootNodes;
-
-    IReadOnlySet<IDependencyGraphNode> IDependencyGraph.Nodes => Nodes;
+    IReadOnlyCollection<IDependencyGraphNode> IDependencyGraph.RootNodes => RootNodes;
 
     public void AddDependency(DependencyGraphNode from, IDependencyGraphNode to)
     {

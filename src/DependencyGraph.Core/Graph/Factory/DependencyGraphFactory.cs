@@ -4,6 +4,7 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using NuGet.Frameworks;
 using NuGet.ProjectModel;
 using NuGet.Versioning;
 
@@ -15,7 +16,7 @@ namespace DependencyGraph.Core.Graph.Factory
     {
       var graph = new DependencyGraph();
 
-      AddProjectToGraph(graph, lockFile, includes ?? [".*"], excludes ?? [], maxDepth);
+      AddProjectToGraph(graph, lockFile, includes ?? new[] { ".*" }, excludes ?? Array.Empty<string>(), maxDepth);
 
       return graph;
     }
@@ -28,7 +29,7 @@ namespace DependencyGraph.Core.Graph.Factory
 
       foreach (var dependencyGroup in lockFile.ProjectFileDependencyGroups)
       {
-        var targetFrameworkDependencyGraphNode = CreateNodeForDependencyGroup(dependencyGroup, lockFile.GetTarget(dependencyGroup.FrameworkName, null), lockFile, includes, excludes, maxDepth);
+        var targetFrameworkDependencyGraphNode = CreateNodeForDependencyGroup(dependencyGroup, lockFile.Targets.Single(lockFileTarget => lockFileTarget.TargetFramework.Equals(NuGetFramework.Parse(dependencyGroup.FrameworkName))), lockFile, includes, excludes, maxDepth);
         graph.AddDependency(rootNode, targetFrameworkDependencyGraphNode);
       }
     }
@@ -39,8 +40,10 @@ namespace DependencyGraph.Core.Graph.Factory
 
       foreach (var dependency in dependencyGroup.Dependencies)
       {
-        var libraryName = dependency.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0];
-        var versionRange = lockFile.PackageSpec.TargetFrameworks.Single(framework => framework.TargetAlias.Equals(dependencyGroup.FrameworkName, StringComparison.OrdinalIgnoreCase)).Dependencies.FirstOrDefault(dep => dep.Name.Equals(libraryName, StringComparison.OrdinalIgnoreCase))?.LibraryRange.VersionRange;
+        var libraryName = dependency.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries)[0];
+        var versionRange = lockFile.PackageSpec.TargetFrameworks
+          .Single(framework => framework.FrameworkName.Equals(NuGetFramework.Parse(dependencyGroup.FrameworkName)))
+          .Dependencies.FirstOrDefault(dep => dep.Name.Equals(libraryName, StringComparison.OrdinalIgnoreCase))?.LibraryRange.VersionRange;
 
         if (ShouldInclude(libraryName, includes, excludes) == false)
           continue;
