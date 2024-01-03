@@ -9,9 +9,20 @@ namespace DependencyGraph.Core.Visualizer.Console
 {
   public class ConsoleDependencyGraphVisualizer : IDependencyGraphVisualizer
   {
+    private class Colors
+    {
+      public Colors(ConsoleColor foregroundColor, ConsoleColor backgroundColor)
+      {
+        ForegroundColor = foregroundColor;
+        BackgroundColor = backgroundColor;
+      }
+
+      public ConsoleColor ForegroundColor { get; }
+      public ConsoleColor BackgroundColor { get; }
+    }
+
     private readonly ConsoleDependencyGraphVisualizerOptions _options;
 
-    private record Colors(ConsoleColor ForegroundColor, ConsoleColor BackgroundColor);
 
     public ConsoleDependencyGraphVisualizer(ConsoleDependencyGraphVisualizerOptions options)
     {

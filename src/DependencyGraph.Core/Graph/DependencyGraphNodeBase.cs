@@ -7,7 +7,7 @@ namespace DependencyGraph.Core.Graph
 {
   public abstract class DependencyGraphNodeBase : IDependencyGraphNode
   {
-    IReadOnlySet<IDependencyGraphNode> IDependencyGraphNode.Dependencies => Dependencies;
-    public HashSet<IDependencyGraphNode> Dependencies { get; } = [];
+    IReadOnlyCollection<IDependencyGraphNode> IDependencyGraphNode.Dependencies => Dependencies;
+    public HashSet<IDependencyGraphNode> Dependencies { get; } = new HashSet<IDependencyGraphNode>();
   }
 }

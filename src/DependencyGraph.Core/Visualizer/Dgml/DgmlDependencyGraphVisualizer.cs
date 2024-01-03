@@ -37,7 +37,7 @@ namespace DependencyGraph.Core.Visualizer.Dgml
       return Task.CompletedTask;
     }
 
-    private static DirectedGraph CreateDirectedGraph(IDependencyGraphNode rootNode) => new()
+    private static DirectedGraph CreateDirectedGraph(IDependencyGraphNode rootNode) => new DirectedGraph()
     {
       Title = $"Dependencies of {rootNode}",
       GraphDirection = GraphDirectionEnum.TopToBottom,
@@ -46,15 +46,15 @@ namespace DependencyGraph.Core.Visualizer.Dgml
     };
 
     private void CreateCategories(DirectedGraph graph) =>
-      graph.Categories = [.. _dgmlDependencyGraphVisualizerOptions.Categories];
+      graph.Categories = _dgmlDependencyGraphVisualizerOptions.Categories.ToArray();
 
     private void CreateNodesAndLinks(IDependencyGraphNode node, DirectedGraph graph)
     {
       var nodeMap = new Dictionary<IDependencyGraphNode, DirectedGraphNode>();
       var links = CreateLinks(node, nodeMap);
 
-      graph.Links = [.. links];
-      graph.Nodes = [.. nodeMap.Values];
+      graph.Links = links.ToArray();
+      graph.Nodes = nodeMap.Values.ToArray();
     }
 
     private List<DirectedGraphLink> CreateLinks(IDependencyGraphNode node, Dictionary<IDependencyGraphNode, DirectedGraphNode> nodeMap)
