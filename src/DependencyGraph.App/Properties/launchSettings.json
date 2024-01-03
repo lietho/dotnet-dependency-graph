@@ -2,7 +2,7 @@
   "profiles": {
     "DependencyGraph.App": {
       "commandName": "Project",
-      "commandLineArgs": "..\\..\\..\\DependencyGraph.sln -v dgml -o ..\\..\\..\\DependencyGraph.App\\DependencyGraph.sln.dgml --no-restore"
+      "commandLineArgs": "..\\..\\..\\DependencyGraph.sln -v dgml -o ..\\..\\..\\DependencyGraph.App\\DependencyGraph.sln.dgml --no-restore -e *Tests*"
     }
   }
 }

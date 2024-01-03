@@ -2,20 +2,22 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using DependencyGraph.Core.Graph.Factory;
+using System.Xml.Linq;
 
 namespace DependencyGraph.Core.Graph
 {
   public class TargetFrameworkDependencyGraphNode : DependencyGraphNodeBase, IEquatable<TargetFrameworkDependencyGraphNode>
   { 
-    public TargetFrameworkDependencyGraphNode(string targetFrameworkIdentifier)
+    public TargetFrameworkDependencyGraphNode(string projectName, string targetFrameworkIdentifier)
     {
+      ProjectName = projectName;
       TargetFrameworkIdentifier = targetFrameworkIdentifier;
     }
 
+    public string ProjectName { get; }
     public string TargetFrameworkIdentifier { get; }
 
-    public override string ToString() => $"{TargetFrameworkIdentifier}";
+    public override string ToString() => $"{ProjectName}/{TargetFrameworkIdentifier}";
 
     public override bool Equals(object? obj)
     {
@@ -29,10 +31,12 @@ namespace DependencyGraph.Core.Graph
     {
       unchecked
       {
-        return 23 * TargetFrameworkIdentifier.GetHashCode();
+        return 23 * StringComparer.OrdinalIgnoreCase.GetHashCode(TargetFrameworkIdentifier) ^ 13 * StringComparer.OrdinalIgnoreCase.GetHashCode(ProjectName);
       }
     }
 
-    public bool Equals(TargetFrameworkDependencyGraphNode? other) => TargetFrameworkIdentifier.Equals(other?.TargetFrameworkIdentifier, StringComparison.OrdinalIgnoreCase);
+    public bool Equals(TargetFrameworkDependencyGraphNode? other) 
+      => TargetFrameworkIdentifier.Equals(other?.TargetFrameworkIdentifier, StringComparison.OrdinalIgnoreCase) &&
+         ProjectName.Equals(other?.ProjectName, StringComparison.OrdinalIgnoreCase);
   }
 }

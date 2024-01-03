@@ -2,6 +2,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -24,7 +25,7 @@ namespace DependencyGraph.Core.Graph.Factory
 
     public IDependencyGraph FromLockFile(LockFile lockFile)
     {
-      var graph = new DependencyGraph();
+      var graph = new DependencyGraph(lockFile.PackageSpec.RestoreMetadata.ProjectName);
 
       AddProjectToGraph(graph, lockFile);
 
@@ -34,12 +35,13 @@ namespace DependencyGraph.Core.Graph.Factory
     public IDependencyGraph FromProjectFile(FileInfo projectFileInfo)
     {
       var project = new Project(projectFileInfo.FullName);
+
       try
       {
         if (project.GetPropertyValue("UsingMicrosoftNETSdk") != "true")
         {
           Console.WriteLine($"Skipping project '{projectFileInfo.FullName}': no SDK-style project");
-          return new DependencyGraph();
+          return new DependencyGraph(Path.GetFileNameWithoutExtension(projectFileInfo.Name));
         }
       }
       finally
@@ -57,11 +59,12 @@ namespace DependencyGraph.Core.Graph.Factory
 
     private static FileInfo? GetLockFileInfo(DirectoryInfo? directory, string assetsFileName) => directory?.GetFiles(assetsFileName)?.FirstOrDefault();
 
-    public IDependencyGraph FromSolutionFile(SolutionFile solutionFile)
+    public IDependencyGraph FromSolutionFile(FileInfo solutionFileInfo)
     {
-      var dependencyGraph = new DependencyGraph();
+      var dependencyGraphs = new List<DependencyGraph>();
+      var solution = SolutionFile.Parse(solutionFileInfo.FullName);
 
-      foreach (var projectInSolution in solutionFile.ProjectsInOrder)
+      foreach (var projectInSolution in solution.ProjectsInOrder)
       {
         if (projectInSolution.ProjectType != SolutionProjectType.KnownToBeMSBuildFormat)
         {
@@ -69,10 +72,26 @@ namespace DependencyGraph.Core.Graph.Factory
           continue;
         }
 
-        dependencyGraph.CombineWith((DependencyGraph)FromProjectFile(new FileInfo(projectInSolution.AbsolutePath)));
+        dependencyGraphs.Add((DependencyGraph)FromProjectFile(new FileInfo(projectInSolution.AbsolutePath)));
       }
 
-      return dependencyGraph;
+      return dependencyGraphs
+        .Where(g => IsRootDependency(g, dependencyGraphs))
+        .Aggregate(new DependencyGraph(Path.GetFileNameWithoutExtension(solutionFileInfo.Name)), (g1, g2) => g1.CombineWith(g2));
+    }
+
+    private static bool IsRootDependency(DependencyGraph graph, List<DependencyGraph> dependencyGraphs)
+    {
+      foreach (var dependencyGraph in dependencyGraphs)
+      {
+        if (graph.IsEmpty)
+          continue;
+
+        if (dependencyGraph.Nodes.Except(dependencyGraph.RootNodes).Contains(graph.RootNodes.Single()))
+          return false;
+      }
+
+      return true;
     }
 
     private void AddProjectToGraph(DependencyGraph graph, LockFile lockFile)
@@ -83,14 +102,14 @@ namespace DependencyGraph.Core.Graph.Factory
 
       foreach (var dependencyGroup in lockFile.ProjectFileDependencyGroups)
       {
-        var targetFrameworkDependencyGraphNode = CreateNodeForDependencyGroup(dependencyGroup, lockFile.Targets.Single(lockFileTarget => lockFileTarget.TargetFramework.Equals(NuGetFramework.Parse(dependencyGroup.FrameworkName))), lockFile);
+        var targetFrameworkDependencyGraphNode = CreateNodeForDependencyGroup(graph, dependencyGroup, lockFile.Targets.Single(lockFileTarget => lockFileTarget.TargetFramework.Equals(NuGetFramework.Parse(dependencyGroup.FrameworkName))), lockFile);
         graph.AddDependency(rootNode, targetFrameworkDependencyGraphNode);
       }
     }
 
-    private IDependencyGraphNode CreateNodeForDependencyGroup(ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, LockFile lockFile)
+    private IDependencyGraphNode CreateNodeForDependencyGroup(DependencyGraph graph, ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, LockFile lockFile)
     {
-      var node = new TargetFrameworkDependencyGraphNode(dependencyGroup.FrameworkName);
+      var node = new TargetFrameworkDependencyGraphNode(lockFile.PackageSpec.RestoreMetadata.ProjectName, dependencyGroup.FrameworkName);
 
       foreach (var dependency in dependencyGroup.Dependencies)
       {
@@ -102,9 +121,9 @@ namespace DependencyGraph.Core.Graph.Factory
         if (ShouldInclude(libraryName, _options) == false)
           continue;
 
-        var directDependencyNode = CreateNodeForLibrary(libraryName, versionRange, lockFileTarget, _options, 1);
+        var directDependencyNode = CreateNodeForLibrary(graph, libraryName, versionRange, lockFileTarget, _options, 1);
 
-        node.Dependencies.Add(directDependencyNode);
+        graph.AddDependency(node, directDependencyNode);
       }
 
       return node;
@@ -113,7 +132,7 @@ namespace DependencyGraph.Core.Graph.Factory
     private static bool ShouldInclude(string libraryName, DependencyGraphFactoryOptions options)
       => options.Includes.Any(_ => Regex.IsMatch(libraryName, _)) && options.Excludes.Any(_ => Regex.IsMatch(libraryName, _)) == false;
 
-    private static IDependencyGraphNode CreateNodeForLibrary(string name, VersionRange? versionRange, LockFileTarget lockFileTarget, DependencyGraphFactoryOptions options, int currentDepth)
+    private static IDependencyGraphNode CreateNodeForLibrary(DependencyGraph graph, string name, VersionRange? versionRange, LockFileTarget lockFileTarget, DependencyGraphFactoryOptions options, int currentDepth)
     {
       var library = lockFileTarget.Libraries
         .Where(lib => name.Equals(lib.Name, StringComparison.OrdinalIgnoreCase))
@@ -130,7 +149,7 @@ namespace DependencyGraph.Core.Graph.Factory
         if (ShouldInclude(dependency.Id, options) == false)
           continue;
 
-        node.Dependencies.Add(CreateNodeForLibrary(dependency.Id, dependency.VersionRange, lockFileTarget, options, currentDepth + 1));
+        graph.AddDependency(node, CreateNodeForLibrary(graph, dependency.Id, dependency.VersionRange, lockFileTarget, options, currentDepth + 1));
       }
 
       return node;

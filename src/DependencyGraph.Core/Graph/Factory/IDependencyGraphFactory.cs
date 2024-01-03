@@ -11,8 +11,8 @@ namespace DependencyGraph.Core.Graph.Factory
   {
     IDependencyGraph FromLockFile(LockFile lockFile);
 
-    IDependencyGraph FromSolutionFile(SolutionFile solutionFile);
+    IDependencyGraph FromSolutionFile(FileInfo solutionFileInfo);
 
-    IDependencyGraph FromProjectFile(FileInfo fileInfo);
+    IDependencyGraph FromProjectFile(FileInfo projectFileInfo);
   }
 }

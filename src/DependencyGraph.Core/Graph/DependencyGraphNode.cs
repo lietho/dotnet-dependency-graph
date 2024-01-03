@@ -28,7 +28,7 @@ namespace DependencyGraph.Core.Graph
     {
       unchecked
       {
-        return 13 * Name.GetHashCode();
+        return 13 * StringComparer.OrdinalIgnoreCase.GetHashCode(Name);
       }
     }
 

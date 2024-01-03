@@ -165,12 +165,7 @@ namespace DependencyGraph.App.Commands
 
     private static bool IsSolutionFile(FileInfo projectOrSolutionFile) => projectOrSolutionFile.Extension.Equals(".sln", StringComparison.OrdinalIgnoreCase);
 
-    private IDependencyGraph CreateGraphForSolution(FileInfo solutionFile, IDependencyGraphFactory dependencyGraphFactory)
-    {
-      var solution = SolutionFile.Parse(solutionFile.FullName);
-
-      return dependencyGraphFactory.FromSolutionFile(solution);
-    }
+    private IDependencyGraph CreateGraphForSolution(FileInfo solutionFile, IDependencyGraphFactory dependencyGraphFactory) => dependencyGraphFactory.FromSolutionFile(solutionFile);
 
     private IDependencyGraph CreateGraphForProjectFile(FileInfo projectFile, IDependencyGraphFactory dependencyGraphFactory)
     {

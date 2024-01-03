@@ -29,7 +29,7 @@ namespace DependencyGraph.Core.Graph
     {
       unchecked
       {
-        return 13 * Name.GetHashCode() ^ 23 * Version.GetHashCode();
+        return 13 * StringComparer.OrdinalIgnoreCase.GetHashCode(Name) ^ 23 * Version.GetHashCode();
       }
     }
 
