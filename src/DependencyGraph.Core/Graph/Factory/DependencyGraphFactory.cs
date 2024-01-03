@@ -4,6 +4,8 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Build.Construction;
+using Microsoft.Build.Evaluation;
 using NuGet.Frameworks;
 using NuGet.ProjectModel;
 using NuGet.Versioning;
@@ -26,6 +28,34 @@ namespace DependencyGraph.Core.Graph.Factory
       AddProjectToGraph(graph, lockFile);
 
       return graph;
+    }
+
+    public IDependencyGraph FromSolutionFile(SolutionFile solutionFile)
+    {
+      return FromSolutionFileInternal(solutionFile);
+    }
+
+    private IDependencyGraph FromSolutionFileInternal(SolutionFile solutionFile)
+    {
+      var dependencyGraph = new DependencyGraph();
+
+      foreach (var projectInSolution in solutionFile.ProjectsInOrder)
+      {
+        if (projectInSolution.ProjectType != SolutionProjectType.KnownToBeMSBuildFormat)
+        {
+          Console.WriteLine($"Skipping project '{projectInSolution.ProjectName}': no MSBuild project");
+          continue;
+        }
+
+        var project = new Project(projectInSolution.AbsolutePath);
+        if (project.GetPropertyValue("UsingMicrosoftNETSdk") != "true")
+        {
+          Console.WriteLine($"Skipping project '{projectInSolution.ProjectName}': no SDK-style project");
+          continue;
+        }
+      }
+
+      return dependencyGraph;
     }
 
     private void AddProjectToGraph(DependencyGraph graph, LockFile lockFile)
