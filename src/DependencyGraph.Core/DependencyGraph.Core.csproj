@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net6.0;netstandard2.0;net472</TargetFrameworks>
     <Nullable>enable</Nullable>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <LangVersion>8.0</LangVersion>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageDescription>Allows you to create dependency graphs for .NET SDK-style projects.</PackageDescription>
@@ -16,8 +17,6 @@
     <Authors>Thomas Lielacher</Authors>
     
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

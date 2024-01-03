@@ -15,10 +15,16 @@ namespace DependencyGraph.Core.Visualizer.Dgml
     private const string ProjectDependencyCategoryId = "ProjectDependency";
     private const string PackageDependencyCategoryId = "PackageDependency";
 
-    public required string OutputFilePath { get; set; }
+    public DgmlDependencyGraphVisualizerOptions(string outputFilePath)
+    {
+      OutputFilePath = outputFilePath;
+    }
+
+    public string OutputFilePath { get; }
 
     public IList<DirectedGraphCategory> Categories { get; set; } =
-      [
+      new List<DirectedGraphCategory>()
+      {
         new DirectedGraphCategory
         {
           Id = DependencyId,
@@ -42,7 +48,7 @@ namespace DependencyGraph.Core.Visualizer.Dgml
           BasedOn = DependencyId,
           Background = "#FF06487D"
         }
-      ];
+      };
 
     public Func<IDependencyGraphNode, string?> AssignCategory { get; set; } = (node) => node switch
       {

@@ -12,7 +12,7 @@ namespace DependencyGraph.App.Commands
     public IDependencyGraphVisualizer Create(VisualizerType visualizerType, FileInfo? outputFile) => visualizerType switch
     {
       VisualizerType.Console => new ConsoleDependencyGraphVisualizer(new ConsoleDependencyGraphVisualizerOptions()),
-      VisualizerType.Dgml => new DgmlDependencyGraphVisualizer(new DgmlDependencyGraphVisualizerOptions { OutputFilePath = outputFile!.FullName }),
+      VisualizerType.Dgml => new DgmlDependencyGraphVisualizer(new DgmlDependencyGraphVisualizerOptions(outputFile!.FullName)),
       _ => throw new ArgumentOutOfRangeException(nameof(visualizerType)),
     };
   }
