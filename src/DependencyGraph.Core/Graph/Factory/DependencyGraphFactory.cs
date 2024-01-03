@@ -48,10 +48,17 @@ namespace DependencyGraph.Core.Graph.Factory
         }
 
         var project = new Project(projectInSolution.AbsolutePath);
-        if (project.GetPropertyValue("UsingMicrosoftNETSdk") != "true")
+        try
         {
-          Console.WriteLine($"Skipping project '{projectInSolution.ProjectName}': no SDK-style project");
-          continue;
+          if (project.GetPropertyValue("UsingMicrosoftNETSdk") != "true")
+          {
+            Console.WriteLine($"Skipping project '{projectInSolution.ProjectName}': no SDK-style project");
+            continue;
+          }
+        }
+        finally
+        {
+          ProjectCollection.GlobalProjectCollection.UnloadProject(project);
         }
       }
 
@@ -86,7 +93,7 @@ namespace DependencyGraph.Core.Graph.Factory
           continue;
 
         var directDependencyNode = CreateNodeForLibrary(libraryName, versionRange, lockFileTarget, _options, 1);
-        
+
         node.Dependencies.Add(directDependencyNode);
       }
 
@@ -100,7 +107,7 @@ namespace DependencyGraph.Core.Graph.Factory
     {
       var library = lockFileTarget.Libraries
         .Where(lib => name.Equals(lib.Name, StringComparison.OrdinalIgnoreCase))
-        .FindBestMatch(versionRange, lib => lib.Version ?? new NuGetVersion(0, 0, 1)) 
+        .FindBestMatch(versionRange, lib => lib.Version ?? new NuGetVersion(0, 0, 1))
         ?? throw new ApplicationException($"Can not find best match for version range '{versionRange}' of library '{name}'.");
 
       var node = CreateNode(library);
