@@ -1,6 +1,7 @@
 ﻿// This file is licensed to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 
 namespace DependencyGraph.Core.Graph
@@ -28,6 +29,15 @@ namespace DependencyGraph.Core.Graph
     {
       Nodes.Add(node);
       RootNodes.Add(node);
+    }
+
+    public void CombineWith(DependencyGraph otherGraph)
+    {
+      foreach (var rootNode in otherGraph.RootNodes)
+        AddRoot(rootNode);
+
+      foreach (var node in otherGraph.Nodes)
+        Nodes.Add(node);
     }
   }
 }

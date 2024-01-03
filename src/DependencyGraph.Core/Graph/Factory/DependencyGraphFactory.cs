@@ -2,6 +2,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Build.Construction;
@@ -30,12 +31,33 @@ namespace DependencyGraph.Core.Graph.Factory
       return graph;
     }
 
-    public IDependencyGraph FromSolutionFile(SolutionFile solutionFile)
+    public IDependencyGraph FromProjectFile(FileInfo projectFileInfo)
     {
-      return FromSolutionFileInternal(solutionFile);
+      var project = new Project(projectFileInfo.FullName);
+      try
+      {
+        if (project.GetPropertyValue("UsingMicrosoftNETSdk") != "true")
+        {
+          Console.WriteLine($"Skipping project '{projectFileInfo.FullName}': no SDK-style project");
+          return new DependencyGraph();
+        }
+      }
+      finally
+      {
+        ProjectCollection.GlobalProjectCollection.UnloadProject(project);
+      }
+
+      var lockFileInfo = GetLockFileInfo(projectFileInfo.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName) 
+        ?? throw new ApplicationException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.");
+
+      var lockFileFormat = new LockFileFormat();
+      var lockFile = lockFileFormat.Read(lockFileInfo.FullName);
+      return FromLockFile(lockFile);
     }
 
-    private IDependencyGraph FromSolutionFileInternal(SolutionFile solutionFile)
+    private static FileInfo? GetLockFileInfo(DirectoryInfo? directory, string assetsFileName) => directory?.GetFiles(assetsFileName)?.FirstOrDefault();
+
+    public IDependencyGraph FromSolutionFile(SolutionFile solutionFile)
     {
       var dependencyGraph = new DependencyGraph();
 
@@ -43,23 +65,11 @@ namespace DependencyGraph.Core.Graph.Factory
       {
         if (projectInSolution.ProjectType != SolutionProjectType.KnownToBeMSBuildFormat)
         {
-          Console.WriteLine($"Skipping project '{projectInSolution.ProjectName}': no MSBuild project");
+          Console.WriteLine($"Skipping project '{projectInSolution.AbsolutePath}': no MSBuild project");
           continue;
         }
 
-        var project = new Project(projectInSolution.AbsolutePath);
-        try
-        {
-          if (project.GetPropertyValue("UsingMicrosoftNETSdk") != "true")
-          {
-            Console.WriteLine($"Skipping project '{projectInSolution.ProjectName}': no SDK-style project");
-            continue;
-          }
-        }
-        finally
-        {
-          ProjectCollection.GlobalProjectCollection.UnloadProject(project);
-        }
+        dependencyGraph.CombineWith((DependencyGraph)FromProjectFile(new FileInfo(projectInSolution.AbsolutePath)));
       }
 
       return dependencyGraph;
