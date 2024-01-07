@@ -3,7 +3,9 @@
 
 using System.CommandLine;
 using System.CommandLine.Builder;
+using System.CommandLine.Help;
 using System.CommandLine.Parsing;
+using System.Resources;
 using DependencyGraph.App.Commands;
 
 namespace DependencyGraph.App
@@ -30,6 +32,8 @@ namespace DependencyGraph.App
         catch (CommandException ex)
         {
           await Console.Error.WriteLineAsync(ex.Message);
+
+          PrintHelp(ex.Command);
         }
         catch (ApplicationException ex)
         {
@@ -40,6 +44,12 @@ namespace DependencyGraph.App
       commandLineBuilder.UseDefaults();
       var parser = commandLineBuilder.Build();
       await parser.InvokeAsync(args);
+    }
+
+    internal static void PrintHelp(Command command)
+    {
+      var helpBuilder = new HelpBuilder(LocalizationResources.Instance);
+      helpBuilder.Write(command, Console.Out);
     }
   }
 }

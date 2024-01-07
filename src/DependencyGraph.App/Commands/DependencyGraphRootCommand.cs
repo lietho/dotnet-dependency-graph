@@ -29,7 +29,7 @@ namespace DependencyGraph.App.Commands
       IEnumerable<Command> commands,
       ILogger nugetLogger,
       DependencyGraphFactoryFactory dependencyGraphFactoryFactory,
-      DependencyGraphVisualizerFactory dependencyGraphVisualizerFactory) : base("Dependency-graph helps you analyze the dependencies of .NET SDK-style projects.")
+      DependencyGraphVisualizerFactory dependencyGraphVisualizerFactory) : base("dependency-graph helps you analyze the dependencies of .NET SDK-style projects and NuGet packages.")
     {
       _nugetLogger = nugetLogger;
       _dependencyGraphFactoryFactory = dependencyGraphFactoryFactory;
@@ -72,15 +72,15 @@ namespace DependencyGraph.App.Commands
       this.SetHandler(HandleCommand, _projectOrSolutionFileArgument, _visualizerOption, _outputFileOption, _includeOption, _excludeOption, _maxDepthOption, _noRestoreOption);
     }
 
-    private static FileInfo GetSingleProjectFile()
+    private FileInfo GetSingleProjectFile()
     {
       var projectFilePatterns = new[] { "*.csproj", "*.vbproj", "*.sln" };
       var allFiles = projectFilePatterns.SelectMany(pattern => new DirectoryInfo(".").EnumerateFiles(pattern)).ToArray();
 
       if (allFiles.Length > 1)
-        throw new CommandException("Specify which project or solution file to use because the curent working directory contains more than one project or solution file.");
+        throw new CommandException("Specify which project or solution file to use because the curent working directory contains more than one project or solution file.", this);
       else if (allFiles.Length == 0)
-        throw new CommandException("Specify a project or solution file. The current working directory does not contain a project or solution file.");
+        throw new CommandException("Specify a project or solution file. The current working directory does not contain a project or solution file.", this);
       return allFiles[0];
     }
 
@@ -92,10 +92,10 @@ namespace DependencyGraph.App.Commands
         includes = ["*"];
 
       if (!projectOrSolutionFile.Exists)
-        throw new CommandException($"Could not find project or solution file {projectOrSolutionFile}.");
+        throw new CommandException($"Could not find project or solution file {projectOrSolutionFile}.", this);
 
       if (outputFile == null && visualizerType == VisualizerType.Dgml)
-        throw new CommandException("An output file path must be specified when using the DGML visualizer.");
+        throw new CommandException("An output file path must be specified when using the DGML visualizer.", this);
 
       await RestoreIfNecessary(projectOrSolutionFile, noRestore);
 
@@ -117,7 +117,7 @@ namespace DependencyGraph.App.Commands
         }
         catch (Exception ex)
         {
-          throw new CommandException($"Could not detect a suitable .NET SDK ({ex.Message}).", ex);
+          throw new CommandException($"Could not detect a suitable .NET SDK ({ex.Message}).", this, ex);
         }
 
         graph = CreateGraphForSolution(projectOrSolutionFile, dependencyGraphFactory);
@@ -168,7 +168,7 @@ namespace DependencyGraph.App.Commands
 
     private IDependencyGraph CreateGraphForProjectFile(FileInfo projectFile, IDependencyGraphFactory dependencyGraphFactory)
     {
-      var lockFileInfo = GetLockFileInfo(projectFile.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName) ?? throw new CommandException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.");
+      var lockFileInfo = GetLockFileInfo(projectFile.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName) ?? throw new CommandException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.", this);
 
       var lockFileFormat = new LockFileFormat();
       var lockFile = lockFileFormat.Read(lockFileInfo.FullName, _nugetLogger);

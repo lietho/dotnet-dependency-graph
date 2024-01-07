@@ -164,5 +164,10 @@ namespace DependencyGraph.Core.Graph.Factory
       "project" => new ProjectDependencyGraphNode(library.Name ?? string.Empty),
       _ => throw new NotSupportedException($"Library type '{library.Type}' is not supported yet")
     };
+
+    public IDependencyGraph FromPackage(string name, NuGetVersion? version = null, Uri? source = null)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
