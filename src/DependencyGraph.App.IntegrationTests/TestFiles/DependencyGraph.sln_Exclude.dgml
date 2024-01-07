@@ -1,7 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Title="Dependencies of TODO" GraphDirection="TopToBottom" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
-  <Nodes />
-  <Links />
+  <Nodes>
+    <Node Id="DependencyGraph.App.IntegrationTests" Category="ProjectDependency" Label="DependencyGraph.App.IntegrationTests" />
+    <Node Id="DependencyGraph.App.IntegrationTests/net8.0" Category="FrameworkDependency" Label="DependencyGraph.App.IntegrationTests/net8.0" />
+    <Node Id="DependencyGraph.App" Category="ProjectDependency" Label="DependencyGraph.App" />
+    <Node Id="DependencyGraph.Core" Category="ProjectDependency" Label="DependencyGraph.Core" />
+    <Node Id="Microsoft.Build@17.8.3" Category="PackageDependency" Label="Microsoft.Build@17.8.3" />
+    <Node Id="Microsoft.Build.Framework@17.8.3" Category="PackageDependency" Label="Microsoft.Build.Framework@17.8.3" />
+    <Node Id="Microsoft.NET.StringTools@17.8.3" Category="PackageDependency" Label="Microsoft.NET.StringTools@17.8.3" />
+    <Node Id="System.Collections.Immutable@7.0.0" Category="PackageDependency" Label="System.Collections.Immutable@7.0.0" />
+    <Node Id="System.Configuration.ConfigurationManager@7.0.0" Category="PackageDependency" Label="System.Configuration.ConfigurationManager@7.0.0" />
+    <Node Id="System.Diagnostics.EventLog@8.0.0" Category="PackageDependency" Label="System.Diagnostics.EventLog@8.0.0" />
+    <Node Id="System.Security.Cryptography.ProtectedData@7.0.0" Category="PackageDependency" Label="System.Security.Cryptography.ProtectedData@7.0.0" />
+    <Node Id="System.Security.Permissions@7.0.0" Category="PackageDependency" Label="System.Security.Permissions@7.0.0" />
+    <Node Id="System.Windows.Extensions@7.0.0" Category="PackageDependency" Label="System.Windows.Extensions@7.0.0" />
+    <Node Id="System.Drawing.Common@7.0.0" Category="PackageDependency" Label="System.Drawing.Common@7.0.0" />
+    <Node Id="Microsoft.Win32.SystemEvents@7.0.0" Category="PackageDependency" Label="Microsoft.Win32.SystemEvents@7.0.0" />
+    <Node Id="System.Reflection.Metadata@7.0.0" Category="PackageDependency" Label="System.Reflection.Metadata@7.0.0" />
+    <Node Id="System.Reflection.MetadataLoadContext@7.0.0" Category="PackageDependency" Label="System.Reflection.MetadataLoadContext@7.0.0" />
+    <Node Id="System.Security.Principal.Windows@5.0.0" Category="PackageDependency" Label="System.Security.Principal.Windows@5.0.0" />
+    <Node Id="System.Threading.Tasks.Dataflow@7.0.0" Category="PackageDependency" Label="System.Threading.Tasks.Dataflow@7.0.0" />
+    <Node Id="NuGet.ProjectModel@6.8.0" Category="PackageDependency" Label="NuGet.ProjectModel@6.8.0" />
+    <Node Id="NuGet.DependencyResolver.Core@6.8.0" Category="PackageDependency" Label="NuGet.DependencyResolver.Core@6.8.0" />
+    <Node Id="NuGet.Configuration@6.8.0" Category="PackageDependency" Label="NuGet.Configuration@6.8.0" />
+    <Node Id="NuGet.Common@6.8.0" Category="PackageDependency" Label="NuGet.Common@6.8.0" />
+    <Node Id="NuGet.Frameworks@6.8.0" Category="PackageDependency" Label="NuGet.Frameworks@6.8.0" />
+    <Node Id="NuGet.LibraryModel@6.8.0" Category="PackageDependency" Label="NuGet.LibraryModel@6.8.0" />
+    <Node Id="NuGet.Versioning@6.8.0" Category="PackageDependency" Label="NuGet.Versioning@6.8.0" />
+    <Node Id="NuGet.Protocol@6.8.0" Category="PackageDependency" Label="NuGet.Protocol@6.8.0" />
+    <Node Id="NuGet.Packaging@6.8.0" Category="PackageDependency" Label="NuGet.Packaging@6.8.0" />
+    <Node Id="Newtonsoft.Json@13.0.3" Category="PackageDependency" Label="Newtonsoft.Json@13.0.3" />
+    <Node Id="System.Security.Cryptography.Pkcs@6.0.4" Category="PackageDependency" Label="System.Security.Cryptography.Pkcs@6.0.4" />
+    <Node Id="System.Formats.Asn1@6.0.0" Category="PackageDependency" Label="System.Formats.Asn1@6.0.0" />
+    <Node Id="Microsoft.Build.Locator@1.6.10" Category="PackageDependency" Label="Microsoft.Build.Locator@1.6.10" />
+    <Node Id="System.CommandLine@2.0.0-beta4.22272.1" Category="PackageDependency" Label="System.CommandLine@2.0.0-beta4.22272.1" />
+    <Node Id="Microsoft.NET.Test.Sdk@17.8.0" Category="PackageDependency" Label="Microsoft.NET.Test.Sdk@17.8.0" />
+    <Node Id="Microsoft.CodeCoverage@17.8.0" Category="PackageDependency" Label="Microsoft.CodeCoverage@17.8.0" />
+    <Node Id="Microsoft.TestPlatform.TestHost@17.8.0" Category="PackageDependency" Label="Microsoft.TestPlatform.TestHost@17.8.0" />
+    <Node Id="Microsoft.TestPlatform.ObjectModel@17.8.0" Category="PackageDependency" Label="Microsoft.TestPlatform.ObjectModel@17.8.0" />
+    <Node Id="NUnit@4.0.1" Category="PackageDependency" Label="NUnit@4.0.1" />
+    <Node Id="NUnit.Analyzers@3.10.0" Category="PackageDependency" Label="NUnit.Analyzers@3.10.0" />
+    <Node Id="NUnit3TestAdapter@4.5.0" Category="PackageDependency" Label="NUnit3TestAdapter@4.5.0" />
+    <Node Id="coverlet.collector@6.0.0" Category="PackageDependency" Label="coverlet.collector@6.0.0" />
+  </Nodes>
+  <Links>
+    <Link Source="DependencyGraph.App.IntegrationTests" Target="DependencyGraph.App.IntegrationTests/net8.0" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="DependencyGraph.App" />
+    <Link Source="DependencyGraph.App" Target="DependencyGraph.Core" />
+    <Link Source="DependencyGraph.Core" Target="Microsoft.Build@17.8.3" />
+    <Link Source="Microsoft.Build@17.8.3" Target="Microsoft.Build.Framework@17.8.3" />
+    <Link Source="Microsoft.Build@17.8.3" Target="Microsoft.NET.StringTools@17.8.3" />
+    <Link Source="Microsoft.Build@17.8.3" Target="System.Collections.Immutable@7.0.0" />
+    <Link Source="Microsoft.Build@17.8.3" Target="System.Configuration.ConfigurationManager@7.0.0" />
+    <Link Source="System.Configuration.ConfigurationManager@7.0.0" Target="System.Diagnostics.EventLog@8.0.0" />
+    <Link Source="System.Configuration.ConfigurationManager@7.0.0" Target="System.Security.Cryptography.ProtectedData@7.0.0" />
+    <Link Source="System.Configuration.ConfigurationManager@7.0.0" Target="System.Security.Permissions@7.0.0" />
+    <Link Source="System.Security.Permissions@7.0.0" Target="System.Windows.Extensions@7.0.0" />
+    <Link Source="System.Windows.Extensions@7.0.0" Target="System.Drawing.Common@7.0.0" />
+    <Link Source="System.Drawing.Common@7.0.0" Target="Microsoft.Win32.SystemEvents@7.0.0" />
+    <Link Source="Microsoft.Build@17.8.3" Target="System.Reflection.Metadata@7.0.0" />
+    <Link Source="System.Reflection.Metadata@7.0.0" Target="System.Collections.Immutable@7.0.0" />
+    <Link Source="Microsoft.Build@17.8.3" Target="System.Reflection.MetadataLoadContext@7.0.0" />
+    <Link Source="System.Reflection.MetadataLoadContext@7.0.0" Target="System.Collections.Immutable@7.0.0" />
+    <Link Source="System.Reflection.MetadataLoadContext@7.0.0" Target="System.Reflection.Metadata@7.0.0" />
+    <Link Source="System.Reflection.Metadata@7.0.0" Target="System.Collections.Immutable@7.0.0" />
+    <Link Source="Microsoft.Build@17.8.3" Target="System.Security.Principal.Windows@5.0.0" />
+    <Link Source="Microsoft.Build@17.8.3" Target="System.Threading.Tasks.Dataflow@7.0.0" />
+    <Link Source="DependencyGraph.Core" Target="NuGet.ProjectModel@6.8.0" />
+    <Link Source="NuGet.ProjectModel@6.8.0" Target="NuGet.DependencyResolver.Core@6.8.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.Configuration@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="System.Security.Cryptography.ProtectedData@7.0.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.LibraryModel@6.8.0" />
+    <Link Source="NuGet.LibraryModel@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.LibraryModel@6.8.0" Target="NuGet.Versioning@6.8.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.Protocol@6.8.0" />
+    <Link Source="NuGet.Protocol@6.8.0" Target="NuGet.Packaging@6.8.0" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="Newtonsoft.Json@13.0.3" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="NuGet.Configuration@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="System.Security.Cryptography.ProtectedData@7.0.0" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="NuGet.Versioning@6.8.0" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="System.Security.Cryptography.Pkcs@6.0.4" />
+    <Link Source="System.Security.Cryptography.Pkcs@6.0.4" Target="System.Formats.Asn1@6.0.0" />
+    <Link Source="DependencyGraph.App" Target="Microsoft.Build.Locator@1.6.10" />
+    <Link Source="DependencyGraph.App" Target="NuGet.ProjectModel@6.8.0" />
+    <Link Source="NuGet.ProjectModel@6.8.0" Target="NuGet.DependencyResolver.Core@6.8.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.Configuration@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="System.Security.Cryptography.ProtectedData@7.0.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.LibraryModel@6.8.0" />
+    <Link Source="NuGet.LibraryModel@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.LibraryModel@6.8.0" Target="NuGet.Versioning@6.8.0" />
+    <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.Protocol@6.8.0" />
+    <Link Source="NuGet.Protocol@6.8.0" Target="NuGet.Packaging@6.8.0" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="Newtonsoft.Json@13.0.3" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="NuGet.Configuration@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="NuGet.Common@6.8.0" />
+    <Link Source="NuGet.Common@6.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="NuGet.Configuration@6.8.0" Target="System.Security.Cryptography.ProtectedData@7.0.0" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="NuGet.Versioning@6.8.0" />
+    <Link Source="NuGet.Packaging@6.8.0" Target="System.Security.Cryptography.Pkcs@6.0.4" />
+    <Link Source="System.Security.Cryptography.Pkcs@6.0.4" Target="System.Formats.Asn1@6.0.0" />
+    <Link Source="DependencyGraph.App" Target="System.CommandLine@2.0.0-beta4.22272.1" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="Microsoft.NET.Test.Sdk@17.8.0" />
+    <Link Source="Microsoft.NET.Test.Sdk@17.8.0" Target="Microsoft.CodeCoverage@17.8.0" />
+    <Link Source="Microsoft.NET.Test.Sdk@17.8.0" Target="Microsoft.TestPlatform.TestHost@17.8.0" />
+    <Link Source="Microsoft.TestPlatform.TestHost@17.8.0" Target="Microsoft.TestPlatform.ObjectModel@17.8.0" />
+    <Link Source="Microsoft.TestPlatform.ObjectModel@17.8.0" Target="NuGet.Frameworks@6.8.0" />
+    <Link Source="Microsoft.TestPlatform.ObjectModel@17.8.0" Target="System.Reflection.Metadata@7.0.0" />
+    <Link Source="System.Reflection.Metadata@7.0.0" Target="System.Collections.Immutable@7.0.0" />
+    <Link Source="Microsoft.TestPlatform.TestHost@17.8.0" Target="Newtonsoft.Json@13.0.3" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="NUnit@4.0.1" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="NUnit.Analyzers@3.10.0" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="NUnit3TestAdapter@4.5.0" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="coverlet.collector@6.0.0" />
+  </Links>
   <Categories>
     <Category Id="Dependency" Stroke="Black" />
     <Category Id="FrameworkDependency" BasedOn="Dependency" Background="#FF502CCD" />

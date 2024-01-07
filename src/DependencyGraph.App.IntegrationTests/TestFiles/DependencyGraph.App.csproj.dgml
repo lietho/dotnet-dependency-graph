@@ -2,7 +2,7 @@
 <DirectedGraph xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Title="Dependencies of TODO" GraphDirection="TopToBottom" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
     <Node Id="DependencyGraph.App" Category="ProjectDependency" Label="DependencyGraph.App" />
-    <Node Id="net8.0" Category="FrameworkDependency" Label="net8.0" />
+    <Node Id="DependencyGraph.App/net8.0" Category="FrameworkDependency" Label="DependencyGraph.App/net8.0" />
     <Node Id="DependencyGraph.Core" Category="ProjectDependency" Label="DependencyGraph.Core" />
     <Node Id="Microsoft.Build@17.8.3" Category="PackageDependency" Label="Microsoft.Build@17.8.3" />
     <Node Id="Microsoft.Build.Framework@17.8.3" Category="PackageDependency" Label="Microsoft.Build.Framework@17.8.3" />
@@ -69,8 +69,8 @@
     <Node Id="System.CommandLine@2.0.0-beta4.22272.1" Category="PackageDependency" Label="System.CommandLine@2.0.0-beta4.22272.1" />
   </Nodes>
   <Links>
-    <Link Source="DependencyGraph.App" Target="net8.0" />
-    <Link Source="net8.0" Target="DependencyGraph.Core" />
+    <Link Source="DependencyGraph.App" Target="DependencyGraph.App/net8.0" />
+    <Link Source="DependencyGraph.App/net8.0" Target="DependencyGraph.Core" />
     <Link Source="DependencyGraph.Core" Target="Microsoft.Build@17.8.3" />
     <Link Source="Microsoft.Build@17.8.3" Target="Microsoft.Build.Framework@17.8.3" />
     <Link Source="Microsoft.Build@17.8.3" Target="Microsoft.NET.StringTools@17.8.3" />
@@ -110,9 +110,9 @@
     <Link Source="NuGet.Packaging@6.8.0" Target="NuGet.Versioning@6.8.0" />
     <Link Source="NuGet.Packaging@6.8.0" Target="System.Security.Cryptography.Pkcs@6.0.4" />
     <Link Source="System.Security.Cryptography.Pkcs@6.0.4" Target="System.Formats.Asn1@6.0.0" />
-    <Link Source="net8.0" Target="GitVersion.MsBuild@5.12.0" />
-    <Link Source="net8.0" Target="Microsoft.Build.Locator@1.6.10" />
-    <Link Source="net8.0" Target="Microsoft.Extensions.Hosting@8.0.0" />
+    <Link Source="DependencyGraph.App/net8.0" Target="GitVersion.MsBuild@5.12.0" />
+    <Link Source="DependencyGraph.App/net8.0" Target="Microsoft.Build.Locator@1.6.10" />
+    <Link Source="DependencyGraph.App/net8.0" Target="Microsoft.Extensions.Hosting@8.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Configuration@8.0.0" />
     <Link Source="Microsoft.Extensions.Configuration@8.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@8.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.Abstractions@8.0.0" Target="Microsoft.Extensions.Primitives@8.0.0" />
@@ -405,10 +405,10 @@
     <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Options@8.0.0" />
     <Link Source="Microsoft.Extensions.Options@8.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@8.0.0" />
     <Link Source="Microsoft.Extensions.Options@8.0.0" Target="Microsoft.Extensions.Primitives@8.0.0" />
-    <Link Source="net8.0" Target="Microsoft.SourceLink.GitHub@8.0.0" />
+    <Link Source="DependencyGraph.App/net8.0" Target="Microsoft.SourceLink.GitHub@8.0.0" />
     <Link Source="Microsoft.SourceLink.GitHub@8.0.0" Target="Microsoft.Build.Tasks.Git@8.0.0" />
     <Link Source="Microsoft.SourceLink.GitHub@8.0.0" Target="Microsoft.SourceLink.Common@8.0.0" />
-    <Link Source="net8.0" Target="NuGet.ProjectModel@6.8.0" />
+    <Link Source="DependencyGraph.App/net8.0" Target="NuGet.ProjectModel@6.8.0" />
     <Link Source="NuGet.ProjectModel@6.8.0" Target="NuGet.DependencyResolver.Core@6.8.0" />
     <Link Source="NuGet.DependencyResolver.Core@6.8.0" Target="NuGet.Configuration@6.8.0" />
     <Link Source="NuGet.Configuration@6.8.0" Target="NuGet.Common@6.8.0" />
@@ -428,7 +428,7 @@
     <Link Source="NuGet.Packaging@6.8.0" Target="NuGet.Versioning@6.8.0" />
     <Link Source="NuGet.Packaging@6.8.0" Target="System.Security.Cryptography.Pkcs@6.0.4" />
     <Link Source="System.Security.Cryptography.Pkcs@6.0.4" Target="System.Formats.Asn1@6.0.0" />
-    <Link Source="net8.0" Target="System.CommandLine@2.0.0-beta4.22272.1" />
+    <Link Source="DependencyGraph.App/net8.0" Target="System.CommandLine@2.0.0-beta4.22272.1" />
   </Links>
   <Categories>
     <Category Id="Dependency" Stroke="Black" />
