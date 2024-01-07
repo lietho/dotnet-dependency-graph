@@ -2,12 +2,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Xml.Linq;
 
 namespace DependencyGraph.Core.Graph
 {
   public class TargetFrameworkDependencyGraphNode : DependencyGraphNodeBase, IEquatable<TargetFrameworkDependencyGraphNode>
-  { 
+  {
     public TargetFrameworkDependencyGraphNode(string projectName, string targetFrameworkIdentifier)
     {
       ProjectName = projectName;
@@ -35,7 +34,7 @@ namespace DependencyGraph.Core.Graph
       }
     }
 
-    public bool Equals(TargetFrameworkDependencyGraphNode? other) 
+    public bool Equals(TargetFrameworkDependencyGraphNode? other)
       => TargetFrameworkIdentifier.Equals(other?.TargetFrameworkIdentifier, StringComparison.OrdinalIgnoreCase) &&
          ProjectName.Equals(other?.ProjectName, StringComparison.OrdinalIgnoreCase);
   }

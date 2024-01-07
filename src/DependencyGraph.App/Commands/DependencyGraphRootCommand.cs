@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using DependencyGraph.Core.Graph;
 using DependencyGraph.Core.Graph.Factory;
-using Microsoft.Build.Construction;
 using Microsoft.Build.Locator;
 using NuGet.Common;
 using NuGet.ProjectModel;
@@ -27,8 +26,8 @@ namespace DependencyGraph.App.Commands
     private readonly Option<int?> _maxDepthOption;
 
     public DependencyGraphRootCommand(
-      IEnumerable<Command> commands, 
-      ILogger nugetLogger, 
+      IEnumerable<Command> commands,
+      ILogger nugetLogger,
       DependencyGraphFactoryFactory dependencyGraphFactoryFactory,
       DependencyGraphVisualizerFactory dependencyGraphVisualizerFactory) : base("Dependency-graph helps you analyze the dependencies of .NET SDK-style projects.")
     {

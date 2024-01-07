@@ -23,11 +23,11 @@ namespace DependencyGraph.App
 
       commandLineBuilder.AddMiddleware(async (context, next) =>
       {
-        try 
+        try
         {
           await next(context);
-        } 
-        catch (CommandException ex) 
+        }
+        catch (CommandException ex)
         {
           await Console.Error.WriteLineAsync(ex.Message);
         }

@@ -23,7 +23,6 @@ namespace DependencyGraph.Core.Visualizer.Console
 
     private readonly ConsoleDependencyGraphVisualizerOptions _options;
 
-
     public ConsoleDependencyGraphVisualizer(ConsoleDependencyGraphVisualizerOptions options)
     {
       _options = options;

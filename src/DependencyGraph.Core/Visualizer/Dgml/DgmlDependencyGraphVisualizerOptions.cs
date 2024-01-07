@@ -1,10 +1,10 @@
 ﻿// This file is licensed to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using DependencyGraph.Core.Graph;
-using DependencyGraph.Core.Visualizer.Dgml.Models;
 using System;
 using System.Collections.Generic;
+using DependencyGraph.Core.Graph;
+using DependencyGraph.Core.Visualizer.Dgml.Models;
 
 namespace DependencyGraph.Core.Visualizer.Dgml
 {

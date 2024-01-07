@@ -79,7 +79,7 @@ namespace DependencyGraph.App.IntegrationTests
       CompareFiles("consoleOutput.txt", $"TestFiles/{testFileName}");
     }
 
-    private static void CompareFiles(string file, string expectedContentFile) => 
+    private static void CompareFiles(string file, string expectedContentFile) =>
       Assert.That(NormalizeNewLines(File.ReadAllText(file)), Is.EqualTo(NormalizeNewLines(File.ReadAllText(expectedContentFile))));
 
     private static string NormalizeNewLines(string text) => text.Replace("\r\n", Environment.NewLine);

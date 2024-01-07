@@ -49,7 +49,7 @@ namespace DependencyGraph.Core.Graph.Factory
         ProjectCollection.GlobalProjectCollection.UnloadProject(project);
       }
 
-      var lockFileInfo = GetLockFileInfo(projectFileInfo.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName) 
+      var lockFileInfo = GetLockFileInfo(projectFileInfo.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName)
         ?? throw new ApplicationException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.");
 
       var lockFileFormat = new LockFileFormat();

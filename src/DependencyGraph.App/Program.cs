@@ -2,7 +2,6 @@
 // See the LICENSE file in the project root for more information.
 
 using DependencyGraph.App.Commands;
-using DependencyGraph.Core.Graph.Factory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NuGet.Common;

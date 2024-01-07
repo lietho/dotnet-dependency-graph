@@ -1,9 +1,9 @@
 ﻿// This file is licensed to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.Extensions.DependencyInjection;
 using System.CommandLine;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DependencyGraph.App
 {
@@ -16,7 +16,7 @@ namespace DependencyGraph.App
 
       var commands = assemblies
           .SelectMany(_ => _.GetExportedTypes())
-          .Where(type => commandType.IsAssignableFrom(type) )
+          .Where(type => commandType.IsAssignableFrom(type))
           .Where(type => !rootCommandType.IsAssignableFrom(type))
           .Where(type => !type.IsAbstract);
 
