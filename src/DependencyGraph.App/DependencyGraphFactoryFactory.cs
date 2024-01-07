@@ -3,7 +3,7 @@
 
 using DependencyGraph.Core.Graph.Factory;
 
-namespace DependencyGraph.App.Commands
+namespace DependencyGraph.App
 {
   public class DependencyGraphFactoryFactory
   {

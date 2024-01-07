@@ -66,6 +66,9 @@ namespace DependencyGraph.Core.Graph.Factory
 
       foreach (var projectInSolution in solution.ProjectsInOrder)
       {
+        if (ShouldInclude(projectInSolution.ProjectName, _options) == false)
+          continue;
+
         if (projectInSolution.ProjectType != SolutionProjectType.KnownToBeMSBuildFormat)
         {
           Console.WriteLine($"Skipping project '{projectInSolution.AbsolutePath}': no MSBuild project");

@@ -5,7 +5,7 @@ using DependencyGraph.Core.Visualizer;
 using DependencyGraph.Core.Visualizer.Console;
 using DependencyGraph.Core.Visualizer.Dgml;
 
-namespace DependencyGraph.App.Commands
+namespace DependencyGraph.App
 {
   public class DependencyGraphVisualizerFactory
   {
