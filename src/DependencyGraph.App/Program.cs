@@ -20,7 +20,8 @@ public class Program
           services.AddCommands(typeof(Program).Assembly);
           services.AddRootCommand<DependencyGraphRootCommand>();
           services.AddSingleton(NullLogger.Instance);
-          services.AddSingleton<IDependencyGraphFactory, DependencyGraphFactory>();
+          services.AddSingleton<DependencyGraphFactoryFactory>();
+          services.AddSingleton<DependencyGraphVisualizerFactory>();
         })
         .Build();
 

@@ -4,10 +4,10 @@
 using System.CommandLine;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using DependencyGraph.Core.Graph;
 using DependencyGraph.Core.Graph.Factory;
-using DependencyGraph.Core.Visualizer.Console;
-using DependencyGraph.Core.Visualizer.Dgml;
-using DependencyGraph.Core.Visualizer;
+using Microsoft.Build.Construction;
+using Microsoft.Build.Locator;
 using NuGet.Common;
 using NuGet.ProjectModel;
 
@@ -16,9 +16,9 @@ namespace DependencyGraph.App.Commands
   public class DependencyGraphRootCommand : RootCommand
   {
     private readonly ILogger _nugetLogger;
-    private readonly IDependencyGraphFactory _dependencyGraphFactory;
-
-    private readonly Argument<FileInfo?> _projectFileArgument;
+    private readonly DependencyGraphFactoryFactory _dependencyGraphFactoryFactory;
+    private readonly DependencyGraphVisualizerFactory _dependencyGraphVisualizerFactory;
+    private readonly Argument<FileInfo?> _projectOrSolutionFileArgument;
     private readonly Option<bool?> _noRestoreOption;
     private readonly Option<VisualizerType> _visualizerOption;
     private readonly Option<FileInfo?> _outputFileOption;
@@ -26,20 +26,25 @@ namespace DependencyGraph.App.Commands
     private readonly Option<string[]?> _excludeOption;
     private readonly Option<int?> _maxDepthOption;
 
-    public DependencyGraphRootCommand(IEnumerable<Command> commands, ILogger nugetLogger, IDependencyGraphFactory dependencyGraphFactory) : base("Dependency-graph helps you analyze the dependencies of .NET SDK-style projects.")
+    public DependencyGraphRootCommand(
+      IEnumerable<Command> commands, 
+      ILogger nugetLogger, 
+      DependencyGraphFactoryFactory dependencyGraphFactoryFactory,
+      DependencyGraphVisualizerFactory dependencyGraphVisualizerFactory) : base("Dependency-graph helps you analyze the dependencies of .NET SDK-style projects.")
     {
       _nugetLogger = nugetLogger;
-      _dependencyGraphFactory = dependencyGraphFactory;
+      _dependencyGraphFactoryFactory = dependencyGraphFactoryFactory;
+      _dependencyGraphVisualizerFactory = dependencyGraphVisualizerFactory;
 
       // add child commands
       foreach (var command in commands)
         AddCommand(command);
 
-      _projectFileArgument = new Argument<FileInfo?>("project file", "The project file you want to analyze.")
+      _projectOrSolutionFileArgument = new Argument<FileInfo?>("project or solution file", "The project or solution file you want to analyze.")
       {
         Arity = ArgumentArity.ZeroOrOne
       };
-      AddArgument(_projectFileArgument);
+      AddArgument(_projectOrSolutionFileArgument);
 
       _visualizerOption = new Option<VisualizerType>(["--visualizer", "-v"], description: "Selects a visualizer for the output.");
       AddOption(_visualizerOption);
@@ -65,56 +70,63 @@ namespace DependencyGraph.App.Commands
       _noRestoreOption = new Option<bool?>(["--no-restore"], description: "Do not restore the project.");
       AddOption(_noRestoreOption);
 
-      this.SetHandler(HandleCommand, _projectFileArgument, _visualizerOption, _outputFileOption, _includeOption, _excludeOption, _maxDepthOption, _noRestoreOption);
+      this.SetHandler(HandleCommand, _projectOrSolutionFileArgument, _visualizerOption, _outputFileOption, _includeOption, _excludeOption, _maxDepthOption, _noRestoreOption);
     }
 
     private static FileInfo GetSingleProjectFile()
     {
-      var projectFilePatterns = new[] { "*.csproj", "*.vbproj" };
+      var projectFilePatterns = new[] { "*.csproj", "*.vbproj", "*.sln" };
       var allFiles = projectFilePatterns.SelectMany(pattern => new DirectoryInfo(".").EnumerateFiles(pattern)).ToArray();
 
       if (allFiles.Length > 1)
-        throw new CommandException("Specify which project file to use because the curent working directory contains more than one project file.");
+        throw new CommandException("Specify which project or solution file to use because the curent working directory contains more than one project or solution file.");
       else if (allFiles.Length == 0)
-        throw new CommandException("Specify a project file. The current working directory does not contain a project file.");
+        throw new CommandException("Specify a project or solution file. The current working directory does not contain a project or solution file.");
       return allFiles[0];
     }
 
-    private async Task HandleCommand(FileInfo? projectFile, VisualizerType visualizerType, FileInfo? outputFile, string[]? includes, string[]? excludes, int? maxDepth, bool? noRestore)
+    private async Task HandleCommand(FileInfo? projectOrSolutionFile, VisualizerType visualizerType, FileInfo? outputFile, string[]? includes, string[]? excludes, int? maxDepth, bool? noRestore)
     {
-      projectFile ??= GetSingleProjectFile();
+      projectOrSolutionFile ??= GetSingleProjectFile();
 
       if (includes == null || includes.Length == 0)
         includes = ["*"];
 
-      if (!projectFile.Exists)
-        throw new CommandException($"Could not find project file {projectFile}.");
+      if (!projectOrSolutionFile.Exists)
+        throw new CommandException($"Could not find project or solution file {projectOrSolutionFile}.");
 
       if (outputFile == null && visualizerType == VisualizerType.Dgml)
         throw new CommandException("An output file path must be specified when using the DGML visualizer.");
 
-      await RestoreIfNecessary(projectFile, noRestore);
+      await RestoreIfNecessary(projectOrSolutionFile, noRestore);
 
-      var lockFileInfo = GetLockFileInfo(projectFile.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName) ?? throw new CommandException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.");
-
-      var lockFileFormat = new LockFileFormat();
-      var lockFile = lockFileFormat.Read(lockFileInfo.FullName, _nugetLogger);
-      var graph = _dependencyGraphFactory.FromLockFile(lockFile, (includes ?? ["*"]).Select(WildcardToRegex).ToArray(), (excludes ?? []).Select(WildcardToRegex).ToArray(), maxDepth);
-      await GetVisualizer(visualizerType, outputFile).VisualizeAsync(graph);
-    }
-
-    public static string WildcardToRegex(string pattern) => $"^{Regex.Escape(pattern).Replace(@"\*", ".*").Replace(@"\?", ".")}$";
-
-    private static FileInfo? GetLockFileInfo(DirectoryInfo? directory, string assetsFileName) => directory?.GetFiles(assetsFileName)?.FirstOrDefault();
-
-    private static IDependencyGraphVisualizer GetVisualizer(VisualizerType visualizerType, FileInfo? outputFile)
-    {
-      return visualizerType switch
+      IDependencyGraph graph;
+      var dependencyGraphFactory = _dependencyGraphFactoryFactory.Create(new()
       {
-        VisualizerType.Console => new ConsoleDependencyGraphVisualizer(new ConsoleDependencyGraphVisualizerOptions()),
-        VisualizerType.Dgml => new DgmlDependencyGraphVisualizer(new DgmlDependencyGraphVisualizerOptions(outputFile!.FullName)),
-        _ => throw new ArgumentOutOfRangeException(nameof(visualizerType)),
-      };
+        Includes = (includes ?? ["*"]).Select(WildcardToRegex).ToArray(),
+        Excludes = (excludes ?? []).Select(WildcardToRegex).ToArray(),
+        MaxDepth = maxDepth
+      });
+
+      if (IsSolutionFile(projectOrSolutionFile))
+      {
+        try
+        {
+          // call must be done before Microsoft.Build assembly needs to be loaded
+          if (!MSBuildLocator.IsRegistered)
+            MSBuildLocator.RegisterDefaults();
+        }
+        catch (Exception ex)
+        {
+          throw new CommandException($"Could not detect a suitable .NET SDK ({ex.Message}).", ex);
+        }
+
+        graph = CreateGraphForSolution(projectOrSolutionFile, dependencyGraphFactory);
+      }
+      else
+        graph = CreateGraphForProjectFile(projectOrSolutionFile, dependencyGraphFactory);
+
+      await _dependencyGraphVisualizerFactory.Create(visualizerType, outputFile).VisualizeAsync(graph);
     }
 
     private static async Task RestoreIfNecessary(FileInfo projectOrSulutionFile, bool? noRestore)
@@ -148,5 +160,22 @@ namespace DependencyGraph.App.Commands
       if (restoreProcess.ExitCode != 0)
         throw new ApplicationException($"Restore failed; Exit code: {restoreProcess.ExitCode}");
     }
+
+    public static string WildcardToRegex(string pattern) => $"^{Regex.Escape(pattern).Replace(@"\*", ".*").Replace(@"\?", ".")}$";
+
+    private static bool IsSolutionFile(FileInfo projectOrSolutionFile) => projectOrSolutionFile.Extension.Equals(".sln", StringComparison.OrdinalIgnoreCase);
+
+    private IDependencyGraph CreateGraphForSolution(FileInfo solutionFile, IDependencyGraphFactory dependencyGraphFactory) => dependencyGraphFactory.FromSolutionFile(solutionFile);
+
+    private IDependencyGraph CreateGraphForProjectFile(FileInfo projectFile, IDependencyGraphFactory dependencyGraphFactory)
+    {
+      var lockFileInfo = GetLockFileInfo(projectFile.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName) ?? throw new CommandException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.");
+
+      var lockFileFormat = new LockFileFormat();
+      var lockFile = lockFileFormat.Read(lockFileInfo.FullName, _nugetLogger);
+      return dependencyGraphFactory.FromLockFile(lockFile);
+    }
+
+    private static FileInfo? GetLockFileInfo(DirectoryInfo? directory, string assetsFileName) => directory?.GetFiles(assetsFileName)?.FirstOrDefault();
   }
 }

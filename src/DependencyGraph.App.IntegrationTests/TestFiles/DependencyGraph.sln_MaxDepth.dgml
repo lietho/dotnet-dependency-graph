@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Title="Dependencies of TODO" GraphDirection="TopToBottom" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="DependencyGraph.App.IntegrationTests" Category="ProjectDependency" Label="DependencyGraph.App.IntegrationTests" />
+    <Node Id="DependencyGraph.App.IntegrationTests/net8.0" Category="FrameworkDependency" Label="DependencyGraph.App.IntegrationTests/net8.0" />
+    <Node Id="DependencyGraph.App" Category="ProjectDependency" Label="DependencyGraph.App" />
+    <Node Id="DependencyGraph.Core" Category="ProjectDependency" Label="DependencyGraph.Core" />
+    <Node Id="Microsoft.Build.Locator@1.6.10" Category="PackageDependency" Label="Microsoft.Build.Locator@1.6.10" />
+    <Node Id="Microsoft.Extensions.Hosting@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Hosting@8.0.0" />
+    <Node Id="NuGet.ProjectModel@6.8.0" Category="PackageDependency" Label="NuGet.ProjectModel@6.8.0" />
+    <Node Id="System.CommandLine@2.0.0-beta4.22272.1" Category="PackageDependency" Label="System.CommandLine@2.0.0-beta4.22272.1" />
+    <Node Id="Microsoft.NET.Test.Sdk@17.8.0" Category="PackageDependency" Label="Microsoft.NET.Test.Sdk@17.8.0" />
+    <Node Id="Microsoft.CodeCoverage@17.8.0" Category="PackageDependency" Label="Microsoft.CodeCoverage@17.8.0" />
+    <Node Id="Microsoft.TestPlatform.TestHost@17.8.0" Category="PackageDependency" Label="Microsoft.TestPlatform.TestHost@17.8.0" />
+    <Node Id="NUnit@4.0.1" Category="PackageDependency" Label="NUnit@4.0.1" />
+    <Node Id="NUnit.Analyzers@3.10.0" Category="PackageDependency" Label="NUnit.Analyzers@3.10.0" />
+    <Node Id="NUnit3TestAdapter@4.5.0" Category="PackageDependency" Label="NUnit3TestAdapter@4.5.0" />
+    <Node Id="coverlet.collector@6.0.0" Category="PackageDependency" Label="coverlet.collector@6.0.0" />
+  </Nodes>
+  <Links>
+    <Link Source="DependencyGraph.App.IntegrationTests" Target="DependencyGraph.App.IntegrationTests/net8.0" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="DependencyGraph.App" />
+    <Link Source="DependencyGraph.App" Target="DependencyGraph.Core" />
+    <Link Source="DependencyGraph.App" Target="Microsoft.Build.Locator@1.6.10" />
+    <Link Source="DependencyGraph.App" Target="Microsoft.Extensions.Hosting@8.0.0" />
+    <Link Source="DependencyGraph.App" Target="NuGet.ProjectModel@6.8.0" />
+    <Link Source="DependencyGraph.App" Target="System.CommandLine@2.0.0-beta4.22272.1" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="Microsoft.NET.Test.Sdk@17.8.0" />
+    <Link Source="Microsoft.NET.Test.Sdk@17.8.0" Target="Microsoft.CodeCoverage@17.8.0" />
+    <Link Source="Microsoft.NET.Test.Sdk@17.8.0" Target="Microsoft.TestPlatform.TestHost@17.8.0" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="NUnit@4.0.1" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="NUnit.Analyzers@3.10.0" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="NUnit3TestAdapter@4.5.0" />
+    <Link Source="DependencyGraph.App.IntegrationTests/net8.0" Target="coverlet.collector@6.0.0" />
+  </Links>
+  <Categories>
+    <Category Id="Dependency" Stroke="Black" />
+    <Category Id="FrameworkDependency" BasedOn="Dependency" Background="#FF502CCD" />
+    <Category Id="ProjectDependency" BasedOn="Dependency" Background="DarkOrange" />
+    <Category Id="PackageDependency" BasedOn="Dependency" Background="#FF06487D" />
+  </Categories>
+</DirectedGraph>

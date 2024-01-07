@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyGraph.Core", "Dep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyGraph.App", "DependencyGraph.App\DependencyGraph.App.csproj", "{E6977BE8-FB12-4C7A-A993-CF1F043F06C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyGraph.App.IntegrationTests", "DependencyGraph.App.IntegrationTests\DependencyGraph.App.IntegrationTests.csproj", "{EE4FCBE0-DA9B-436E-A238-91C52407CA80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyGraph.App.IntegrationTests", "DependencyGraph.App.IntegrationTests\DependencyGraph.App.IntegrationTests.csproj", "{EE4FCBE0-DA9B-436E-A238-91C52407CA80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

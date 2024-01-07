@@ -27,19 +27,18 @@ namespace DependencyGraph.Core.Visualizer.Dgml
 
     public Task VisualizeAsync(IDependencyGraph graph)
     {
-      var directedGraph = CreateDirectedGraph(graph.RootNodes.First());
+      var directedGraph = CreateDirectedGraph();
 
       CreateCategories(directedGraph);
-      CreateNodesAndLinks(graph.RootNodes.First(), directedGraph);
-
+      CreateNodesAndLinks(graph, directedGraph);
       SerializeGraph(directedGraph, _dgmlDependencyGraphVisualizerOptions.OutputFilePath);
 
       return Task.CompletedTask;
     }
 
-    private static DirectedGraph CreateDirectedGraph(IDependencyGraphNode rootNode) => new DirectedGraph()
+    private static DirectedGraph CreateDirectedGraph() => new DirectedGraph()
     {
-      Title = $"Dependencies of {rootNode}",
+      Title = $"Dependencies of TODO", // TODO: add a name property or something to IDependencyGraph
       GraphDirection = GraphDirectionEnum.TopToBottom,
       GraphDirectionSpecified = true,
       Layout = LayoutEnum.DependencyMatrix
@@ -48,13 +47,16 @@ namespace DependencyGraph.Core.Visualizer.Dgml
     private void CreateCategories(DirectedGraph graph) =>
       graph.Categories = _dgmlDependencyGraphVisualizerOptions.Categories.ToArray();
 
-    private void CreateNodesAndLinks(IDependencyGraphNode node, DirectedGraph graph)
+    private void CreateNodesAndLinks(IDependencyGraph graph, DirectedGraph directedGraph)
     {
       var nodeMap = new Dictionary<IDependencyGraphNode, DirectedGraphNode>();
-      var links = CreateLinks(node, nodeMap);
+      var links = new List<DirectedGraphLink>();
 
-      graph.Links = links.ToArray();
-      graph.Nodes = nodeMap.Values.ToArray();
+      foreach (var rootNode in graph.RootNodes)
+        links.AddRange(CreateLinks(rootNode, nodeMap));
+
+      directedGraph.Links = links.ToArray();
+      directedGraph.Nodes = nodeMap.Values.ToArray();
     }
 
     private List<DirectedGraphLink> CreateLinks(IDependencyGraphNode node, Dictionary<IDependencyGraphNode, DirectedGraphNode> nodeMap)
