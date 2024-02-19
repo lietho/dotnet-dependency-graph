@@ -28,7 +28,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="NuGet.ProjectModel" Version="6.8.0" />
+    <PackageReference Include="NuGet.ProjectModel" Version="6.9.1" />
     <PackageReference Include="Microsoft.Build" Version="17.8.3" ExcludeAssets="runtime" />
   </ItemGroup>
 
