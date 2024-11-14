@@ -4,74 +4,74 @@
     <Node Id="DependencyGraph.App" Category="ProjectDependency" Label="DependencyGraph.App" />
     <Node Id="DependencyGraph.App/net8.0" Category="FrameworkDependency" Label="DependencyGraph.App/net8.0" />
     <Node Id="DependencyGraph.Core" Category="ProjectDependency" Label="DependencyGraph.Core" />
-    <Node Id="Microsoft.Build@17.8.3" Category="PackageDependency" Label="Microsoft.Build@17.8.3" />
-    <Node Id="NuGet.ProjectModel@6.8.0" Category="PackageDependency" Label="NuGet.ProjectModel@6.8.0" />
-    <Node Id="GitVersion.MsBuild@5.12.0" Category="PackageDependency" Label="GitVersion.MsBuild@5.12.0" />
-    <Node Id="Microsoft.Build.Locator@1.6.10" Category="PackageDependency" Label="Microsoft.Build.Locator@1.6.10" />
-    <Node Id="Microsoft.Extensions.Hosting@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Hosting@8.0.0" />
-    <Node Id="Microsoft.Extensions.Configuration@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration@8.0.0" />
-    <Node Id="Microsoft.Extensions.Configuration.Abstractions@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.Abstractions@8.0.0" />
-    <Node Id="Microsoft.Extensions.Configuration.Binder@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.Binder@8.0.0" />
-    <Node Id="Microsoft.Extensions.Configuration.CommandLine@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.CommandLine@8.0.0" />
-    <Node Id="Microsoft.Extensions.Configuration.EnvironmentVariables@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.EnvironmentVariables@8.0.0" />
-    <Node Id="Microsoft.Extensions.Configuration.FileExtensions@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.FileExtensions@8.0.0" />
-    <Node Id="Microsoft.Extensions.Configuration.Json@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.Json@8.0.0" />
-    <Node Id="Microsoft.Extensions.Configuration.UserSecrets@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.UserSecrets@8.0.0" />
-    <Node Id="Microsoft.Extensions.DependencyInjection@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.DependencyInjection@8.0.0" />
-    <Node Id="Microsoft.Extensions.DependencyInjection.Abstractions@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.DependencyInjection.Abstractions@8.0.0" />
-    <Node Id="Microsoft.Extensions.Diagnostics@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Diagnostics@8.0.0" />
-    <Node Id="Microsoft.Extensions.FileProviders.Abstractions@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.FileProviders.Abstractions@8.0.0" />
-    <Node Id="Microsoft.Extensions.FileProviders.Physical@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.FileProviders.Physical@8.0.0" />
-    <Node Id="Microsoft.Extensions.Hosting.Abstractions@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Hosting.Abstractions@8.0.0" />
-    <Node Id="Microsoft.Extensions.Logging@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging@8.0.0" />
-    <Node Id="Microsoft.Extensions.Logging.Abstractions@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.Abstractions@8.0.0" />
-    <Node Id="Microsoft.Extensions.Logging.Configuration@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.Configuration@8.0.0" />
-    <Node Id="Microsoft.Extensions.Logging.Console@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.Console@8.0.0" />
-    <Node Id="Microsoft.Extensions.Logging.Debug@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.Debug@8.0.0" />
-    <Node Id="Microsoft.Extensions.Logging.EventLog@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.EventLog@8.0.0" />
-    <Node Id="Microsoft.Extensions.Logging.EventSource@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.EventSource@8.0.0" />
-    <Node Id="Microsoft.Extensions.Options@8.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Options@8.0.0" />
+    <Node Id="Microsoft.Build@17.11.4" Category="PackageDependency" Label="Microsoft.Build@17.11.4" />
+    <Node Id="NuGet.ProjectModel@6.12.1" Category="PackageDependency" Label="NuGet.ProjectModel@6.12.1" />
+    <Node Id="GitVersion.MsBuild@6.0.5" Category="PackageDependency" Label="GitVersion.MsBuild@6.0.5" />
+    <Node Id="Microsoft.Build.Locator@1.7.8" Category="PackageDependency" Label="Microsoft.Build.Locator@1.7.8" />
+    <Node Id="Microsoft.Extensions.Hosting@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Hosting@9.0.0" />
+    <Node Id="Microsoft.Extensions.Configuration@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration@9.0.0" />
+    <Node Id="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
+    <Node Id="Microsoft.Extensions.Configuration.Binder@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.Binder@9.0.0" />
+    <Node Id="Microsoft.Extensions.Configuration.CommandLine@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.CommandLine@9.0.0" />
+    <Node Id="Microsoft.Extensions.Configuration.EnvironmentVariables@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.EnvironmentVariables@9.0.0" />
+    <Node Id="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" />
+    <Node Id="Microsoft.Extensions.Configuration.Json@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.Json@9.0.0" />
+    <Node Id="Microsoft.Extensions.Configuration.UserSecrets@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Configuration.UserSecrets@9.0.0" />
+    <Node Id="Microsoft.Extensions.DependencyInjection@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.DependencyInjection@9.0.0" />
+    <Node Id="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
+    <Node Id="Microsoft.Extensions.Diagnostics@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Diagnostics@9.0.0" />
+    <Node Id="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
+    <Node Id="Microsoft.Extensions.FileProviders.Physical@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.FileProviders.Physical@9.0.0" />
+    <Node Id="Microsoft.Extensions.Hosting.Abstractions@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Hosting.Abstractions@9.0.0" />
+    <Node Id="Microsoft.Extensions.Logging@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging@9.0.0" />
+    <Node Id="Microsoft.Extensions.Logging.Abstractions@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
+    <Node Id="Microsoft.Extensions.Logging.Configuration@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.Configuration@9.0.0" />
+    <Node Id="Microsoft.Extensions.Logging.Console@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.Console@9.0.0" />
+    <Node Id="Microsoft.Extensions.Logging.Debug@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.Debug@9.0.0" />
+    <Node Id="Microsoft.Extensions.Logging.EventLog@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.EventLog@9.0.0" />
+    <Node Id="Microsoft.Extensions.Logging.EventSource@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Logging.EventSource@9.0.0" />
+    <Node Id="Microsoft.Extensions.Options@9.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Options@9.0.0" />
     <Node Id="Microsoft.SourceLink.GitHub@8.0.0" Category="PackageDependency" Label="Microsoft.SourceLink.GitHub@8.0.0" />
     <Node Id="Microsoft.Build.Tasks.Git@8.0.0" Category="PackageDependency" Label="Microsoft.Build.Tasks.Git@8.0.0" />
     <Node Id="Microsoft.SourceLink.Common@8.0.0" Category="PackageDependency" Label="Microsoft.SourceLink.Common@8.0.0" />
-    <Node Id="NuGet.DependencyResolver.Core@6.8.0" Category="PackageDependency" Label="NuGet.DependencyResolver.Core@6.8.0" />
+    <Node Id="NuGet.DependencyResolver.Core@6.12.1" Category="PackageDependency" Label="NuGet.DependencyResolver.Core@6.12.1" />
     <Node Id="System.CommandLine@2.0.0-beta4.22272.1" Category="PackageDependency" Label="System.CommandLine@2.0.0-beta4.22272.1" />
   </Nodes>
   <Links>
     <Link Source="DependencyGraph.App" Target="DependencyGraph.App/net8.0" />
     <Link Source="DependencyGraph.App/net8.0" Target="DependencyGraph.Core" />
-    <Link Source="DependencyGraph.Core" Target="Microsoft.Build@17.8.3" />
-    <Link Source="DependencyGraph.Core" Target="NuGet.ProjectModel@6.8.0" />
-    <Link Source="DependencyGraph.App/net8.0" Target="GitVersion.MsBuild@5.12.0" />
-    <Link Source="DependencyGraph.App/net8.0" Target="Microsoft.Build.Locator@1.6.10" />
-    <Link Source="DependencyGraph.App/net8.0" Target="Microsoft.Extensions.Hosting@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Configuration@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Configuration.Binder@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Configuration.CommandLine@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Configuration.EnvironmentVariables@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Configuration.FileExtensions@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Configuration.Json@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Configuration.UserSecrets@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.DependencyInjection@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Diagnostics@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.FileProviders.Physical@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Hosting.Abstractions@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Logging@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Logging.Abstractions@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Logging.Configuration@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Logging.Console@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Logging.Debug@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Logging.EventLog@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Logging.EventSource@8.0.0" />
-    <Link Source="Microsoft.Extensions.Hosting@8.0.0" Target="Microsoft.Extensions.Options@8.0.0" />
+    <Link Source="DependencyGraph.Core" Target="Microsoft.Build@17.11.4" />
+    <Link Source="DependencyGraph.Core" Target="NuGet.ProjectModel@6.12.1" />
+    <Link Source="DependencyGraph.App/net8.0" Target="GitVersion.MsBuild@6.0.5" />
+    <Link Source="DependencyGraph.App/net8.0" Target="Microsoft.Build.Locator@1.7.8" />
+    <Link Source="DependencyGraph.App/net8.0" Target="Microsoft.Extensions.Hosting@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.Binder@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.CommandLine@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.EnvironmentVariables@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.Json@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.UserSecrets@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.DependencyInjection@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Diagnostics@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.FileProviders.Physical@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Hosting.Abstractions@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.Configuration@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.Console@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.Debug@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.EventLog@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.EventSource@9.0.0" />
+    <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
     <Link Source="DependencyGraph.App/net8.0" Target="Microsoft.SourceLink.GitHub@8.0.0" />
     <Link Source="Microsoft.SourceLink.GitHub@8.0.0" Target="Microsoft.Build.Tasks.Git@8.0.0" />
     <Link Source="Microsoft.SourceLink.GitHub@8.0.0" Target="Microsoft.SourceLink.Common@8.0.0" />
-    <Link Source="DependencyGraph.App/net8.0" Target="NuGet.ProjectModel@6.8.0" />
-    <Link Source="NuGet.ProjectModel@6.8.0" Target="NuGet.DependencyResolver.Core@6.8.0" />
+    <Link Source="DependencyGraph.App/net8.0" Target="NuGet.ProjectModel@6.12.1" />
+    <Link Source="NuGet.ProjectModel@6.12.1" Target="NuGet.DependencyResolver.Core@6.12.1" />
     <Link Source="DependencyGraph.App/net8.0" Target="System.CommandLine@2.0.0-beta4.22272.1" />
   </Links>
   <Categories>
