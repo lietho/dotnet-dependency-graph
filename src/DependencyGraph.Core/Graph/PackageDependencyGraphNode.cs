@@ -2,18 +2,21 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using NuGet.ProjectModel;
 using NuGet.Versioning;
 
 namespace DependencyGraph.Core.Graph
 {
   public class PackageDependencyGraphNode : DependencyGraphNode, IEquatable<PackageDependencyGraphNode>
   {
-    public PackageDependencyGraphNode(string name, NuGetVersion version) : base(name)
+    public PackageDependencyGraphNode(string name, NuGetVersion version, LockFileTargetLibrary targetLibrary) : base(name)
     {
       Version = version;
+      TargetLibrary = targetLibrary;
     }
 
     public NuGetVersion Version { get; }
+    public LockFileTargetLibrary TargetLibrary { get; }
 
     public override string ToString() => $"{Name}@{Version}";
 

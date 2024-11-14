@@ -40,7 +40,7 @@ namespace DependencyGraph.Core.Graph.Factory
       {
         if (project.GetPropertyValue("UsingMicrosoftNETSdk") != "true")
         {
-          Console.WriteLine($"Skipping project '{projectFileInfo.FullName}': no SDK-style project");
+          Console.WriteLine($"Skipping project '{projectFileInfo.Name}': no SDK-style project");
           return new DependencyGraph(Path.GetFileNameWithoutExtension(projectFileInfo.Name));
         }
       }
@@ -71,7 +71,7 @@ namespace DependencyGraph.Core.Graph.Factory
 
         if (projectInSolution.ProjectType != SolutionProjectType.KnownToBeMSBuildFormat)
         {
-          Console.WriteLine($"Skipping project '{projectInSolution.AbsolutePath}': no MSBuild project");
+          Console.WriteLine($"Skipping project '{projectInSolution.ProjectName}': no MSBuild project");
           continue;
         }
 
@@ -99,7 +99,7 @@ namespace DependencyGraph.Core.Graph.Factory
 
     private void AddProjectToGraph(DependencyGraph graph, LockFile lockFile)
     {
-      var rootNode = new ProjectDependencyGraphNode(lockFile.PackageSpec.RestoreMetadata.ProjectName);
+      var rootNode = new ProjectDependencyGraphNode(lockFile.PackageSpec.RestoreMetadata.ProjectName, null);
 
       graph.AddRoot(rootNode);
 
@@ -160,8 +160,8 @@ namespace DependencyGraph.Core.Graph.Factory
 
     private static DependencyGraphNode CreateNode(LockFileTargetLibrary library) => library.Type switch
     {
-      "package" => new PackageDependencyGraphNode(library.Name ?? string.Empty, library.Version ?? new NuGetVersion(0, 0, 1)),
-      "project" => new ProjectDependencyGraphNode(library.Name ?? string.Empty),
+      "package" => new PackageDependencyGraphNode(library.Name ?? string.Empty, library.Version ?? new NuGetVersion(0, 0, 1), library),
+      "project" => new ProjectDependencyGraphNode(library.Name ?? string.Empty, library),
       _ => throw new NotSupportedException($"Library type '{library.Type}' is not supported yet")
     };
   }
