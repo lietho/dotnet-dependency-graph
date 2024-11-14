@@ -62,13 +62,13 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: NugetPush
-      env:
-          NUGET_TOKEN_EXISTS: ${{ secrets.NUGET_TEST_TOKEN }}
-      if:  env.NUGET_TOKEN_EXISTS != ''
-      run: |
-          dotnet nuget push ./DependencyGraph.Core/bin/Release/*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TEST_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
-          dotnet nuget push ./DependencyGraph.App/bin/Release/*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TEST_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
+    # - name: NugetPush
+    #   env:
+    #       NUGET_TOKEN_EXISTS: ${{ secrets.NUGET_TEST_TOKEN }}
+    #   if:  env.NUGET_TOKEN_EXISTS != ''
+    #   run: |
+    #       dotnet nuget push ./DependencyGraph.Core/bin/Release/*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TEST_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
+    #       dotnet nuget push ./DependencyGraph.App/bin/Release/*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TEST_TOKEN}} --source https://apiint.nugettest.org/v3/index.json
     # - name: Github prerelease
     #   shell: bash
     #   env:
