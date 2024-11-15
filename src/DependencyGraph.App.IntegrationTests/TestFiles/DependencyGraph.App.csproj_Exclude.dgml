@@ -47,7 +47,6 @@
     <Link Source="Microsoft.Build@17.11.4" Target="System.Reflection.MetadataLoadContext@8.0.0" />
     <Link Source="System.Reflection.MetadataLoadContext@8.0.0" Target="System.Collections.Immutable@8.0.0" />
     <Link Source="System.Reflection.MetadataLoadContext@8.0.0" Target="System.Reflection.Metadata@8.0.0" />
-    <Link Source="System.Reflection.Metadata@8.0.0" Target="System.Collections.Immutable@8.0.0" />
     <Link Source="DependencyGraph.Core" Target="NuGet.ProjectModel@6.12.1" />
     <Link Source="NuGet.ProjectModel@6.12.1" Target="NuGet.DependencyResolver.Core@6.12.1" />
     <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Configuration@6.12.1" />
@@ -56,15 +55,11 @@
     <Link Source="NuGet.Configuration@6.12.1" Target="System.Security.Cryptography.ProtectedData@8.0.0" />
     <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.LibraryModel@6.12.1" />
     <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
     <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Versioning@6.12.1" />
     <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Protocol@6.12.1" />
     <Link Source="NuGet.Protocol@6.12.1" Target="NuGet.Packaging@6.12.1" />
     <Link Source="NuGet.Packaging@6.12.1" Target="Newtonsoft.Json@13.0.3" />
     <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Configuration@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="System.Security.Cryptography.ProtectedData@8.0.0" />
     <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Versioning@6.12.1" />
     <Link Source="NuGet.Packaging@6.12.1" Target="System.Formats.Asn1@8.0.1" />
     <Link Source="NuGet.Packaging@6.12.1" Target="System.Security.Cryptography.Pkcs@6.0.4" />
@@ -75,26 +70,6 @@
     <Link Source="Microsoft.SourceLink.GitHub@8.0.0" Target="Microsoft.Build.Tasks.Git@8.0.0" />
     <Link Source="Microsoft.SourceLink.GitHub@8.0.0" Target="Microsoft.SourceLink.Common@8.0.0" />
     <Link Source="DependencyGraph.App/net8.0" Target="NuGet.ProjectModel@6.12.1" />
-    <Link Source="NuGet.ProjectModel@6.12.1" Target="NuGet.DependencyResolver.Core@6.12.1" />
-    <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Configuration@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="System.Security.Cryptography.ProtectedData@8.0.0" />
-    <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.LibraryModel@6.12.1" />
-    <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Versioning@6.12.1" />
-    <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Protocol@6.12.1" />
-    <Link Source="NuGet.Protocol@6.12.1" Target="NuGet.Packaging@6.12.1" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="Newtonsoft.Json@13.0.3" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Configuration@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="System.Security.Cryptography.ProtectedData@8.0.0" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Versioning@6.12.1" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="System.Formats.Asn1@8.0.1" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="System.Security.Cryptography.Pkcs@6.0.4" />
-    <Link Source="System.Security.Cryptography.Pkcs@6.0.4" Target="System.Formats.Asn1@8.0.1" />
     <Link Source="DependencyGraph.App/net8.0" Target="System.CommandLine@2.0.0-beta4.22272.1" />
   </Links>
   <Categories>

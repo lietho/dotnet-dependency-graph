@@ -9,6 +9,8 @@ namespace DependencyGraph.Core.Graph
   {
     string Description { get; }
 
+    IReadOnlyCollection<IDependencyGraphNode> AllNodes { get; }
+
     IReadOnlyCollection<IDependencyGraphNode> RootNodes { get; }
   }
 }

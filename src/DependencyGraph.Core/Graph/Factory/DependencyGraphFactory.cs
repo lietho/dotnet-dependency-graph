@@ -90,7 +90,7 @@ namespace DependencyGraph.Core.Graph.Factory
         if (graph.IsEmpty)
           continue;
 
-        if (dependencyGraph.Nodes.Except(dependencyGraph.RootNodes).Contains(graph.RootNodes.Single()))
+        if (dependencyGraph.AllNodes.Except(dependencyGraph.RootNodes).Contains(graph.RootNodes.Single()))
           return false;
       }
 
@@ -110,21 +110,18 @@ namespace DependencyGraph.Core.Graph.Factory
       }
     }
 
-    private IDependencyGraphNode CreateNodeForDependencyGroup(DependencyGraph graph, ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, LockFile lockFile)
+    private TargetFrameworkDependencyGraphNode CreateNodeForDependencyGroup(DependencyGraph graph, ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, LockFile lockFile)
     {
       var node = new TargetFrameworkDependencyGraphNode(lockFile.PackageSpec.RestoreMetadata.ProjectName, dependencyGroup.FrameworkName);
 
       foreach (var dependency in dependencyGroup.Dependencies)
       {
         var libraryName = dependency.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries)[0];
-        var versionRange = lockFile.PackageSpec.TargetFrameworks
-          .Single(framework => framework.FrameworkName.Equals(NuGetFramework.Parse(dependencyGroup.FrameworkName)))
-          .Dependencies.FirstOrDefault(dep => dep.Name.Equals(libraryName, StringComparison.OrdinalIgnoreCase))?.LibraryRange.VersionRange;
 
         if (ShouldInclude(libraryName, _options) == false)
           continue;
 
-        var directDependencyNode = CreateNodeForLibrary(graph, libraryName, versionRange, lockFileTarget, _options, 1);
+        var directDependencyNode = CreateNodeForLibrary(graph, libraryName, lockFileTarget, _options, 1);
 
         graph.AddDependency(node, directDependencyNode);
       }
@@ -135,14 +132,13 @@ namespace DependencyGraph.Core.Graph.Factory
     private static bool ShouldInclude(string libraryName, DependencyGraphFactoryOptions options)
       => options.Includes.Any(_ => Regex.IsMatch(libraryName, _)) && options.Excludes.Any(_ => Regex.IsMatch(libraryName, _)) == false;
 
-    private static IDependencyGraphNode CreateNodeForLibrary(DependencyGraph graph, string name, VersionRange? versionRange, LockFileTarget lockFileTarget, DependencyGraphFactoryOptions options, int currentDepth)
+    private static DependencyGraphNodeBase CreateNodeForLibrary(DependencyGraph graph, string name, LockFileTarget lockFileTarget, DependencyGraphFactoryOptions options, int currentDepth)
     {
-      var library = lockFileTarget.Libraries
-        .Where(lib => name.Equals(lib.Name, StringComparison.OrdinalIgnoreCase))
-        .FindBestMatch(versionRange, lib => lib.Version ?? new NuGetVersion(0, 0, 1))
-        ?? throw new ApplicationException($"Can not find best match for version range '{versionRange}' of library '{name}'.");
-
+      var library = lockFileTarget.GetTargetLibrary(name) ?? throw new ApplicationException($"Target library with name '{name}' could not be resolved.");
       var node = CreateNode(library);
+
+      if (graph.TryGetExistingNode(node, out var existingNode))
+        return existingNode!;
 
       if (currentDepth >= (options.MaxDepth ?? int.MaxValue))
         return node;
@@ -152,13 +148,13 @@ namespace DependencyGraph.Core.Graph.Factory
         if (ShouldInclude(dependency.Id, options) == false)
           continue;
 
-        graph.AddDependency(node, CreateNodeForLibrary(graph, dependency.Id, dependency.VersionRange, lockFileTarget, options, currentDepth + 1));
+        graph.AddDependency(node, CreateNodeForLibrary(graph, dependency.Id, lockFileTarget, options, currentDepth + 1));
       }
 
       return node;
     }
 
-    private static DependencyGraphNode CreateNode(LockFileTargetLibrary library) => library.Type switch
+    private static DependencyGraphNodeBase CreateNode(LockFileTargetLibrary library) => library.Type switch
     {
       "package" => new PackageDependencyGraphNode(library.Name ?? string.Empty, library.Version ?? new NuGetVersion(0, 0, 1), library),
       "project" => new ProjectDependencyGraphNode(library.Name ?? string.Empty, library),

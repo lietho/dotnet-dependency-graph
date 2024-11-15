@@ -17,6 +17,7 @@
     <Authors>Thomas Lielacher</Authors>
     
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);NU1903</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

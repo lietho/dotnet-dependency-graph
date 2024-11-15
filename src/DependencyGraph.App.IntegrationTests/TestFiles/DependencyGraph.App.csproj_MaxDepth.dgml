@@ -34,7 +34,6 @@
     <Node Id="Microsoft.SourceLink.GitHub@8.0.0" Category="PackageDependency" Label="Microsoft.SourceLink.GitHub@8.0.0" />
     <Node Id="Microsoft.Build.Tasks.Git@8.0.0" Category="PackageDependency" Label="Microsoft.Build.Tasks.Git@8.0.0" />
     <Node Id="Microsoft.SourceLink.Common@8.0.0" Category="PackageDependency" Label="Microsoft.SourceLink.Common@8.0.0" />
-    <Node Id="NuGet.DependencyResolver.Core@6.12.1" Category="PackageDependency" Label="NuGet.DependencyResolver.Core@6.12.1" />
     <Node Id="System.CommandLine@2.0.0-beta4.22272.1" Category="PackageDependency" Label="System.CommandLine@2.0.0-beta4.22272.1" />
   </Nodes>
   <Links>
@@ -71,7 +70,6 @@
     <Link Source="Microsoft.SourceLink.GitHub@8.0.0" Target="Microsoft.Build.Tasks.Git@8.0.0" />
     <Link Source="Microsoft.SourceLink.GitHub@8.0.0" Target="Microsoft.SourceLink.Common@8.0.0" />
     <Link Source="DependencyGraph.App/net8.0" Target="NuGet.ProjectModel@6.12.1" />
-    <Link Source="NuGet.ProjectModel@6.12.1" Target="NuGet.DependencyResolver.Core@6.12.1" />
     <Link Source="DependencyGraph.App/net8.0" Target="System.CommandLine@2.0.0-beta4.22272.1" />
   </Links>
   <Categories>

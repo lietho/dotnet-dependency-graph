@@ -78,7 +78,6 @@
     <Link Source="Microsoft.Build@17.11.4" Target="System.Reflection.MetadataLoadContext@8.0.0" />
     <Link Source="System.Reflection.MetadataLoadContext@8.0.0" Target="System.Collections.Immutable@8.0.0" />
     <Link Source="System.Reflection.MetadataLoadContext@8.0.0" Target="System.Reflection.Metadata@8.0.0" />
-    <Link Source="System.Reflection.Metadata@8.0.0" Target="System.Collections.Immutable@8.0.0" />
     <Link Source="DependencyGraph.Core" Target="NuGet.ProjectModel@6.12.1" />
     <Link Source="NuGet.ProjectModel@6.12.1" Target="NuGet.DependencyResolver.Core@6.12.1" />
     <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Configuration@6.12.1" />
@@ -87,15 +86,11 @@
     <Link Source="NuGet.Configuration@6.12.1" Target="System.Security.Cryptography.ProtectedData@8.0.0" />
     <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.LibraryModel@6.12.1" />
     <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
     <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Versioning@6.12.1" />
     <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Protocol@6.12.1" />
     <Link Source="NuGet.Protocol@6.12.1" Target="NuGet.Packaging@6.12.1" />
     <Link Source="NuGet.Packaging@6.12.1" Target="Newtonsoft.Json@13.0.3" />
     <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Configuration@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="System.Security.Cryptography.ProtectedData@8.0.0" />
     <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Versioning@6.12.1" />
     <Link Source="NuGet.Packaging@6.12.1" Target="System.Formats.Asn1@8.0.1" />
     <Link Source="NuGet.Packaging@6.12.1" Target="System.Security.Cryptography.Pkcs@6.0.4" />
@@ -108,111 +103,42 @@
     <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.Binder@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.Binder@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.CommandLine@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.CommandLine@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.CommandLine@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.EnvironmentVariables@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.EnvironmentVariables@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.EnvironmentVariables@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.FileProviders.Physical@9.0.0" />
     <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.FileSystemGlobbing@9.0.0" />
     <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.Json@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.Json@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.Json@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.Json@9.0.0" Target="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.FileProviders.Physical@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.FileSystemGlobbing@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.Json@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.Json@9.0.0" Target="System.Text.Json@9.0.0" />
     <Link Source="System.Text.Json@9.0.0" Target="System.IO.Pipelines@9.0.0" />
     <Link Source="System.Text.Json@9.0.0" Target="System.Text.Encodings.Web@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Configuration.UserSecrets@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.UserSecrets@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.UserSecrets@9.0.0" Target="Microsoft.Extensions.Configuration.Json@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Json@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Json@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Json@9.0.0" Target="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.FileProviders.Physical@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.FileSystemGlobbing@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.FileExtensions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Json@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Json@9.0.0" Target="System.Text.Json@9.0.0" />
-    <Link Source="System.Text.Json@9.0.0" Target="System.IO.Pipelines@9.0.0" />
-    <Link Source="System.Text.Json@9.0.0" Target="System.Text.Encodings.Web@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.UserSecrets@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Configuration.UserSecrets@9.0.0" Target="Microsoft.Extensions.FileProviders.Physical@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.FileSystemGlobbing@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.DependencyInjection@9.0.0" />
     <Link Source="Microsoft.Extensions.DependencyInjection@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Diagnostics@9.0.0" />
     <Link Source="Microsoft.Extensions.Diagnostics@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Diagnostics@9.0.0" Target="Microsoft.Extensions.Diagnostics.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Diagnostics.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Diagnostics.Abstractions@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
@@ -221,223 +147,63 @@
     <Link Source="Microsoft.Extensions.Diagnostics.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Diagnostics@9.0.0" Target="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" />
     <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Configuration.Binder@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Binder@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.FileProviders.Physical@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.FileSystemGlobbing@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Physical@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Hosting.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting.Abstractions@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting.Abstractions@9.0.0" Target="Microsoft.Extensions.Diagnostics.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Diagnostics.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Diagnostics.Abstractions@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Diagnostics.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting.Abstractions@9.0.0" Target="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.FileProviders.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting.Abstractions@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.DependencyInjection@9.0.0" />
-    <Link Source="Microsoft.Extensions.DependencyInjection@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.Configuration@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Binder@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Binder@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Logging@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.DependencyInjection@9.0.0" />
-    <Link Source="Microsoft.Extensions.DependencyInjection@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Configuration.Binder@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Binder@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.Console@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Console@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Console@9.0.0" Target="Microsoft.Extensions.Logging@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.DependencyInjection@9.0.0" />
-    <Link Source="Microsoft.Extensions.DependencyInjection@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Console@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Console@9.0.0" Target="Microsoft.Extensions.Logging.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Configuration.Binder@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Binder@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Logging@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.DependencyInjection@9.0.0" />
-    <Link Source="Microsoft.Extensions.DependencyInjection@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Configuration@9.0.0" Target="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Configuration.Binder@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Binder@9.0.0" Target="Microsoft.Extensions.Configuration.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Configuration.Abstractions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options.ConfigurationExtensions@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Console@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Console@9.0.0" Target="System.Text.Json@9.0.0" />
-    <Link Source="System.Text.Json@9.0.0" Target="System.IO.Pipelines@9.0.0" />
-    <Link Source="System.Text.Json@9.0.0" Target="System.Text.Encodings.Web@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.Debug@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Debug@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Debug@9.0.0" Target="Microsoft.Extensions.Logging@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.DependencyInjection@9.0.0" />
-    <Link Source="Microsoft.Extensions.DependencyInjection@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.Debug@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.EventLog@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventLog@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventLog@9.0.0" Target="Microsoft.Extensions.Logging@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.DependencyInjection@9.0.0" />
-    <Link Source="Microsoft.Extensions.DependencyInjection@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventLog@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventLog@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventLog@9.0.0" Target="System.Diagnostics.EventLog@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Logging.EventSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventSource@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventSource@9.0.0" Target="Microsoft.Extensions.Logging@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.DependencyInjection@9.0.0" />
-    <Link Source="Microsoft.Extensions.DependencyInjection@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventSource@9.0.0" Target="Microsoft.Extensions.Logging.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Logging.Abstractions@9.0.0" Target="System.Diagnostics.DiagnosticSource@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventSource@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventSource@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="Microsoft.Extensions.Logging.EventSource@9.0.0" Target="System.Text.Json@9.0.0" />
-    <Link Source="System.Text.Json@9.0.0" Target="System.IO.Pipelines@9.0.0" />
-    <Link Source="System.Text.Json@9.0.0" Target="System.Text.Encodings.Web@9.0.0" />
     <Link Source="Microsoft.Extensions.Hosting@9.0.0" Target="Microsoft.Extensions.Options@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0" />
-    <Link Source="Microsoft.Extensions.Options@9.0.0" Target="Microsoft.Extensions.Primitives@9.0.0" />
     <Link Source="DependencyGraph.App/net8.0" Target="Microsoft.SourceLink.GitHub@8.0.0" />
     <Link Source="Microsoft.SourceLink.GitHub@8.0.0" Target="Microsoft.Build.Tasks.Git@8.0.0" />
     <Link Source="Microsoft.SourceLink.GitHub@8.0.0" Target="Microsoft.SourceLink.Common@8.0.0" />
     <Link Source="DependencyGraph.App/net8.0" Target="NuGet.ProjectModel@6.12.1" />
-    <Link Source="NuGet.ProjectModel@6.12.1" Target="NuGet.DependencyResolver.Core@6.12.1" />
-    <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Configuration@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="System.Security.Cryptography.ProtectedData@8.0.0" />
-    <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.LibraryModel@6.12.1" />
-    <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Versioning@6.12.1" />
-    <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Protocol@6.12.1" />
-    <Link Source="NuGet.Protocol@6.12.1" Target="NuGet.Packaging@6.12.1" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="Newtonsoft.Json@13.0.3" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Configuration@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="System.Security.Cryptography.ProtectedData@8.0.0" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Versioning@6.12.1" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="System.Formats.Asn1@8.0.1" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="System.Security.Cryptography.Pkcs@6.0.4" />
-    <Link Source="System.Security.Cryptography.Pkcs@6.0.4" Target="System.Formats.Asn1@8.0.1" />
     <Link Source="DependencyGraph.App/net8.0" Target="System.CommandLine@2.0.0-beta4.22272.1" />
   </Links>
   <Categories>
