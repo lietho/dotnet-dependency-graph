@@ -26,29 +26,12 @@
     <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
     <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.LibraryModel@6.12.1" />
     <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
     <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Versioning@6.12.1" />
     <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Protocol@6.12.1" />
     <Link Source="NuGet.Protocol@6.12.1" Target="NuGet.Packaging@6.12.1" />
     <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Configuration@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
     <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Versioning@6.12.1" />
     <Link Source="DependencyGraph.App" Target="NuGet.ProjectModel@6.12.1" />
-    <Link Source="NuGet.ProjectModel@6.12.1" Target="NuGet.DependencyResolver.Core@6.12.1" />
-    <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Configuration@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.LibraryModel@6.12.1" />
-    <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.LibraryModel@6.12.1" Target="NuGet.Versioning@6.12.1" />
-    <Link Source="NuGet.DependencyResolver.Core@6.12.1" Target="NuGet.Protocol@6.12.1" />
-    <Link Source="NuGet.Protocol@6.12.1" Target="NuGet.Packaging@6.12.1" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Configuration@6.12.1" />
-    <Link Source="NuGet.Configuration@6.12.1" Target="NuGet.Common@6.12.1" />
-    <Link Source="NuGet.Common@6.12.1" Target="NuGet.Frameworks@6.12.1" />
-    <Link Source="NuGet.Packaging@6.12.1" Target="NuGet.Versioning@6.12.1" />
   </Links>
   <Categories>
     <Category Id="Dependency" Stroke="Black" />
