@@ -51,20 +51,24 @@ namespace DependencyGraph.Core.Visualizer.Dgml
     {
       var nodeMap = new Dictionary<IDependencyGraphNode, DirectedGraphNode>();
       var links = new List<DirectedGraphLink>();
+      var addedLinks = new HashSet<(IDependencyGraphNode, IDependencyGraphNode)>();
 
       foreach (var rootNode in graph.RootNodes)
-        links.AddRange(CreateLinks(rootNode, nodeMap));
+        links.AddRange(CreateLinks(rootNode, nodeMap, addedLinks));
 
       directedGraph.Links = links.ToArray();
       directedGraph.Nodes = nodeMap.Values.ToArray();
     }
 
-    private List<DirectedGraphLink> CreateLinks(IDependencyGraphNode node, Dictionary<IDependencyGraphNode, DirectedGraphNode> nodeMap)
+    private List<DirectedGraphLink> CreateLinks(IDependencyGraphNode node, Dictionary<IDependencyGraphNode, DirectedGraphNode> nodeMap, HashSet<(IDependencyGraphNode, IDependencyGraphNode)> addedLinks)
     {
-      var links = new List<DirectedGraphLink>();
+      var links = new List<DirectedGraphLink>(node.Dependencies.Count);
 
       foreach (var dependency in node.Dependencies)
       {
+        if (addedLinks.Contains((node, dependency)))
+          continue;
+
         var link = new DirectedGraphLink
         {
           Source = GetOrCreateNode(node, nodeMap).Id,
@@ -72,7 +76,8 @@ namespace DependencyGraph.Core.Visualizer.Dgml
         };
 
         links.Add(link);
-        links.AddRange(CreateLinks(dependency, nodeMap));
+        addedLinks.Add((node, dependency));
+        links.AddRange(CreateLinks(dependency, nodeMap, addedLinks));
       }
 
       return links;

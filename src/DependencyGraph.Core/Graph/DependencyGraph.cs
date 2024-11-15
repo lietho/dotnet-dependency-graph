@@ -1,7 +1,6 @@
 ﻿// This file is licensed to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,26 +8,29 @@ namespace DependencyGraph.Core.Graph
 {
   public class DependencyGraph : IDependencyGraph
   {
+    private readonly Dictionary<DependencyGraphNodeBase, DependencyGraphNodeBase> _nodes = new Dictionary<DependencyGraphNodeBase, DependencyGraphNodeBase>();
+
     public DependencyGraph(string description)
     {
       Description = description;
     }
 
-    public HashSet<IDependencyGraphNode> RootNodes { get; } = new HashSet<IDependencyGraphNode>();
-    public HashSet<IDependencyGraphNode> Nodes { get; } = new HashSet<IDependencyGraphNode>();
+    public HashSet<DependencyGraphNodeBase> RootNodes { get; } = new HashSet<DependencyGraphNodeBase>();
     public string Description { get; }
     IReadOnlyCollection<IDependencyGraphNode> IDependencyGraph.RootNodes => RootNodes;
-    public bool IsEmpty => !Nodes.Any();
+    public bool IsEmpty => !_nodes.Any();
+    public IReadOnlyCollection<IDependencyGraphNode> AllNodes => _nodes.Values;
 
-    public void AddDependency(DependencyGraphNodeBase from, IDependencyGraphNode to)
+    public void AddDependency(DependencyGraphNodeBase from, DependencyGraphNodeBase to)
     {
-      Nodes.Add(from);
+      _nodes[from] = from;
+      _nodes[to] = to;
       from.Dependencies.Add(to);
     }
 
-    public void AddRoot(IDependencyGraphNode node)
+    public void AddRoot(DependencyGraphNodeBase node)
     {
-      Nodes.Add(node);
+      _nodes.Add(node, node);
       RootNodes.Add(node);
     }
 
@@ -37,10 +39,12 @@ namespace DependencyGraph.Core.Graph
       foreach (var rootNode in otherGraph.RootNodes)
         AddRoot(rootNode);
 
-      foreach (var node in otherGraph.Nodes)
-        Nodes.Add(node);
+      foreach (var node in otherGraph._nodes.Values)
+        _nodes[node] = node;
 
       return this;
     }
+
+    public bool TryGetExistingNode(DependencyGraphNodeBase node, out DependencyGraphNodeBase? dependencyGraphNode) => _nodes.TryGetValue(node, out dependencyGraphNode);
   }
 }
