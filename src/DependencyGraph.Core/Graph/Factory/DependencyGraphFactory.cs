@@ -49,7 +49,7 @@ namespace DependencyGraph.Core.Graph.Factory
         ProjectCollection.GlobalProjectCollection.UnloadProject(project);
       }
 
-      var lockFileInfo = GetLockFileInfo(projectFileInfo.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName) 
+      var lockFileInfo = GetLockFileInfo(projectFileInfo.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName)
         ?? throw new ApplicationException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.");
 
       var lockFileFormat = new LockFileFormat();
@@ -105,9 +105,24 @@ namespace DependencyGraph.Core.Graph.Factory
 
       foreach (var dependencyGroup in lockFile.ProjectFileDependencyGroups)
       {
-        var targetFrameworkDependencyGraphNode = CreateNodeForDependencyGroup(graph, dependencyGroup, lockFile.Targets.Single(lockFileTarget => lockFileTarget.TargetFramework.Equals(NuGetFramework.Parse(dependencyGroup.FrameworkName))), lockFile);
+        var lockFileTarget = GetLockFileTarget(lockFile, NuGetFramework.Parse(dependencyGroup.FrameworkName));
+        var targetFrameworkDependencyGraphNode = CreateNodeForDependencyGroup(graph, dependencyGroup, lockFileTarget, lockFile);
+
         graph.AddDependency(rootNode, targetFrameworkDependencyGraphNode);
       }
+    }
+
+    private static LockFileTarget GetLockFileTarget(LockFile lockFile, NuGetFramework nuGetFramework)
+    {
+      var matchingTargets = lockFile.Targets.Where(lockFileTarget => lockFileTarget.TargetFramework.Equals(nuGetFramework)).ToList();
+
+      if (matchingTargets.Count == 0)
+        throw new ApplicationException($"Could not find matching lock file target for framework '{nuGetFramework}'");
+
+      if (matchingTargets.Count == 1)
+        return matchingTargets[0];
+
+      return matchingTargets.First(t => string.IsNullOrEmpty(t.RuntimeIdentifier));
     }
 
     private TargetFrameworkDependencyGraphNode CreateNodeForDependencyGroup(DependencyGraph graph, ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, LockFile lockFile)
