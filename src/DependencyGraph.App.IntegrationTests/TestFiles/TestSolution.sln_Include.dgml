@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Title="Dependencies of TODO" GraphDirection="TopToBottom" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="ClassLibrary.UnitTests" Category="ProjectDependency" Label="ClassLibrary.UnitTests" />
+    <Node Id="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Category="FrameworkDependency" Label="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" />
+    <Node Id="ClassLibrary" Category="ProjectDependency" Label="ClassLibrary" />
+    <Node Id="AutoMapper@10.1.1" Category="PackageDependency" Label="AutoMapper@10.1.1" />
+    <Node Id="ClassLibrary.UnitTests/net8.0" Category="FrameworkDependency" Label="ClassLibrary.UnitTests/net8.0" />
+  </Nodes>
+  <Links>
+    <Link Source="ClassLibrary.UnitTests" Target="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" />
+    <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="ClassLibrary" />
+    <Link Source="ClassLibrary" Target="AutoMapper@10.1.1" />
+    <Link Source="ClassLibrary.UnitTests" Target="ClassLibrary.UnitTests/net8.0" />
+    <Link Source="ClassLibrary.UnitTests/net8.0" Target="ClassLibrary" />
+  </Links>
+  <Categories>
+    <Category Id="Dependency" Stroke="Black" />
+    <Category Id="FrameworkDependency" BasedOn="Dependency" Background="#FF502CCD" />
+    <Category Id="ProjectDependency" BasedOn="Dependency" Background="DarkOrange" />
+    <Category Id="PackageDependency" BasedOn="Dependency" Background="#FF06487D" />
+  </Categories>
+</DirectedGraph>

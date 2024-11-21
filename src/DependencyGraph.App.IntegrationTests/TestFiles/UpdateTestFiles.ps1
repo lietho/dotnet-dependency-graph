@@ -1,19 +1,22 @@
-﻿# project
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.App\DependencyGraph.App.csproj -v dgml -o DependencyGraph.App.csproj.dgml --no-restore
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.App\DependencyGraph.App.csproj -v dgml -o DependencyGraph.App.csproj_Exclude.dgml -e Microsoft.Extensions* --no-restore
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.App\DependencyGraph.App.csproj -v dgml -o DependencyGraph.App.csproj_Include.dgml -i DependencyGraph* *NuGet* --no-restore
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.App\DependencyGraph.App.csproj -v dgml -o DependencyGraph.App.csproj_MaxDepth.dgml -d 2 --no-restore
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.App\DependencyGraph.App.csproj -v console --no-restore > DependencyGraph.App.csproj.txt
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.App\DependencyGraph.App.csproj -v console -e Microsoft.Extensions* --no-restore > DependencyGraph.App.csproj_Exclude.txt 
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.App\DependencyGraph.App.csproj -v console -i DependencyGraph* *NuGet* --no-restore > DependencyGraph.App.csproj_Include.txt
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.App\DependencyGraph.App.csproj -v console -d 2 --no-restore > DependencyGraph.App.csproj_MaxDepth.txt
+﻿dotnet build ..\DependencyGraph.App.IntegrationTests.csproj -c Debug
+dotnet restore .\TestSolution\TestSolution.sln
+
+# project
+..\bin\Debug\dependency-graph.exe TestSolution\WebApplication\WebApplication.csproj -v dgml -o WebApplication.csproj.dgml --no-restore
+..\bin\Debug\dependency-graph.exe TestSolution\WebApplication\WebApplication.csproj -v dgml -o WebApplication.csproj_Exclude.dgml -e Microsoft.Extensions* --no-restore
+..\bin\Debug\dependency-graph.exe TestSolution\WebApplication\WebApplication.csproj -v dgml -o WebApplication.csproj_Include.dgml -i ClassLibrary* *Mapper* --no-restore
+..\bin\Debug\dependency-graph.exe TestSolution\WebApplication\WebApplication.csproj -v dgml -o WebApplication.csproj_MaxDepth.dgml -d 2 --no-restore
+..\bin\Debug\dependency-graph.exe TestSolution\WebApplication\WebApplication.csproj -v console --no-restore > WebApplication.csproj.txt
+..\bin\Debug\dependency-graph.exe TestSolution\WebApplication\WebApplication.csproj -v console -e Microsoft.Extensions* --no-restore > WebApplication.csproj_Exclude.txt 
+..\bin\Debug\dependency-graph.exe TestSolution\WebApplication\WebApplication.csproj -v console -i ClassLibrary* *Mapper* --no-restore > WebApplication.csproj_Include.txt
+..\bin\Debug\dependency-graph.exe TestSolution\WebApplication\WebApplication.csproj -v console -d 2 --no-restore > WebApplication.csproj_MaxDepth.txt
 
 # solution
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.sln -v dgml -o DependencyGraph.sln.dgml --no-restore
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.sln -v dgml -o DependencyGraph.sln_Exclude.dgml -e Microsoft.Extensions* --no-restore
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.sln -v dgml -o DependencyGraph.sln_Include.dgml -i DependencyGraph* *NuGet* --no-restore
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.sln -v dgml -o DependencyGraph.sln_MaxDepth.dgml -d 2 --no-restore
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.sln -v console --no-restore > DependencyGraph.sln.txt
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.sln -v console -e Microsoft.Extensions* --no-restore > DependencyGraph.sln_Exclude.txt 
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.sln -v console -i DependencyGraph* *NuGet* --no-restore > DependencyGraph.sln_Include.txt
-..\bin\Debug\dependency-graph.exe ..\..\DependencyGraph.sln -v console -d 2 --no-restore > DependencyGraph.sln_MaxDepth.txt
+..\bin\Debug\dependency-graph.exe TestSolution\TestSolution.sln -v dgml -o TestSolution.sln.dgml --no-restore
+..\bin\Debug\dependency-graph.exe TestSolution\TestSolution.sln -v dgml -o TestSolution.sln_Exclude.dgml -e Microsoft.Extensions* --no-restore
+..\bin\Debug\dependency-graph.exe TestSolution\TestSolution.sln -v dgml -o TestSolution.sln_Include.dgml -i ClassLibrary* *Mapper* --no-restore
+..\bin\Debug\dependency-graph.exe TestSolution\TestSolution.sln -v dgml -o TestSolution.sln_MaxDepth.dgml -d 2 --no-restore
+..\bin\Debug\dependency-graph.exe TestSolution\TestSolution.sln -v console --no-restore > TestSolution.sln.txt
+..\bin\Debug\dependency-graph.exe TestSolution\TestSolution.sln -v console -e Microsoft.Extensions* --no-restore > TestSolution.sln_Exclude.txt 
+..\bin\Debug\dependency-graph.exe TestSolution\TestSolution.sln -v console -i ClassLibrary* *Mapper* --no-restore > TestSolution.sln_Include.txt
+..\bin\Debug\dependency-graph.exe TestSolution\TestSolution.sln -v console -d 2 --no-restore > TestSolution.sln_MaxDepth.txt

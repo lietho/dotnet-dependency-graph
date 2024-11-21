@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Title="Dependencies of TODO" GraphDirection="TopToBottom" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="WebApplication" Category="ProjectDependency" Label="WebApplication" />
+    <Node Id="WebApplication/net8.0" Category="FrameworkDependency" Label="WebApplication/net8.0" />
+    <Node Id="AutoMapper@13.0.1" Category="PackageDependency" Label="AutoMapper@13.0.1" />
+    <Node Id="ClassLibrary" Category="ProjectDependency" Label="ClassLibrary" />
+  </Nodes>
+  <Links>
+    <Link Source="WebApplication" Target="WebApplication/net8.0" />
+    <Link Source="WebApplication/net8.0" Target="AutoMapper@13.0.1" />
+    <Link Source="WebApplication/net8.0" Target="ClassLibrary" />
+    <Link Source="ClassLibrary" Target="AutoMapper@13.0.1" />
+  </Links>
+  <Categories>
+    <Category Id="Dependency" Stroke="Black" />
+    <Category Id="FrameworkDependency" BasedOn="Dependency" Background="#FF502CCD" />
+    <Category Id="ProjectDependency" BasedOn="Dependency" Background="DarkOrange" />
+    <Category Id="PackageDependency" BasedOn="Dependency" Background="#FF06487D" />
+  </Categories>
+</DirectedGraph>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Title="Dependencies of TODO" GraphDirection="TopToBottom" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="WebApplication" Category="ProjectDependency" Label="WebApplication" />
+    <Node Id="WebApplication/net8.0" Category="FrameworkDependency" Label="WebApplication/net8.0" />
+    <Node Id="AutoMapper@13.0.1" Category="PackageDependency" Label="AutoMapper@13.0.1" />
+    <Node Id="Microsoft.Extensions.Options@6.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Options@6.0.0" />
+    <Node Id="Microsoft.Extensions.DependencyInjection.Abstractions@6.0.0" Category="PackageDependency" Label="Microsoft.Extensions.DependencyInjection.Abstractions@6.0.0" />
+    <Node Id="Microsoft.Extensions.Primitives@6.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Primitives@6.0.0" />
+    <Node Id="System.Runtime.CompilerServices.Unsafe@6.0.0" Category="PackageDependency" Label="System.Runtime.CompilerServices.Unsafe@6.0.0" />
+    <Node Id="ClassLibrary" Category="ProjectDependency" Label="ClassLibrary" />
+    <Node Id="Serilog@4.0.0" Category="PackageDependency" Label="Serilog@4.0.0" />
+    <Node Id="System.Text.Json@9.0.0" Category="PackageDependency" Label="System.Text.Json@9.0.0" />
+    <Node Id="System.IO.Pipelines@9.0.0" Category="PackageDependency" Label="System.IO.Pipelines@9.0.0" />
+    <Node Id="System.Text.Encodings.Web@9.0.0" Category="PackageDependency" Label="System.Text.Encodings.Web@9.0.0" />
+    <Node Id="Microsoft.DotNet.ILCompiler@8.0.11" Category="PackageDependency" Label="Microsoft.DotNet.ILCompiler@8.0.11" />
+    <Node Id="Microsoft.NET.ILLink.Tasks@8.0.11" Category="PackageDependency" Label="Microsoft.NET.ILLink.Tasks@8.0.11" />
+  </Nodes>
+  <Links>
+    <Link Source="WebApplication" Target="WebApplication/net8.0" />
+    <Link Source="WebApplication/net8.0" Target="AutoMapper@13.0.1" />
+    <Link Source="AutoMapper@13.0.1" Target="Microsoft.Extensions.Options@6.0.0" />
+    <Link Source="Microsoft.Extensions.Options@6.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@6.0.0" />
+    <Link Source="Microsoft.Extensions.Options@6.0.0" Target="Microsoft.Extensions.Primitives@6.0.0" />
+    <Link Source="Microsoft.Extensions.Primitives@6.0.0" Target="System.Runtime.CompilerServices.Unsafe@6.0.0" />
+    <Link Source="WebApplication/net8.0" Target="ClassLibrary" />
+    <Link Source="ClassLibrary" Target="AutoMapper@13.0.1" />
+    <Link Source="ClassLibrary" Target="Serilog@4.0.0" />
+    <Link Source="ClassLibrary" Target="System.Text.Json@9.0.0" />
+    <Link Source="System.Text.Json@9.0.0" Target="System.IO.Pipelines@9.0.0" />
+    <Link Source="System.Text.Json@9.0.0" Target="System.Text.Encodings.Web@9.0.0" />
+    <Link Source="WebApplication/net8.0" Target="Microsoft.DotNet.ILCompiler@8.0.11" />
+    <Link Source="WebApplication/net8.0" Target="Microsoft.NET.ILLink.Tasks@8.0.11" />
+  </Links>
+  <Categories>
+    <Category Id="Dependency" Stroke="Black" />
+    <Category Id="FrameworkDependency" BasedOn="Dependency" Background="#FF502CCD" />
+    <Category Id="ProjectDependency" BasedOn="Dependency" Background="DarkOrange" />
+    <Category Id="PackageDependency" BasedOn="Dependency" Background="#FF06487D" />
+  </Categories>
+</DirectedGraph>
