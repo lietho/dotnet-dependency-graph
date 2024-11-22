@@ -8,12 +8,14 @@ namespace DependencyGraph.Core.Graph
 {
   public class ProjectDependencyGraphNode : DependencyGraphNode, IEquatable<ProjectDependencyGraphNode>
   {
-    public ProjectDependencyGraphNode(string name, LockFileTargetLibrary? targetLibrary) : base(name)
+    public ProjectDependencyGraphNode(string name, LockFileTargetLibrary targetLibrary) : base(name, targetLibrary)
     {
-      TargetLibrary = targetLibrary;
     }
-    public LockFileTargetLibrary? TargetLibrary { get; }
 
     public bool Equals(ProjectDependencyGraphNode? other) => base.Equals(other);
+
+    public override bool Equals(object? obj) => base.Equals(obj);
+
+    public override int GetHashCode() => base.GetHashCode();
   }
 }

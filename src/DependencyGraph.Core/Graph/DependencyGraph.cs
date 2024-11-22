@@ -18,7 +18,7 @@ namespace DependencyGraph.Core.Graph
     public HashSet<DependencyGraphNodeBase> RootNodes { get; } = new HashSet<DependencyGraphNodeBase>();
     public string Description { get; }
     IReadOnlyCollection<IDependencyGraphNode> IDependencyGraph.RootNodes => RootNodes;
-    public bool IsEmpty => !_nodes.Any();
+    public bool IsEmpty => _nodes.Count == 0;
     public IReadOnlyCollection<IDependencyGraphNode> AllNodes => _nodes.Values;
 
     public void AddDependency(DependencyGraphNodeBase from, DependencyGraphNodeBase to)

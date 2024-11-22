@@ -52,6 +52,7 @@ namespace DependencyGraph.Core.Visualizer.Dgml
 
     public Func<IDependencyGraphNode, string?> AssignCategory { get; set; } = (node) => node switch
       {
+        RootProjectDependencyGraphNode _ => ProjectDependencyCategoryId,
         TargetFrameworkDependencyGraphNode _ => TargetFrameworkDependencyCategoryId,
         ProjectDependencyGraphNode _ => ProjectDependencyCategoryId,
         PackageDependencyGraphNode _ => PackageDependencyCategoryId,

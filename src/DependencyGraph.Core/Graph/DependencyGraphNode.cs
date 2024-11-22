@@ -2,17 +2,20 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using NuGet.ProjectModel;
 
 namespace DependencyGraph.Core.Graph
 {
   public abstract class DependencyGraphNode : DependencyGraphNodeBase, IEquatable<DependencyGraphNode>
   {
-    protected DependencyGraphNode(string name)
+    protected DependencyGraphNode(string name, LockFileTargetLibrary targetLibrary)
     {
       Name = name;
+      TargetLibrary = targetLibrary;
     }
 
     public string Name { get; }
+    public LockFileTargetLibrary TargetLibrary { get; }
 
     public override string ToString() => $"{Name}";
 

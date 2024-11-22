@@ -9,14 +9,12 @@ namespace DependencyGraph.Core.Graph
 {
   public class PackageDependencyGraphNode : DependencyGraphNode, IEquatable<PackageDependencyGraphNode>
   {
-    public PackageDependencyGraphNode(string name, NuGetVersion version, LockFileTargetLibrary targetLibrary) : base(name)
+    public PackageDependencyGraphNode(string name, NuGetVersion version, LockFileTargetLibrary targetLibrary) : base(name, targetLibrary)
     {
       Version = version;
-      TargetLibrary = targetLibrary;
     }
 
     public NuGetVersion Version { get; }
-    public LockFileTargetLibrary TargetLibrary { get; }
 
     public override string ToString() => $"{Name}@{Version}";
 
