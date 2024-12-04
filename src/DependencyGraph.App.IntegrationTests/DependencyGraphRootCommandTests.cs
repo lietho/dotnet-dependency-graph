@@ -9,15 +9,6 @@ namespace DependencyGraph.App.IntegrationTests
 {
   public class DependencyGraphRootCommandTests
   {
-    [OneTimeSetUp]
-    public static void OnTimeSetUp()
-    {
-      var process = Process.Start("dotnet", "restore ../../TestFiles/TestSolution");
-      process.WaitForExit();
-
-      Assert.That(process.ExitCode, Is.EqualTo(0), "Restore failed.");
-    }
-
     public static IEnumerable<TestCaseData> DgmlTestCases
     {
       get

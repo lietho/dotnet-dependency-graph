@@ -1,5 +1,4 @@
 ﻿dotnet build ..\DependencyGraph.App.IntegrationTests.csproj -c Debug
-dotnet restore .\TestSolution\TestSolution.sln
 
 # project
 ..\bin\Debug\dependency-graph.exe TestSolution\WebApplication\WebApplication.csproj -v dgml -o WebApplication.csproj.dgml --no-restore
