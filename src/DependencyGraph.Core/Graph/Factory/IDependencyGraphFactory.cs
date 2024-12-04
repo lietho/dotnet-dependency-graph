@@ -3,6 +3,7 @@
 
 using System.IO;
 using Microsoft.Build.Construction;
+using Microsoft.Build.Evaluation;
 using NuGet.ProjectModel;
 
 namespace DependencyGraph.Core.Graph.Factory
@@ -14,5 +15,7 @@ namespace DependencyGraph.Core.Graph.Factory
     IDependencyGraph FromSolutionFile(FileInfo solutionFileInfo);
 
     IDependencyGraph FromProjectFile(FileInfo projectFileInfo);
+
+    IDependencyGraph FromProject(Project project);
   }
 }

@@ -9,10 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyGraph.App", "Depe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyGraph.App.IntegrationTests", "DependencyGraph.App.IntegrationTests\DependencyGraph.App.IntegrationTests.csproj", "{EE4FCBE0-DA9B-436E-A238-91C52407CA80}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_SolutionItems", "{C94FD4A7-9B50-4BCD-A2A1-92663BC80AD4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CEC7A555-9403-4A47-8A03-569A80470461}"
 	ProjectSection(SolutionItems) = preProject
+		..\.github\dependabot.yml = ..\.github\dependabot.yml
 		GitVersion.yml = GitVersion.yml
 		testEnvironments.json = testEnvironments.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{3FA1C22B-DE22-426C-BD87-8A1E242D5DCD}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\dotnet.yml = ..\.github\workflows\dotnet.yml
 	EndProjectSection
 EndProject
 Global
@@ -36,6 +42,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3FA1C22B-DE22-426C-BD87-8A1E242D5DCD} = {CEC7A555-9403-4A47-8A03-569A80470461}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E0A2F4C-6430-4756-BFF0-84CD18AF4E1E}

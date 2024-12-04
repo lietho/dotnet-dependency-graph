@@ -17,6 +17,7 @@ namespace DependencyGraph.Core.Graph.Factory
   public class DependencyGraphFactory : IDependencyGraphFactory
   {
     private readonly DependencyGraphFactoryOptions _options;
+    private static readonly string[] s_separator = new[] { " " };
 
     public DependencyGraphFactory(DependencyGraphFactoryOptions? options = default)
     {
@@ -36,6 +37,13 @@ namespace DependencyGraph.Core.Graph.Factory
     {
       var project = new Project(projectFileInfo.FullName);
 
+      return FromProjectFileInternal(project, projectFileInfo);
+    }
+
+    public IDependencyGraph FromProject(Project project) => FromProjectFileInternal(project, new FileInfo(project.FullPath));
+
+    private IDependencyGraph FromProjectFileInternal(Project project, FileInfo projectFileInfo)
+    {
       try
       {
         if (project.GetPropertyValue("UsingMicrosoftNETSdk") != "true")
@@ -49,7 +57,7 @@ namespace DependencyGraph.Core.Graph.Factory
         ProjectCollection.GlobalProjectCollection.UnloadProject(project);
       }
 
-      var lockFileInfo = GetLockFileInfo(projectFileInfo.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName) 
+      var lockFileInfo = GetLockFileInfo(projectFileInfo.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName)
         ?? throw new ApplicationException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.");
 
       var lockFileFormat = new LockFileFormat();
@@ -90,7 +98,7 @@ namespace DependencyGraph.Core.Graph.Factory
         if (graph.IsEmpty)
           continue;
 
-        if (dependencyGraph.AllNodes.Except(dependencyGraph.RootNodes).Contains(graph.RootNodes.Single()))
+        if (dependencyGraph.AllNodes.Except(dependencyGraph.RootNodes).Contains(graph.RootNodes.Single(), new RootDependencyGraphNodeEqualityComparer()))
           return false;
       }
 
@@ -99,15 +107,30 @@ namespace DependencyGraph.Core.Graph.Factory
 
     private void AddProjectToGraph(DependencyGraph graph, LockFile lockFile)
     {
-      var rootNode = new ProjectDependencyGraphNode(lockFile.PackageSpec.RestoreMetadata.ProjectName, null);
+      var rootNode = new RootProjectDependencyGraphNode(lockFile.PackageSpec.RestoreMetadata.ProjectName);
 
       graph.AddRoot(rootNode);
 
       foreach (var dependencyGroup in lockFile.ProjectFileDependencyGroups)
       {
-        var targetFrameworkDependencyGraphNode = CreateNodeForDependencyGroup(graph, dependencyGroup, lockFile.Targets.Single(lockFileTarget => lockFileTarget.TargetFramework.Equals(NuGetFramework.Parse(dependencyGroup.FrameworkName))), lockFile);
+        var lockFileTarget = GetLockFileTarget(lockFile, NuGetFramework.Parse(dependencyGroup.FrameworkName));
+        var targetFrameworkDependencyGraphNode = CreateNodeForDependencyGroup(graph, dependencyGroup, lockFileTarget, lockFile);
+
         graph.AddDependency(rootNode, targetFrameworkDependencyGraphNode);
       }
+    }
+
+    private static LockFileTarget GetLockFileTarget(LockFile lockFile, NuGetFramework nuGetFramework)
+    {
+      var matchingTargets = lockFile.Targets.Where(lockFileTarget => lockFileTarget.TargetFramework.Equals(nuGetFramework)).ToList();
+
+      if (matchingTargets.Count == 0)
+        throw new ApplicationException($"Could not find matching lock file target for framework '{nuGetFramework}'");
+
+      if (matchingTargets.Count == 1)
+        return matchingTargets[0];
+
+      return matchingTargets.First(t => string.IsNullOrEmpty(t.RuntimeIdentifier));
     }
 
     private TargetFrameworkDependencyGraphNode CreateNodeForDependencyGroup(DependencyGraph graph, ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, LockFile lockFile)
@@ -116,7 +139,7 @@ namespace DependencyGraph.Core.Graph.Factory
 
       foreach (var dependency in dependencyGroup.Dependencies)
       {
-        var libraryName = dependency.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries)[0];
+        var libraryName = dependency.Split(s_separator, StringSplitOptions.RemoveEmptyEntries)[0];
 
         if (ShouldInclude(libraryName, _options) == false)
           continue;
@@ -158,7 +181,35 @@ namespace DependencyGraph.Core.Graph.Factory
     {
       "package" => new PackageDependencyGraphNode(library.Name ?? string.Empty, library.Version ?? new NuGetVersion(0, 0, 1), library),
       "project" => new ProjectDependencyGraphNode(library.Name ?? string.Empty, library),
-      _ => throw new NotSupportedException($"Library type '{library.Type}' is not supported yet")
+      _ => throw new NotSupportedException($"Library type '{library.Type}' is not supported yet.")
     };
+
+    private class RootDependencyGraphNodeEqualityComparer : IEqualityComparer<IDependencyGraphNode>
+    {
+      public bool Equals(IDependencyGraphNode? x, IDependencyGraphNode? y)
+      {
+        if (x is RootProjectDependencyGraphNode xRootNode && y is ProjectDependencyGraphNode yProjectNode)
+          return xRootNode.Name.Equals(yProjectNode.Name, StringComparison.OrdinalIgnoreCase);
+
+        if (x is ProjectDependencyGraphNode xProjectNode && y is RootProjectDependencyGraphNode yRootNode)
+          return xProjectNode.Name.Equals(yRootNode.Name, StringComparison.OrdinalIgnoreCase);
+
+        if (x == null && y == null)
+          return true;
+
+        if (x == null && y != null || x != null && y == null)
+          return false;
+
+        if (x != null)
+          return x.Equals(y);
+
+        if (y != null)
+          return y.Equals(x);
+
+        return false;
+      }
+
+      public int GetHashCode(IDependencyGraphNode obj) => obj.GetHashCode();
+    }
   }
 }

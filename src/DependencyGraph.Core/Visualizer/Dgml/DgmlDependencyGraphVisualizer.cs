@@ -16,10 +16,6 @@ namespace DependencyGraph.Core.Visualizer.Dgml
   {
     private readonly DgmlDependencyGraphVisualizerOptions _dgmlDependencyGraphVisualizerOptions;
 
-    private const string TargetFrameworkDependencyCategoryId = "FrameworkDependency";
-    private const string ProjectDependencyCategoryId = "ProjectDependency";
-    private const string PackageDependencyCategoryId = "PackageDependency";
-
     public DgmlDependencyGraphVisualizer(DgmlDependencyGraphVisualizerOptions dgmlDependencyGraphVisualizerOptions)
     {
       _dgmlDependencyGraphVisualizerOptions = dgmlDependencyGraphVisualizerOptions;

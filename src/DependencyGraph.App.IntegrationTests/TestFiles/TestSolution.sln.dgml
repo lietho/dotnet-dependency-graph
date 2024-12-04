@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Title="Dependencies of TODO" GraphDirection="TopToBottom" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="ConsoleApp" Category="ProjectDependency" Label="ConsoleApp" />
+    <Node Id="ConsoleApp/.NETFramework,Version=v4.8" Category="FrameworkDependency" Label="ConsoleApp/.NETFramework,Version=v4.8" />
+    <Node Id="ClassLibrary" Category="ProjectDependency" Label="ClassLibrary" />
+    <Node Id="AutoMapper@10.1.1" Category="PackageDependency" Label="AutoMapper@10.1.1" />
+    <Node Id="Serilog@4.1.0" Category="PackageDependency" Label="Serilog@4.1.0" />
+    <Node Id="System.Diagnostics.DiagnosticSource@8.0.1" Category="PackageDependency" Label="System.Diagnostics.DiagnosticSource@8.0.1" />
+    <Node Id="System.Memory@4.5.5" Category="PackageDependency" Label="System.Memory@4.5.5" />
+    <Node Id="System.Buffers@4.5.1" Category="PackageDependency" Label="System.Buffers@4.5.1" />
+    <Node Id="System.Numerics.Vectors@4.5.0" Category="PackageDependency" Label="System.Numerics.Vectors@4.5.0" />
+    <Node Id="System.Runtime.CompilerServices.Unsafe@6.0.0" Category="PackageDependency" Label="System.Runtime.CompilerServices.Unsafe@6.0.0" />
+    <Node Id="System.Threading.Channels@8.0.0" Category="PackageDependency" Label="System.Threading.Channels@8.0.0" />
+    <Node Id="System.Threading.Tasks.Extensions@4.5.4" Category="PackageDependency" Label="System.Threading.Tasks.Extensions@4.5.4" />
+    <Node Id="System.Text.Json@9.0.0" Category="PackageDependency" Label="System.Text.Json@9.0.0" />
+    <Node Id="Microsoft.Bcl.AsyncInterfaces@9.0.0" Category="PackageDependency" Label="Microsoft.Bcl.AsyncInterfaces@9.0.0" />
+    <Node Id="System.IO.Pipelines@9.0.0" Category="PackageDependency" Label="System.IO.Pipelines@9.0.0" />
+    <Node Id="System.Text.Encodings.Web@9.0.0" Category="PackageDependency" Label="System.Text.Encodings.Web@9.0.0" />
+    <Node Id="System.ValueTuple@4.5.0" Category="PackageDependency" Label="System.ValueTuple@4.5.0" />
+    <Node Id="ClassLibrary.UnitTests" Category="ProjectDependency" Label="ClassLibrary.UnitTests" />
+    <Node Id="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Category="FrameworkDependency" Label="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" />
+    <Node Id="Serilog@4.0.0" Category="PackageDependency" Label="Serilog@4.0.0" />
+    <Node Id="Microsoft.NET.Test.Sdk@17.11.1" Category="PackageDependency" Label="Microsoft.NET.Test.Sdk@17.11.1" />
+    <Node Id="Microsoft.CodeCoverage@17.11.1" Category="PackageDependency" Label="Microsoft.CodeCoverage@17.11.1" />
+    <Node Id="NUnit@4.2.2" Category="PackageDependency" Label="NUnit@4.2.2" />
+    <Node Id="NUnit.Analyzers@4.4.0" Category="PackageDependency" Label="NUnit.Analyzers@4.4.0" />
+    <Node Id="NUnit3TestAdapter@4.6.0" Category="PackageDependency" Label="NUnit3TestAdapter@4.6.0" />
+    <Node Id="coverlet.collector@6.0.2" Category="PackageDependency" Label="coverlet.collector@6.0.2" />
+    <Node Id="ClassLibrary.UnitTests/net8.0" Category="FrameworkDependency" Label="ClassLibrary.UnitTests/net8.0" />
+    <Node Id="WebApplication" Category="ProjectDependency" Label="WebApplication" />
+    <Node Id="WebApplication/net8.0" Category="FrameworkDependency" Label="WebApplication/net8.0" />
+    <Node Id="AutoMapper@13.0.1" Category="PackageDependency" Label="AutoMapper@13.0.1" />
+    <Node Id="Microsoft.Extensions.Options@6.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Options@6.0.0" />
+    <Node Id="Microsoft.Extensions.DependencyInjection.Abstractions@6.0.0" Category="PackageDependency" Label="Microsoft.Extensions.DependencyInjection.Abstractions@6.0.0" />
+    <Node Id="Microsoft.Extensions.Primitives@6.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Primitives@6.0.0" />
+    <Node Id="Microsoft.DotNet.ILCompiler@8.0.11" Category="PackageDependency" Label="Microsoft.DotNet.ILCompiler@8.0.11" />
+    <Node Id="Microsoft.NET.ILLink.Tasks@8.0.11" Category="PackageDependency" Label="Microsoft.NET.ILLink.Tasks@8.0.11" />
+    <Node Id="WpfApp" Category="ProjectDependency" Label="WpfApp" />
+    <Node Id="WpfApp/net8.0-windows7.0" Category="FrameworkDependency" Label="WpfApp/net8.0-windows7.0" />
+  </Nodes>
+  <Links>
+    <Link Source="ConsoleApp" Target="ConsoleApp/.NETFramework,Version=v4.8" />
+    <Link Source="ConsoleApp/.NETFramework,Version=v4.8" Target="ClassLibrary" />
+    <Link Source="ClassLibrary" Target="AutoMapper@10.1.1" />
+    <Link Source="ClassLibrary" Target="Serilog@4.1.0" />
+    <Link Source="Serilog@4.1.0" Target="System.Diagnostics.DiagnosticSource@8.0.1" />
+    <Link Source="System.Diagnostics.DiagnosticSource@8.0.1" Target="System.Memory@4.5.5" />
+    <Link Source="System.Memory@4.5.5" Target="System.Buffers@4.5.1" />
+    <Link Source="System.Memory@4.5.5" Target="System.Numerics.Vectors@4.5.0" />
+    <Link Source="System.Memory@4.5.5" Target="System.Runtime.CompilerServices.Unsafe@6.0.0" />
+    <Link Source="System.Diagnostics.DiagnosticSource@8.0.1" Target="System.Runtime.CompilerServices.Unsafe@6.0.0" />
+    <Link Source="Serilog@4.1.0" Target="System.Threading.Channels@8.0.0" />
+    <Link Source="System.Threading.Channels@8.0.0" Target="System.Threading.Tasks.Extensions@4.5.4" />
+    <Link Source="System.Threading.Tasks.Extensions@4.5.4" Target="System.Runtime.CompilerServices.Unsafe@6.0.0" />
+    <Link Source="ClassLibrary" Target="System.Text.Json@9.0.0" />
+    <Link Source="System.Text.Json@9.0.0" Target="Microsoft.Bcl.AsyncInterfaces@9.0.0" />
+    <Link Source="Microsoft.Bcl.AsyncInterfaces@9.0.0" Target="System.Threading.Tasks.Extensions@4.5.4" />
+    <Link Source="System.Text.Json@9.0.0" Target="System.Buffers@4.5.1" />
+    <Link Source="System.Text.Json@9.0.0" Target="System.IO.Pipelines@9.0.0" />
+    <Link Source="System.IO.Pipelines@9.0.0" Target="System.Buffers@4.5.1" />
+    <Link Source="System.IO.Pipelines@9.0.0" Target="System.Memory@4.5.5" />
+    <Link Source="System.IO.Pipelines@9.0.0" Target="System.Threading.Tasks.Extensions@4.5.4" />
+    <Link Source="System.Text.Json@9.0.0" Target="System.Memory@4.5.5" />
+    <Link Source="System.Text.Json@9.0.0" Target="System.Runtime.CompilerServices.Unsafe@6.0.0" />
+    <Link Source="System.Text.Json@9.0.0" Target="System.Text.Encodings.Web@9.0.0" />
+    <Link Source="System.Text.Encodings.Web@9.0.0" Target="System.Buffers@4.5.1" />
+    <Link Source="System.Text.Encodings.Web@9.0.0" Target="System.Memory@4.5.5" />
+    <Link Source="System.Text.Encodings.Web@9.0.0" Target="System.Runtime.CompilerServices.Unsafe@6.0.0" />
+    <Link Source="System.Text.Json@9.0.0" Target="System.Threading.Tasks.Extensions@4.5.4" />
+    <Link Source="System.Text.Json@9.0.0" Target="System.ValueTuple@4.5.0" />
+    <Link Source="ConsoleApp/.NETFramework,Version=v4.8" Target="Serilog@4.1.0" />
+    <Link Source="ClassLibrary.UnitTests" Target="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" />
+    <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="ClassLibrary" />
+    <Link Source="ClassLibrary" Target="Serilog@4.0.0" />
+    <Link Source="Serilog@4.0.0" Target="System.Diagnostics.DiagnosticSource@8.0.1" />
+    <Link Source="Serilog@4.0.0" Target="System.Threading.Channels@8.0.0" />
+    <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="Microsoft.NET.Test.Sdk@17.11.1" />
+    <Link Source="Microsoft.NET.Test.Sdk@17.11.1" Target="Microsoft.CodeCoverage@17.11.1" />
+    <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="NUnit@4.2.2" />
+    <Link Source="NUnit@4.2.2" Target="System.Memory@4.5.5" />
+    <Link Source="NUnit@4.2.2" Target="System.Threading.Tasks.Extensions@4.5.4" />
+    <Link Source="NUnit@4.2.2" Target="System.ValueTuple@4.5.0" />
+    <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="NUnit.Analyzers@4.4.0" />
+    <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="NUnit3TestAdapter@4.6.0" />
+    <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="coverlet.collector@6.0.2" />
+    <Link Source="ClassLibrary.UnitTests" Target="ClassLibrary.UnitTests/net8.0" />
+    <Link Source="ClassLibrary.UnitTests/net8.0" Target="ClassLibrary" />
+    <Link Source="ClassLibrary.UnitTests/net8.0" Target="Microsoft.NET.Test.Sdk@17.11.1" />
+    <Link Source="ClassLibrary.UnitTests/net8.0" Target="NUnit@4.2.2" />
+    <Link Source="ClassLibrary.UnitTests/net8.0" Target="NUnit.Analyzers@4.4.0" />
+    <Link Source="ClassLibrary.UnitTests/net8.0" Target="NUnit3TestAdapter@4.6.0" />
+    <Link Source="ClassLibrary.UnitTests/net8.0" Target="coverlet.collector@6.0.2" />
+    <Link Source="WebApplication" Target="WebApplication/net8.0" />
+    <Link Source="WebApplication/net8.0" Target="AutoMapper@13.0.1" />
+    <Link Source="AutoMapper@13.0.1" Target="Microsoft.Extensions.Options@6.0.0" />
+    <Link Source="Microsoft.Extensions.Options@6.0.0" Target="Microsoft.Extensions.DependencyInjection.Abstractions@6.0.0" />
+    <Link Source="Microsoft.Extensions.Options@6.0.0" Target="Microsoft.Extensions.Primitives@6.0.0" />
+    <Link Source="Microsoft.Extensions.Primitives@6.0.0" Target="System.Runtime.CompilerServices.Unsafe@6.0.0" />
+    <Link Source="WebApplication/net8.0" Target="ClassLibrary" />
+    <Link Source="ClassLibrary" Target="AutoMapper@13.0.1" />
+    <Link Source="WebApplication/net8.0" Target="Microsoft.DotNet.ILCompiler@8.0.11" />
+    <Link Source="WebApplication/net8.0" Target="Microsoft.NET.ILLink.Tasks@8.0.11" />
+    <Link Source="WpfApp" Target="WpfApp/net8.0-windows7.0" />
+    <Link Source="WpfApp/net8.0-windows7.0" Target="ClassLibrary" />
+  </Links>
+  <Categories>
+    <Category Id="Dependency" Stroke="Black" />
+    <Category Id="FrameworkDependency" BasedOn="Dependency" Background="#FF502CCD" />
+    <Category Id="ProjectDependency" BasedOn="Dependency" Background="DarkOrange" />
+    <Category Id="PackageDependency" BasedOn="Dependency" Background="#FF06487D" />
+  </Categories>
+</DirectedGraph>
