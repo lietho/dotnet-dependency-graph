@@ -2,7 +2,9 @@
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
+using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
+using Nuke.Common.Tools.Git;
 using Nuke.Common.Tools.GitVersion;
 using Serilog;
 
@@ -76,6 +78,16 @@ internal class Build : NukeBuild
           .SetProjectFile(Solution));
       });
 
+  private Target Test => _ => _
+      .DependsOn(Restore)
+      .Executes(() =>
+      {
+        DotNetTasks.DotNetTest(_ => _
+          .EnableNoBuild()
+          .SetConfiguration(Configuration)
+          .SetProjectFile(Solution));
+      });
+
   private Target Pack => _ => _
       .DependsOn(Compile)
       .Executes(() =>
@@ -101,18 +113,26 @@ internal class Build : NukeBuild
       });
 
   private Target Info => _ => _
-    .Requires(() => GitVersion)
-    .Executes(() =>
-    {
-      Log.Information("Configuration =        {Configuration}", Configuration);
-      Log.Information("AssemblyVersion =      {AssemblySemVer}", GitVersion.AssemblySemVer);
-      Log.Information("FileVersion =          {AssemblySemFileVer}", GitVersion.AssemblySemFileVer);
-      Log.Information("FullSemVer =           {FullSemVer}", GitVersion.FullSemVer);
-      Log.Information("InformationalVersion = {InformationalVersion}", GitVersion.InformationalVersion);
-      Log.Information("Commit =               {Commit}", GitRepository.Commit);
-      Log.Information("Branch =               {Branch}", GitRepository.Branch);
-      Log.Information("IsLocalBuild =         {IsLocalBuild}", IsLocalBuild);
-    });
+      .Requires(() => GitVersion)
+      .Executes(() =>
+      {
+        Log.Information("Configuration =        {Configuration}", Configuration);
+        Log.Information("AssemblyVersion =      {AssemblySemVer}", GitVersion.AssemblySemVer);
+        Log.Information("FileVersion =          {AssemblySemFileVer}", GitVersion.AssemblySemFileVer);
+        Log.Information("FullSemVer =           {FullSemVer}", GitVersion.FullSemVer);
+        Log.Information("InformationalVersion = {InformationalVersion}", GitVersion.InformationalVersion);
+        Log.Information("Commit =               {Commit}", GitRepository.Commit);
+        Log.Information("Branch =               {Branch}", GitRepository.Branch);
+        Log.Information("IsLocalBuild =         {IsLocalBuild}", IsLocalBuild);
+      });
+
+  private Target Tag => _ => _
+      .Requires(() => GitVersion)
+      .Executes(() =>
+      {
+        GitTasks.Git(arguments: $"tag {GitVersion.SemVer}");
+        GitTasks.Git(arguments: $"push {GitVersion.SemVer}");
+      });
 }
 
 #pragma warning restore IDE0051 // Remove unused private members
