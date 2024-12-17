@@ -98,6 +98,7 @@ internal class Build : NukeBuild
 
   private Target Pack => _ => _
       .DependsOn(Compile)
+      .Produces(OutputDirectory / "*.nupgk")
       .Executes(() =>
       {
         DotNetTasks.DotNetPack(_ => _

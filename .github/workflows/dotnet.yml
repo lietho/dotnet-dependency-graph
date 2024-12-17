@@ -39,3 +39,8 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
       - name: 'Run: Test, Push'
         run: ./src/build.cmd Test Push
+      - name: 'Publish: _output'
+        uses: actions/upload-artifact@v4
+        with:
+          name: _output
+          path: _output
