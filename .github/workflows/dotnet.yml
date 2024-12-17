@@ -28,7 +28,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Build & Test
-      run: .\build.ps1 test --configuration Release
+      run: .\build.ps1 test --configuration Release --root ${{ github.workspace }}/src
 
   deploy-release-test:
     if: github.ref != 'main'
@@ -51,7 +51,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Push packages
-      run: .\build.sh push --configuration Release
+      run: .\build.sh push --configuration Release --root ${{ github.workspace }}/src
     # - name: Github prerelease
     #   shell: bash
     #   env:
