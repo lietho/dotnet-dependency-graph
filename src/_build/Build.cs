@@ -1,4 +1,5 @@
 ﻿using Nuke.Common;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
@@ -11,6 +12,13 @@ using Serilog;
 #pragma warning disable IDE0051 // Remove unused private members
 
 [DotNetVerbosityMapping]
+[GitHubActions(
+  "dotnet",
+  GitHubActionsImage.WindowsLatest,
+  //On = [GitHubActionsTrigger.Push],
+  OnPushBranches = ["main"],
+  OnPullRequestBranches = ["main"],
+  InvokedTargets = [nameof(Test), nameof(Push)])]
 internal class Build : NukeBuild
 {
   [Solution(GenerateProjects = true)]
@@ -79,14 +87,14 @@ internal class Build : NukeBuild
       });
 
   private Target Test => _ => _
-      .DependsOn(Compile)
-      .Executes(() =>
-      {
-        DotNetTasks.DotNetTest(_ => _
-          .EnableNoBuild()
-          .SetConfiguration(Configuration)
-          .SetProjectFile(Solution));
-      });
+              .DependsOn(Compile)
+              .Executes(() =>
+              {
+                DotNetTasks.DotNetTest(_ => _
+                  .EnableNoBuild()
+                  .SetConfiguration(Configuration)
+                  .SetProjectFile(Solution));
+              });
 
   private Target Pack => _ => _
       .DependsOn(Compile)
