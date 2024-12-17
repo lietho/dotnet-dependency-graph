@@ -28,7 +28,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Build & Test
-      run: .\build.ps1 test --configuration Release --root ${{ github.workspace }}/src
+      run: .\build.ps1 test --configuration Release --root ${{ github.workspace }}\src
 
   deploy-release-test:
     if: github.ref != 'main'
