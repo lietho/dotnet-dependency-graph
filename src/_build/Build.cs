@@ -3,7 +3,6 @@ using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.Git;
 using Nuke.Common.Tools.GitVersion;
@@ -15,6 +14,7 @@ using Serilog;
 [GitHubActions(
   "dotnet",
   GitHubActionsImage.WindowsLatest,
+  FetchDepth = 0,
   OnPushBranches = ["main"],
   OnPullRequestBranches = ["main"],
   InvokedTargets = [nameof(Test), nameof(Push)],
