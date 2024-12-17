@@ -10,7 +10,6 @@
     <PackageDescription>Allows you to create dependency graphs for .NET SDK-style projects.</PackageDescription>
     <PackageId>DependencyGraph.Core</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <DebugType>embedded</DebugType>
