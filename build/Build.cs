@@ -79,7 +79,7 @@ internal class Build : NukeBuild
       });
 
   private Target Test => _ => _
-      .DependsOn(Restore)
+      .DependsOn(Compile)
       .Executes(() =>
       {
         DotNetTasks.DotNetTest(_ => _
@@ -131,7 +131,7 @@ internal class Build : NukeBuild
       .Executes(() =>
       {
         GitTasks.Git(arguments: $"tag {GitVersion.SemVer}");
-        GitTasks.Git(arguments: $"push {GitVersion.SemVer}");
+        GitTasks.Git(arguments: $"push origin {GitVersion.SemVer}");
       });
 }
 
