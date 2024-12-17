@@ -121,14 +121,14 @@
           "type": "boolean",
           "description": "Do not restore the solution before building"
         },
-        "NuGetApiKey": {
-          "type": "string",
-          "description": "The API key for the NuGet source",
-          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
-        },
         "NuGetSource": {
           "type": "string",
           "description": "The NuGet source"
+        },
+        "NugetTestToken": {
+          "type": "string",
+          "description": "The API key for the NuGet source",
+          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
         },
         "Solution": {
           "type": "string",

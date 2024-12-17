@@ -18,7 +18,8 @@ using Serilog;
   //On = [GitHubActionsTrigger.Push],
   OnPushBranches = ["main"],
   OnPullRequestBranches = ["main"],
-  InvokedTargets = [nameof(Test), nameof(Push)])]
+  InvokedTargets = [nameof(Test), nameof(Push)],
+  ImportSecrets = [nameof(NugetTestToken)])]
 internal class Build : NukeBuild
 {
   [Solution(GenerateProjects = true)]
@@ -47,7 +48,7 @@ internal class Build : NukeBuild
 
   [Parameter("The API key for the NuGet source.")]
   [Secret]
-  private readonly string NuGetApiKey;
+  private readonly string NugetTestToken;
 
   [Parameter("The NuGet source.")]
   private readonly string NuGetSource = "https://apiint.nugettest.org/v3/index.json";
@@ -111,12 +112,12 @@ internal class Build : NukeBuild
   private Target Push => _ => _
       .DependsOn(Pack)
       .Requires(() => NuGetSource)
-      .Requires(() => NuGetApiKey)
+      .Requires(() => NugetTestToken)
       .Executes(() =>
       {
         DotNetTasks.DotNetNuGetPush(_ => _
           .EnableSkipDuplicate()
-          .SetApiKey(NuGetApiKey)
+          .SetApiKey(NugetTestToken)
           .SetSource(NuGetSource)
           .SetTargetPath(OutputDirectory / "*.nupkg"));
       });
