@@ -15,7 +15,6 @@ using Serilog;
 [GitHubActions(
   "dotnet",
   GitHubActionsImage.WindowsLatest,
-  //On = [GitHubActionsTrigger.Push],
   OnPushBranches = ["main"],
   OnPullRequestBranches = ["main"],
   InvokedTargets = [nameof(Test), nameof(Push)],
@@ -31,7 +30,7 @@ internal class Build : NukeBuild
   [GitRepository]
   private readonly GitRepository GitRepository;
 
-  private readonly AbsolutePath ToolManifest = RootDirectory / "dotnet-tools.json";
+  private readonly AbsolutePath ToolManifest = RootDirectory / "src" / "dotnet-tools.json";
 
   private readonly AbsolutePath OutputDirectory = (RootDirectory / "_output").CreateOrCleanDirectory();
 
