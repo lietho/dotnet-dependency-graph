@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{
 		..\.github\workflows\dotnet.yml = ..\.github\workflows\dotnet.yml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\build\_build.csproj", "{78AD2D30-E31F-4AF4-B52B-2DA40765B231}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_build", "_build\_build.csproj", "{F3E057B5-5E68-4D04-9BB0-7129805F341F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,8 +43,8 @@ Global
 		{EE4FCBE0-DA9B-436E-A238-91C52407CA80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE4FCBE0-DA9B-436E-A238-91C52407CA80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE4FCBE0-DA9B-436E-A238-91C52407CA80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{78AD2D30-E31F-4AF4-B52B-2DA40765B231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78AD2D30-E31F-4AF4-B52B-2DA40765B231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E057B5-5E68-4D04-9BB0-7129805F341F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E057B5-5E68-4D04-9BB0-7129805F341F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
