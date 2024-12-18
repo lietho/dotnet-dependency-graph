@@ -37,24 +37,24 @@ namespace DependencyGraph.Core.Graph.Factory
     {
       var project = new Project(projectFileInfo.FullName);
 
-      return FromProjectFileInternal(project, projectFileInfo);
+      try
+      {
+        return FromProjectFileInternal(project, projectFileInfo);
+      }
+      finally
+      {
+        ProjectCollection.GlobalProjectCollection.UnloadProject(project);
+      }
     }
 
     public IDependencyGraph FromProject(Project project) => FromProjectFileInternal(project, new FileInfo(project.FullPath));
 
     private IDependencyGraph FromProjectFileInternal(Project project, FileInfo projectFileInfo)
     {
-      try
+      if (project.GetPropertyValue("UsingMicrosoftNETSdk") != "true")
       {
-        if (project.GetPropertyValue("UsingMicrosoftNETSdk") != "true")
-        {
-          Console.WriteLine($"Skipping project '{projectFileInfo.Name}': no SDK-style project");
-          return new DependencyGraph(Path.GetFileNameWithoutExtension(projectFileInfo.Name));
-        }
-      }
-      finally
-      {
-        ProjectCollection.GlobalProjectCollection.UnloadProject(project);
+        Console.WriteLine($"Skipping project '{projectFileInfo.Name}': no SDK-style project");
+        return new DependencyGraph(Path.GetFileNameWithoutExtension(projectFileInfo.Name));
       }
 
       var lockFileInfo = GetLockFileInfo(projectFileInfo.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName)
