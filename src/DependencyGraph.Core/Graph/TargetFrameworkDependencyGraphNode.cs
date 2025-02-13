@@ -7,7 +7,7 @@ using System.Xml.Linq;
 namespace DependencyGraph.Core.Graph
 {
   public class TargetFrameworkDependencyGraphNode : DependencyGraphNodeBase, IEquatable<TargetFrameworkDependencyGraphNode>
-  { 
+  {
     public TargetFrameworkDependencyGraphNode(string projectName, string targetFrameworkIdentifier)
     {
       ProjectName = projectName;
@@ -16,6 +16,7 @@ namespace DependencyGraph.Core.Graph
 
     public string ProjectName { get; }
     public string TargetFrameworkIdentifier { get; }
+    public override string Name => ToString();
 
     public override string ToString() => $"{ProjectName}/{TargetFrameworkIdentifier}";
 
@@ -35,7 +36,7 @@ namespace DependencyGraph.Core.Graph
       }
     }
 
-    public bool Equals(TargetFrameworkDependencyGraphNode? other) 
+    public bool Equals(TargetFrameworkDependencyGraphNode? other)
       => TargetFrameworkIdentifier.Equals(other?.TargetFrameworkIdentifier, StringComparison.OrdinalIgnoreCase) &&
          ProjectName.Equals(other?.ProjectName, StringComparison.OrdinalIgnoreCase);
   }

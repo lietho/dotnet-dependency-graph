@@ -2,18 +2,14 @@
 // See the LICENSE file in the project root for more information.
 
 using System.CommandLine;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
 using DependencyGraph.Core.Graph;
 using DependencyGraph.Core.Graph.Factory;
-using Microsoft.Build.Construction;
 using Microsoft.Build.Locator;
 using NuGet.Common;
-using NuGet.ProjectModel;
 
 namespace DependencyGraph.App.Commands
 {
-  public class DependencyGraphRootCommand : RootCommand
+  internal class DependencyGraphRootCommand : RootCommand
   {
     private readonly ILogger _nugetLogger;
     private readonly DependencyGraphFactoryFactory _dependencyGraphFactoryFactory;
@@ -27,8 +23,8 @@ namespace DependencyGraph.App.Commands
     private readonly Option<int?> _maxDepthOption;
 
     public DependencyGraphRootCommand(
-      IEnumerable<Command> commands, 
-      ILogger nugetLogger, 
+      IEnumerable<Command> commands,
+      ILogger nugetLogger,
       DependencyGraphFactoryFactory dependencyGraphFactoryFactory,
       DependencyGraphVisualizerFactory dependencyGraphVisualizerFactory) : base("Dependency-graph helps you analyze the dependencies of .NET SDK-style projects.")
     {
@@ -52,13 +48,13 @@ namespace DependencyGraph.App.Commands
       _outputFileOption = new Option<FileInfo?>(["--output", "-o"], "The output file path. Must be specified if the DGML visualizer is used. Overwrites the file if it already exists.");
       AddOption(_outputFileOption);
 
-      _includeOption = new Option<string[]?>(["--include", "-i"], description: "Include dependencies matching one of the filters.")
+      _includeOption = new Option<string[]?>(["--include", "-i"], description: "Include dependencies matching one of the filters. Can include the wildcard characters ? and *.")
       {
         AllowMultipleArgumentsPerToken = true
       };
       AddOption(_includeOption);
 
-      _excludeOption = new Option<string[]?>(["--exclude", "-e"], description: "Explicitly exclude dependencies matching one of the filters.")
+      _excludeOption = new Option<string[]?>(["--exclude", "-e"], description: "Explicitly exclude dependencies matching one of the filters. Can include the wildcard characters ? and *.")
       {
         AllowMultipleArgumentsPerToken = true
       };
@@ -73,17 +69,11 @@ namespace DependencyGraph.App.Commands
       this.SetHandler(HandleCommand, _projectOrSolutionFileArgument, _visualizerOption, _outputFileOption, _includeOption, _excludeOption, _maxDepthOption, _noRestoreOption);
     }
 
-    private static FileInfo GetSingleProjectFile()
-    {
-      var projectFilePatterns = new[] { "*.csproj", "*.vbproj", "*.sln" };
-      var allFiles = projectFilePatterns.SelectMany(pattern => new DirectoryInfo(".").EnumerateFiles(pattern)).ToArray();
-
-      if (allFiles.Length > 1)
-        throw new CommandException("Specify which project or solution file to use because the curent working directory contains more than one project or solution file.");
-      else if (allFiles.Length == 0)
-        throw new CommandException("Specify a project or solution file. The current working directory does not contain a project or solution file.");
-      return allFiles[0];
-    }
+    private static FileInfo GetSingleProjectFile() =>
+      CommandHelper.GetSingleFile(
+        ["*.csproj", "*.vbproj", "*.sln"],
+        "Specify a project or solution file. The current working directory does not contain a project or solution file.",
+        "Specify which project or solution file to use because the current working directory contains more than one project or solution file.");
 
     private async Task HandleCommand(FileInfo? projectOrSolutionFile, VisualizerType visualizerType, FileInfo? outputFile, string[]? includes, string[]? excludes, int? maxDepth, bool? noRestore)
     {
@@ -98,13 +88,13 @@ namespace DependencyGraph.App.Commands
       if (outputFile == null && visualizerType == VisualizerType.Dgml)
         throw new CommandException("An output file path must be specified when using the DGML visualizer.");
 
-      await RestoreIfNecessary(projectOrSolutionFile, noRestore);
+      await CommandHelper.RestoreIfNecessary(projectOrSolutionFile, noRestore);
 
       IDependencyGraph graph;
       var dependencyGraphFactory = _dependencyGraphFactoryFactory.Create(new()
       {
-        Includes = (includes ?? ["*"]).Select(WildcardToRegex).ToArray(),
-        Excludes = (excludes ?? []).Select(WildcardToRegex).ToArray(),
+        Includes = (includes ?? ["*"]).Select(CommandHelper.WildcardToRegex).ToArray(),
+        Excludes = (excludes ?? []).Select(CommandHelper.WildcardToRegex).ToArray(),
         MaxDepth = maxDepth
       });
 
@@ -124,58 +114,13 @@ namespace DependencyGraph.App.Commands
         graph = CreateGraphForSolution(projectOrSolutionFile, dependencyGraphFactory);
       }
       else
-        graph = CreateGraphForProjectFile(projectOrSolutionFile, dependencyGraphFactory);
+        graph = CommandHelper.CreateGraphForProjectFile(projectOrSolutionFile, dependencyGraphFactory, _nugetLogger);
 
       await _dependencyGraphVisualizerFactory.Create(visualizerType, outputFile).VisualizeAsync(graph);
     }
 
-    private static async Task RestoreIfNecessary(FileInfo projectOrSulutionFile, bool? noRestore)
-    {
-      if (noRestore.GetValueOrDefault() == true)
-      {
-        await Console.Out.WriteLineAsync($"Skipping restore...{Environment.NewLine}{Environment.NewLine}");
-        return;
-      }
-
-      await RunRestore(projectOrSulutionFile);
-    }
-
-    private static async Task RunRestore(FileInfo projectOrSulutionFile)
-    {
-      var restoreProcess = new Process();
-
-      restoreProcess.StartInfo.FileName = "dotnet";
-      restoreProcess.StartInfo.Arguments = $"restore \"{projectOrSulutionFile.FullName}\"";
-      restoreProcess.StartInfo.UseShellExecute = false;
-      restoreProcess.StartInfo.RedirectStandardOutput = true;
-      restoreProcess.StartInfo.RedirectStandardError = true;
-      restoreProcess.OutputDataReceived += (_, args) => Console.WriteLine(args.Data?.Trim());
-      restoreProcess.ErrorDataReceived += (_, args) => Console.Error.WriteLine(args.Data?.Trim());
-      restoreProcess.Start();
-      restoreProcess.BeginOutputReadLine();
-      restoreProcess.BeginErrorReadLine();
-
-      await restoreProcess.WaitForExitAsync();
-
-      if (restoreProcess.ExitCode != 0)
-        throw new ApplicationException($"Restore failed; Exit code: {restoreProcess.ExitCode}");
-    }
-
-    public static string WildcardToRegex(string pattern) => $"^{Regex.Escape(pattern).Replace(@"\*", ".*").Replace(@"\?", ".")}$";
-
     private static bool IsSolutionFile(FileInfo projectOrSolutionFile) => projectOrSolutionFile.Extension.Equals(".sln", StringComparison.OrdinalIgnoreCase);
 
     private IDependencyGraph CreateGraphForSolution(FileInfo solutionFile, IDependencyGraphFactory dependencyGraphFactory) => dependencyGraphFactory.FromSolutionFile(solutionFile);
-
-    private IDependencyGraph CreateGraphForProjectFile(FileInfo projectFile, IDependencyGraphFactory dependencyGraphFactory)
-    {
-      var lockFileInfo = GetLockFileInfo(projectFile.Directory?.EnumerateDirectories("obj").FirstOrDefault(), LockFileFormat.AssetsFileName) ?? throw new CommandException($"Could not find assets file {LockFileFormat.AssetsFileName}. Please build the project first.");
-
-      var lockFileFormat = new LockFileFormat();
-      var lockFile = lockFileFormat.Read(lockFileInfo.FullName, _nugetLogger);
-      return dependencyGraphFactory.FromLockFile(lockFile);
-    }
-
-    private static FileInfo? GetLockFileInfo(DirectoryInfo? directory, string assetsFileName) => directory?.GetFiles(assetsFileName)?.FirstOrDefault();
   }
 }

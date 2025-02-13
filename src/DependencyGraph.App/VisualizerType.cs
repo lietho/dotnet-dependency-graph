@@ -3,7 +3,7 @@
 
 namespace DependencyGraph.App
 {
-  public enum VisualizerType
+  internal enum VisualizerType
   {
     Console,
     Dgml

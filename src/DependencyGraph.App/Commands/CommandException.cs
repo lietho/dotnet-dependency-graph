@@ -3,12 +3,18 @@
 
 namespace DependencyGraph.App.Commands
 {
-
   [Serializable]
-  public class CommandException : Exception
+  internal class CommandException : Exception
   {
-    public CommandException() { }
-    public CommandException(string message) : base(message) { }
-    public CommandException(string message, Exception inner) : base(message, inner) { }
+    public CommandException()
+    { }
+
+    public CommandException(string message) : base(message)
+    {
+    }
+
+    public CommandException(string message, Exception inner) : base(message, inner)
+    {
+    }
   }
 }

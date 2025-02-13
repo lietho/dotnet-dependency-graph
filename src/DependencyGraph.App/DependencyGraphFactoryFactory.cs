@@ -5,7 +5,7 @@ using DependencyGraph.Core.Graph.Factory;
 
 namespace DependencyGraph.App
 {
-  public class DependencyGraphFactoryFactory
+  internal class DependencyGraphFactoryFactory
   {
     public IDependencyGraphFactory Create(DependencyGraphFactoryOptions options) => new DependencyGraphFactory(options);
   }

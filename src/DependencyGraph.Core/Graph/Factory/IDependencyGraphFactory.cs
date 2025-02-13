@@ -2,7 +2,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System.IO;
-using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using NuGet.ProjectModel;
 

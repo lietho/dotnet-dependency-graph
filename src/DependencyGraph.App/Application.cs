@@ -8,7 +8,7 @@ using DependencyGraph.App.Commands;
 
 namespace DependencyGraph.App
 {
-  public class Application
+  internal class Application
   {
     private readonly RootCommand _rootCommand;
 
@@ -23,11 +23,11 @@ namespace DependencyGraph.App
 
       commandLineBuilder.AddMiddleware(async (context, next) =>
       {
-        try 
+        try
         {
           await next(context);
-        } 
-        catch (CommandException ex) 
+        }
+        catch (CommandException ex)
         {
           await Console.Error.WriteLineAsync(ex.Message);
         }

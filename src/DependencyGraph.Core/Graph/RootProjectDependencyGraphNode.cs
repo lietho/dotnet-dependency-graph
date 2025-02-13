@@ -12,7 +12,7 @@ namespace DependencyGraph.Core.Graph
       Name = name;
     }
 
-    public string Name { get; }
+    public override string Name { get; }
 
     public override bool Equals(object? obj)
     {

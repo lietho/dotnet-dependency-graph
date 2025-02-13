@@ -153,7 +153,7 @@ namespace DependencyGraph.Core.Graph.Factory
     }
 
     private static bool ShouldInclude(string libraryName, DependencyGraphFactoryOptions options)
-      => options.Includes.Any(_ => Regex.IsMatch(libraryName, _)) && options.Excludes.Any(_ => Regex.IsMatch(libraryName, _)) == false;
+      => options.Includes.Any(_ => Regex.IsMatch(libraryName, _, RegexOptions.IgnoreCase)) && options.Excludes.Any(_ => Regex.IsMatch(libraryName, _, RegexOptions.IgnoreCase)) == false;
 
     private static DependencyGraphNodeBase CreateNodeForLibrary(DependencyGraph graph, string name, LockFileTarget lockFileTarget, DependencyGraphFactoryOptions options, int currentDepth)
     {
