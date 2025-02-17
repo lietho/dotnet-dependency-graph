@@ -1,4 +1,5 @@
-﻿using Nuke.Common;
+﻿using System.Linq;
+using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
@@ -6,6 +7,7 @@ using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.Git;
 using Nuke.Common.Tools.GitVersion;
+using Nuke.Common.Utilities;
 using Serilog;
 
 #pragma warning disable IDE0051 // Remove unused private members
@@ -87,14 +89,19 @@ internal class Build : NukeBuild
       });
 
   private Target Test => _ => _
-              .DependsOn(Compile)
-              .Executes(() =>
-              {
-                DotNetTasks.DotNetTest(_ => _
-                  .EnableNoBuild()
-                  .SetConfiguration(Configuration)
-                  .SetProjectFile(Solution));
-              });
+      .DependsOn(Compile)
+      .Executes(() =>
+      {
+        var testProjects = Solution.AllProjects.Where(p => p.GetProperty("IsTestProject")?.EqualsOrdinalIgnoreCase("true") == true);
+
+        foreach (var project in testProjects)
+        {
+          DotNetTasks.DotNetRun(_ => _
+          .EnableNoBuild()
+          .SetConfiguration(Configuration)
+          .SetProjectFile(project));
+        }
+      });
 
   private Target Pack => _ => _
       .DependsOn(Compile)
