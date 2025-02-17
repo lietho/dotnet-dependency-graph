@@ -9,8 +9,8 @@
     <Node Id="System.Text.Json@9.0.0" Category="PackageDependency" Label="System.Text.Json@9.0.0" />
     <Node Id="System.IO.Pipelines@9.0.0" Category="PackageDependency" Label="System.IO.Pipelines@9.0.0" />
     <Node Id="System.Text.Encodings.Web@9.0.0" Category="PackageDependency" Label="System.Text.Encodings.Web@9.0.0" />
-    <Node Id="Microsoft.DotNet.ILCompiler@8.0.11" Category="PackageDependency" Label="Microsoft.DotNet.ILCompiler@8.0.11" />
-    <Node Id="Microsoft.NET.ILLink.Tasks@8.0.11" Category="PackageDependency" Label="Microsoft.NET.ILLink.Tasks@8.0.11" />
+    <Node Id="Microsoft.DotNet.ILCompiler@8.0.12" Category="PackageDependency" Label="Microsoft.DotNet.ILCompiler@8.0.12" />
+    <Node Id="Microsoft.NET.ILLink.Tasks@8.0.12" Category="PackageDependency" Label="Microsoft.NET.ILLink.Tasks@8.0.12" />
   </Nodes>
   <Links>
     <Link Source="WebApplication" Target="WebApplication/net8.0" />
@@ -21,8 +21,8 @@
     <Link Source="ClassLibrary" Target="System.Text.Json@9.0.0" />
     <Link Source="System.Text.Json@9.0.0" Target="System.IO.Pipelines@9.0.0" />
     <Link Source="System.Text.Json@9.0.0" Target="System.Text.Encodings.Web@9.0.0" />
-    <Link Source="WebApplication/net8.0" Target="Microsoft.DotNet.ILCompiler@8.0.11" />
-    <Link Source="WebApplication/net8.0" Target="Microsoft.NET.ILLink.Tasks@8.0.11" />
+    <Link Source="WebApplication/net8.0" Target="Microsoft.DotNet.ILCompiler@8.0.12" />
+    <Link Source="WebApplication/net8.0" Target="Microsoft.NET.ILLink.Tasks@8.0.12" />
   </Links>
   <Categories>
     <Category Id="Dependency" Stroke="Black" />
