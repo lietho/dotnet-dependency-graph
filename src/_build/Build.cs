@@ -32,8 +32,6 @@ internal class Build : NukeBuild
   [GitRepository]
   private readonly GitRepository GitRepository;
 
-  private readonly AbsolutePath ToolManifest = RootDirectory / "src" / "dotnet-tools.json";
-
   private readonly AbsolutePath OutputDirectory = (RootDirectory / "_output").CreateOrCleanDirectory();
 
   public static int Main() => Execute<Build>(x => x.Compile);
@@ -67,8 +65,7 @@ internal class Build : NukeBuild
       .OnlyWhenStatic(() => !NoRestore)
       .Executes(() =>
       {
-        DotNetTasks.DotNetToolRestore(_ => _
-          .SetConfigFile(ToolManifest));
+        DotNetTasks.DotNetToolRestore();
 
         DotNetTasks.DotNetRestore(_ => _
           .SetProjectFile(Solution)

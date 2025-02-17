@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageDownload Include="GitVersion.Tool" Version="[6.0.5]" />
+    <PackageDownload Include="GitVersion.Tool" Version="[6.1.0]" />
   </ItemGroup>
 
 </Project>
