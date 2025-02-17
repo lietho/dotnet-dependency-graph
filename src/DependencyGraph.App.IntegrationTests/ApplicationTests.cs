@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace DependencyGraph.App.IntegrationTests
 {
-  public class DependencyGraphRootCommandTests
+  public class ApplicationTests
   {
     public static IEnumerable<TestCaseData> DgmlTestCases
     {
