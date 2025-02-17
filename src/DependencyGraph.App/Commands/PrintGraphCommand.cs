@@ -68,12 +68,6 @@ namespace DependencyGraph.App.Commands
       this.SetHandler(HandleCommand, _projectOrSolutionFileArgument, _visualizerOption, _outputFileOption, _includeOption, _excludeOption, _maxDepthOption, _noRestoreOption);
     }
 
-    private static FileInfo GetSingleProjectFile() =>
-      CommandHelper.GetSingleFile(
-        ["*.csproj", "*.vbproj", "*.sln"],
-        "Specify a project or solution file. The current working directory does not contain a project or solution file.",
-        "Specify which project or solution file to use because the current working directory contains more than one project or solution file.");
-
     private async Task HandleCommand(FileInfo? projectOrSolutionFile, VisualizerType visualizerType, FileInfo? outputFile, string[]? includes, string[]? excludes, int? maxDepth, bool? noRestore)
     {
       projectOrSolutionFile ??= GetSingleProjectFile();
@@ -117,6 +111,12 @@ namespace DependencyGraph.App.Commands
 
       await _dependencyGraphVisualizerFactory.Create(visualizerType, outputFile).VisualizeAsync(graph);
     }
+
+    private static FileInfo GetSingleProjectFile() =>
+      CommandHelper.GetSingleFile(
+        ["*.csproj", "*.vbproj", "*.sln"],
+        "Specify a project or solution file. The current working directory does not contain a project or solution file.",
+        "Specify which project or solution file to use because the current working directory contains more than one project or solution file.");
 
     private static bool IsSolutionFile(FileInfo projectOrSolutionFile) => projectOrSolutionFile.Extension.Equals(".sln", StringComparison.OrdinalIgnoreCase);
   }

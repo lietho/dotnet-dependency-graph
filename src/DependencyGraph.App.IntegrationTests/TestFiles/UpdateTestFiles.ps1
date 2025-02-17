@@ -19,3 +19,9 @@
 ..\bin\Debug\dependency-graph.exe print TestSolution\TestSolution.sln -v console -e Microsoft.Extensions* --no-restore > TestSolution.sln_Exclude.txt 
 ..\bin\Debug\dependency-graph.exe print TestSolution\TestSolution.sln -v console -i ClassLibrary* *Mapper* --no-restore > TestSolution.sln_Include.txt
 ..\bin\Debug\dependency-graph.exe print TestSolution\TestSolution.sln -v console -d 2 --no-restore > TestSolution.sln_MaxDepth.txt
+
+
+# trace
+..\bin\Debug\dependency-graph.exe trace TestSolution\WebApplication\WebApplication.csproj System.Runtime.CompilerServices* --no-restore > WebApplication.csproj_Trace_Pattern.txt
+..\bin\Debug\dependency-graph.exe trace TestSolution\ClassLibrary\ClassLibrary.csproj AutoMapper --no-restore > ClassLibrary.csproj_Trace.txt
+..\bin\Debug\dependency-graph.exe trace TestSolution\WebApplication\WebApplication.csproj AutoMapper -v 12.0 --no-restore > WebApplication.csproj_Trace_MinVersion.txt
