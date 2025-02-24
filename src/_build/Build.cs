@@ -151,6 +151,15 @@ internal class Build : NukeBuild
 
   private Target Tag => _ => _
       .Requires(() => GitVersion)
+      .Before(Compile)
+      .Executes(() =>
+      {
+        GitTasks.Git(arguments: $"tag {GitVersion.SemVer}");
+        GitTasks.Git(arguments: $"push origin {GitVersion.SemVer}");
+      });
+
+  private Target Release => _ => _
+      .DependsOn(Tag, Test, Push)
       .Executes(() =>
       {
         GitTasks.Git(arguments: $"tag {GitVersion.SemVer}");
