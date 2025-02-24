@@ -154,8 +154,8 @@ internal class Build : NukeBuild
       .Before(Compile)
       .Executes(() =>
       {
-        GitTasks.Git(arguments: $"tag {GitVersion.SemVer}");
-        GitTasks.Git(arguments: $"push origin {GitVersion.SemVer}");
+        GitTasks.Git(arguments: $"tag {GitVersion.MajorMinorPatch}");
+        GitTasks.Git(arguments: $"push origin {GitVersion.MajorMinorPatch}");
       });
 
   private Target Release => _ => _
