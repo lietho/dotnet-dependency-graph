@@ -7,7 +7,7 @@ using DependencyGraph.Core.Visualizer.Dgml;
 
 namespace DependencyGraph.App
 {
-  public class DependencyGraphVisualizerFactory
+  internal class DependencyGraphVisualizerFactory
   {
     public IDependencyGraphVisualizer Create(VisualizerType visualizerType, FileInfo? outputFile) => visualizerType switch
     {

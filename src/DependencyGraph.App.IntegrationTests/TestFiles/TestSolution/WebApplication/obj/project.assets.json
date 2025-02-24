@@ -18,7 +18,7 @@
           }
         }
       },
-      "Microsoft.DotNet.ILCompiler/8.0.11": {
+      "Microsoft.DotNet.ILCompiler/8.0.12": {
         "type": "package",
         "build": {
           "build/Microsoft.DotNet.ILCompiler.props": {}
@@ -76,7 +76,7 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/8.0.11": {
+      "Microsoft.NET.ILLink.Tasks/8.0.12": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -202,10 +202,10 @@
         "lib/net6.0/AutoMapper.xml"
       ]
     },
-    "Microsoft.DotNet.ILCompiler/8.0.11": {
-      "sha512": "9SWRKJzFrE07m77G/9jSR1lqdlPmKCsQX1UflZEFBGYzmOZ53sjLEEcAiWtnWY0QJ750h2ahciOPO8oVjztQ0g==",
+    "Microsoft.DotNet.ILCompiler/8.0.12": {
+      "sha512": "zhXnz2574mBc/ocGoG+qB0BgyoK9bH7f7Te1fNQJGbpwLLwZO5KKaTBmfM8N8THb3a2vQVFonbBzQ//d15TmQQ==",
       "type": "package",
-      "path": "microsoft.dotnet.ilcompiler/8.0.11",
+      "path": "microsoft.dotnet.ilcompiler/8.0.12",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -224,7 +224,7 @@
         "build/NativeAOT.natvis",
         "build/WindowsAPIs.txt",
         "build/findvcvarsall.bat",
-        "microsoft.dotnet.ilcompiler.8.0.11.nupkg.sha512",
+        "microsoft.dotnet.ilcompiler.8.0.12.nupkg.sha512",
         "microsoft.dotnet.ilcompiler.nuspec",
         "runtime.json",
         "tools/netstandard/ILCompiler.Build.Tasks.deps.json",
@@ -303,10 +303,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.NET.ILLink.Tasks/8.0.11": {
-      "sha512": "zk5lnZrYJgtuJG8L4v17Ej8rZ3PUcR2iweNV08BaO5LbYHIi2wNaVNcJoLxvqgQdnjLlKnCCfVGLDr6QHeAarQ==",
+    "Microsoft.NET.ILLink.Tasks/8.0.12": {
+      "sha512": "FV4HnQ3JI15PHnJ5PGTbz+rYvrih42oLi/7UMIshNwCwUZhTq13UzrggtXk4ygrcMcN+4jsS6hhshx2p/Zd0ig==",
       "type": "package",
-      "path": "microsoft.net.illink.tasks/8.0.11",
+      "path": "microsoft.net.illink.tasks/8.0.12",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -320,7 +320,7 @@
         "build/Microsoft.NET.ILLink.Analyzers.props",
         "build/Microsoft.NET.ILLink.Tasks.props",
         "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.8.0.11.nupkg.sha512",
+        "microsoft.net.illink.tasks.8.0.12.nupkg.sha512",
         "microsoft.net.illink.tasks.nuspec",
         "tools/net472/ILLink.Tasks.dll",
         "tools/net472/ILLink.Tasks.dll.config",
@@ -543,8 +543,8 @@
     "net8.0": [
       "AutoMapper >= 13.0.1",
       "ClassLibrary >= 1.0.0",
-      "Microsoft.DotNet.ILCompiler >= 8.0.11",
-      "Microsoft.NET.ILLink.Tasks >= 8.0.11"
+      "Microsoft.DotNet.ILCompiler >= 8.0.12",
+      "Microsoft.NET.ILLink.Tasks >= 8.0.12"
     ]
   },
   "packageFolders": {
@@ -566,6 +566,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+        "C:\\dev\\dotnet-dependency-graph\\src\\NuGet.Config",
         "C:\\Users\\thomas.lielacher\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -574,7 +575,6 @@
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -595,9 +595,8 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+        "auditMode": "direct"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -610,13 +609,13 @@
           "Microsoft.DotNet.ILCompiler": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[8.0.11, )",
+            "version": "[8.0.12, )",
             "autoReferenced": true
           },
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[8.0.11, )",
+            "version": "[8.0.12, )",
             "autoReferenced": true
           }
         },
@@ -634,7 +633,7 @@
         "downloadDependencies": [
           {
             "name": "runtime.win-x64.Microsoft.DotNet.ILCompiler",
-            "version": "[8.0.11, 8.0.11]"
+            "version": "[8.0.12, 8.0.12]"
           }
         ],
         "frameworkReferences": {
@@ -645,7 +644,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.405/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

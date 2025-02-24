@@ -65,6 +65,10 @@ var dgmlVisualizerOptions = new DgmlDependencyGraphVisualizerOptions("graph.dgml
     ],
   AssignCategory = graphNode => "DefaultCategory" // assign a node to a category
 };
+
+// trace a dependency in a dependency graph
+var traceDiagnostic = new TraceDependencyGraphDiagnostic("System.*", VersionRange.All);
+var paths = traceDiagnostic.Perform(graph);
 ```
 
 For example outputs please see [README.md](../DependencyGraph.App/README.md) of the dotnet tool.

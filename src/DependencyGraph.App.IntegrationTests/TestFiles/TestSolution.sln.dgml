@@ -34,8 +34,8 @@
     <Node Id="Microsoft.Extensions.Options@6.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Options@6.0.0" />
     <Node Id="Microsoft.Extensions.DependencyInjection.Abstractions@6.0.0" Category="PackageDependency" Label="Microsoft.Extensions.DependencyInjection.Abstractions@6.0.0" />
     <Node Id="Microsoft.Extensions.Primitives@6.0.0" Category="PackageDependency" Label="Microsoft.Extensions.Primitives@6.0.0" />
-    <Node Id="Microsoft.DotNet.ILCompiler@8.0.11" Category="PackageDependency" Label="Microsoft.DotNet.ILCompiler@8.0.11" />
-    <Node Id="Microsoft.NET.ILLink.Tasks@8.0.11" Category="PackageDependency" Label="Microsoft.NET.ILLink.Tasks@8.0.11" />
+    <Node Id="Microsoft.DotNet.ILCompiler@8.0.12" Category="PackageDependency" Label="Microsoft.DotNet.ILCompiler@8.0.12" />
+    <Node Id="Microsoft.NET.ILLink.Tasks@8.0.12" Category="PackageDependency" Label="Microsoft.NET.ILLink.Tasks@8.0.12" />
     <Node Id="WpfApp" Category="ProjectDependency" Label="WpfApp" />
     <Node Id="WpfApp/net8.0-windows7.0" Category="FrameworkDependency" Label="WpfApp/net8.0-windows7.0" />
   </Nodes>
@@ -99,8 +99,8 @@
     <Link Source="Microsoft.Extensions.Primitives@6.0.0" Target="System.Runtime.CompilerServices.Unsafe@6.0.0" />
     <Link Source="WebApplication/net8.0" Target="ClassLibrary" />
     <Link Source="ClassLibrary" Target="AutoMapper@13.0.1" />
-    <Link Source="WebApplication/net8.0" Target="Microsoft.DotNet.ILCompiler@8.0.11" />
-    <Link Source="WebApplication/net8.0" Target="Microsoft.NET.ILLink.Tasks@8.0.11" />
+    <Link Source="WebApplication/net8.0" Target="Microsoft.DotNet.ILCompiler@8.0.12" />
+    <Link Source="WebApplication/net8.0" Target="Microsoft.NET.ILLink.Tasks@8.0.12" />
     <Link Source="WpfApp" Target="WpfApp/net8.0-windows7.0" />
     <Link Source="WpfApp/net8.0-windows7.0" Target="ClassLibrary" />
   </Links>

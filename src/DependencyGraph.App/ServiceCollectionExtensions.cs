@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace DependencyGraph.App
 {
-  public static class ServiceCollectionExtensions
+  internal static class ServiceCollectionExtensions
   {
     public static IServiceCollection AddCommands(this IServiceCollection services, params Assembly[] assemblies)
     {
@@ -15,8 +15,8 @@ namespace DependencyGraph.App
       var rootCommandType = typeof(RootCommand);
 
       var commands = assemblies
-          .SelectMany(_ => _.GetExportedTypes())
-          .Where(type => commandType.IsAssignableFrom(type) )
+          .SelectMany(_ => _.GetTypes())
+          .Where(commandType.IsAssignableFrom)
           .Where(type => !rootCommandType.IsAssignableFrom(type))
           .Where(type => !type.IsAbstract);
 

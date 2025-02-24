@@ -8,8 +8,8 @@
     <Node Id="ClassLibrary" Category="ProjectDependency" Label="ClassLibrary" />
     <Node Id="Serilog@4.0.0" Category="PackageDependency" Label="Serilog@4.0.0" />
     <Node Id="System.Text.Json@9.0.0" Category="PackageDependency" Label="System.Text.Json@9.0.0" />
-    <Node Id="Microsoft.DotNet.ILCompiler@8.0.11" Category="PackageDependency" Label="Microsoft.DotNet.ILCompiler@8.0.11" />
-    <Node Id="Microsoft.NET.ILLink.Tasks@8.0.11" Category="PackageDependency" Label="Microsoft.NET.ILLink.Tasks@8.0.11" />
+    <Node Id="Microsoft.DotNet.ILCompiler@8.0.12" Category="PackageDependency" Label="Microsoft.DotNet.ILCompiler@8.0.12" />
+    <Node Id="Microsoft.NET.ILLink.Tasks@8.0.12" Category="PackageDependency" Label="Microsoft.NET.ILLink.Tasks@8.0.12" />
   </Nodes>
   <Links>
     <Link Source="WebApplication" Target="WebApplication/net8.0" />
@@ -19,8 +19,8 @@
     <Link Source="ClassLibrary" Target="AutoMapper@13.0.1" />
     <Link Source="ClassLibrary" Target="Serilog@4.0.0" />
     <Link Source="ClassLibrary" Target="System.Text.Json@9.0.0" />
-    <Link Source="WebApplication/net8.0" Target="Microsoft.DotNet.ILCompiler@8.0.11" />
-    <Link Source="WebApplication/net8.0" Target="Microsoft.NET.ILLink.Tasks@8.0.11" />
+    <Link Source="WebApplication/net8.0" Target="Microsoft.DotNet.ILCompiler@8.0.12" />
+    <Link Source="WebApplication/net8.0" Target="Microsoft.NET.ILLink.Tasks@8.0.12" />
   </Links>
   <Categories>
     <Category Id="Dependency" Stroke="Black" />

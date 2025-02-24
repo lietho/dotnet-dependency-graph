@@ -14,7 +14,7 @@ namespace DependencyGraph.Core.Graph
       TargetLibrary = targetLibrary;
     }
 
-    public string Name { get; }
+    public override string Name { get; }
     public LockFileTargetLibrary TargetLibrary { get; }
 
     public override string ToString() => $"{Name}";
