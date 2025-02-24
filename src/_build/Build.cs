@@ -123,6 +123,7 @@ internal class Build : NukeBuild
 
   private Target Push => _ => _
       .DependsOn(Pack)
+      .After(Test)
       .Requires(() => NuGetSource)
       .Requires(() => NugetToken)
       .Executes(() =>
