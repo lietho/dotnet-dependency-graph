@@ -127,6 +127,7 @@ internal class Build : NukeBuild
 
   private Target Info => _ => _
       .Requires(() => GitVersion)
+      .Requires(() => GitRepository)
       .Executes(() =>
       {
         Log.Information("Configuration =        {Configuration}", Configuration);
