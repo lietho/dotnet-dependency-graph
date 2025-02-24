@@ -54,7 +54,7 @@ internal class Build : NukeBuild
   private string NugetToken;
 
   [Parameter("The NuGet source.")]
-  private readonly string NuGetSource = "https://apiint.nugettest.org/v3/index.json";
+  private readonly string NuGetSource = "https://api.nuget.org/v3/index.json";
 
   protected override void OnBuildInitialized()
   {

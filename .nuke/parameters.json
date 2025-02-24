@@ -1,4 +1,6 @@
 {
   "$schema": "./build.schema.json",
-  "Solution": "src/DependencyGraph.sln"
+  "Solution": "src/DependencyGraph.sln",
+  "NugetTestToken": "v1:wEPczyP8upI0sjhu1Y1XkCRxym3+TWrhYvAPyYJlZ1SoIKEMQRC5p4hRF8mzfB+q",
+  "NugetToken": "v1:3qZnMXESqeqdsdkr7Ffamm+lS45G+CvfsAwd1cxaf37WJ0kL/tvdNKo7Oq9qtQ28"
 }
