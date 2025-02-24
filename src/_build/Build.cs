@@ -19,8 +19,8 @@ using Serilog;
   FetchDepth = 0,
   OnPushBranches = ["main"],
   OnPullRequestBranches = ["main"],
-  InvokedTargets = [nameof(Test), nameof(Push)],
-  ImportSecrets = [nameof(NugetTestToken)])]
+  InvokedTargets = [nameof(Test)],
+  ImportSecrets = [nameof(NugetTestToken), nameof(NugetToken)])]
 internal class Build : NukeBuild
 {
   [Solution(GenerateProjects = true)]
@@ -45,12 +45,21 @@ internal class Build : NukeBuild
   [Parameter("Do not build the solution before packing. Implies --no-restore.")]
   private readonly bool NoBuild = false;
 
-  [Parameter("The API key for the NuGet source.")]
+  [Parameter("The API key for the NuGet source.", List = false)]
   [Secret]
   private readonly string NugetTestToken;
 
+  [Parameter("The API key for the NuGet source.")]
+  [Secret]
+  private string NugetToken;
+
   [Parameter("The NuGet source.")]
   private readonly string NuGetSource = "https://apiint.nugettest.org/v3/index.json";
+
+  protected override void OnBuildInitialized()
+  {
+    NugetToken ??= NugetTestToken;
+  }
 
   private Target Clean => _ => _
       .Before(Restore)
@@ -115,7 +124,7 @@ internal class Build : NukeBuild
   private Target Push => _ => _
       .DependsOn(Pack)
       .Requires(() => NuGetSource)
-      .Requires(() => NugetTestToken)
+      .Requires(() => NugetToken)
       .Executes(() =>
       {
         DotNetTasks.DotNetNuGetPush(_ => _

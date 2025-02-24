@@ -39,12 +39,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
-      - name: 'Run: Test, Push'
-        run: ./src/build.cmd Test Push
+      - name: 'Run: Test'
+        run: ./src/build.cmd Test
         env:
           NugetTestToken: ${{ secrets.NUGET_TEST_TOKEN }}
-      - name: 'Publish: _output'
-        uses: actions/upload-artifact@v4
-        with:
-          name: _output
-          path: _output
+          NugetToken: ${{ secrets.NUGET_TOKEN }}

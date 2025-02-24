@@ -130,6 +130,11 @@
           "description": "The API key for the NuGet source",
           "default": "Secrets must be entered via 'nuke :secrets [profile]'"
         },
+        "NugetToken": {
+          "type": "string",
+          "description": "The API key for the NuGet source",
+          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
+        },
         "Solution": {
           "type": "string",
           "description": "Path to a solution file that is automatically loaded"
