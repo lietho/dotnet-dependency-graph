@@ -1,5 +1,5 @@
 # dotnet-dependency-graph
-[![.NET build and test](https://github.com/lietho/dotnet-dependency-graph/actions/workflows/dotnet.yml/badge.svg)](https://github.com/lietho/dotnet-dependency-graph/actions/workflows/dotnet.yml)
+[![.NET build and test](https://github.com/lietho/dotnet-dependency-graph/actions/workflows/CI.yml/badge.svg)](https://github.com/lietho/dotnet-dependency-graph/actions/workflows/CI.yml)
 
 dotnet-dependency-graph is a dotnet global tool and library that helps you analyze the dependencies of .NET SDK-style projects. The most notable difference to other tools providing such functionality is that dotnet-dependency-graph also includes transitive dependencies, thus creating a complete dependency graph.
 

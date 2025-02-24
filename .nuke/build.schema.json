@@ -29,6 +29,7 @@
         "Info",
         "Pack",
         "Push",
+        "Release",
         "Restore",
         "Tag",
         "Test"

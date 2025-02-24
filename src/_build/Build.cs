@@ -14,7 +14,7 @@ using Serilog;
 
 [DotNetVerbosityMapping]
 [GitHubActions(
-  "dotnet",
+  "CI",
   GitHubActionsImage.WindowsLatest,
   FetchDepth = 0,
   OnPushBranches = ["main"],
