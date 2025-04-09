@@ -36,7 +36,7 @@
     </PackageReference>
     <PackageReference Include="NuGet.ProjectModel" Version="6.13.2" />
     <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
-    <PackageReference Include="Microsoft.Build.Locator" Version="1.7.8" />
+    <PackageReference Include="Microsoft.Build.Locator" Version="1.9.1" />
   </ItemGroup>
 
   <ItemGroup>
