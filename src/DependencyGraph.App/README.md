@@ -12,7 +12,7 @@ Allows you to create dependency graphs for .NET SDK-style projects. This is the 
 dotnet tool install --global DependencyGraph.App
 ```
 
-After installation, the tool can be called with the command `dependency-graph`. Currently the tool supports two different command: `print` and `trace`. 
+After installation, the tool can be called with the command `dependency-graph`. The tool supports three commands: `print`, `trace` and `mcp`. 
 
 ### Print dependencies to the console
 
@@ -128,6 +128,44 @@ prints all paths to dependencies starting with `Microsoft.Build`.
 #### Specifying the version
 
 If you want to trace a specific version or a version range of a dependency, you can do so by specifying the `-v` or `--version` option. The option takes a `VersionRange` as value. More details about how such ranges can be specified can be found [here](https://learn.microsoft.com/en-us/nuget/concepts/package-versioning?tabs=semver20sort#version-ranges). 
+
+### Provide dependency information to AI agents (MCP server)
+
+The `mcp` command starts a [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) server that exposes the dependency graph to AI agents (such as Claude, Copilot or other MCP-capable assistants). The server communicates over **stdio**, so it is started by the agent's MCP client rather than run interactively.
+
+```powershell
+dependency-graph mcp [project-or-solution-file]
+```
+
+The optional project or solution file is the *default* target the tools analyze. If it is omitted, the single project or solution file in the working directory is used (if there is exactly one). Individual tool calls can always override the target by passing an absolute path.
+
+#### Configuring an MCP client
+
+Most MCP clients are configured with a command, its arguments and a working directory. To analyze a specific repository, point the working directory at the repository root, or pass the project/solution path as an argument:
+
+```json
+{
+  "mcpServers": {
+    "dependency-graph": {
+      "command": "dependency-graph",
+      "args": ["mcp"],
+      "cwd": "C:\\path\\to\\your\\repository"
+    }
+  }
+}
+```
+
+#### Available tools
+
+| Tool | Description |
+| --- | --- |
+| `get_dependency_graph` | Returns the full dependency graph (including transitive dependencies) as a tree. Supports the same `include`, `exclude`, `max-depth` and `exclude-framework-provided` filters as the `print` command. |
+| `trace_dependency` | Returns every path from the root project(s) to a given dependency (optionally restricted to a NuGet version range), like the `trace` command. |
+| `list_target_frameworks` | Lists the target frameworks per project, e.g. `MyProject/net10.0`. |
+| `list_packages` | Lists every distinct NuGet package (name and resolved version) referenced anywhere in the graph. |
+| `find_version_conflicts` | Lists NuGet packages that are resolved to more than one version within the graph (potential version conflicts). |
+
+Every tool accepts an optional `projectOrSolutionFile` argument (an absolute path) that overrides the server's default target, and a `noRestore` flag to skip `dotnet restore` when the project is already restored.
 
 ### Show help
 

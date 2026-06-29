@@ -2,6 +2,8 @@
   <Folder Name="/Solution Items/">
     <File Path="../.config/dotnet-tools.json" />
     <File Path="../.github/dependabot.yml" />
+    <File Path="build.ps1" />
+    <File Path="build.sh" />
     <File Path="GitVersion.yml" />
     <File Path="global.json" />
     <File Path="nuget.config" />
