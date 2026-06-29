@@ -25,22 +25,33 @@ namespace DependencyGraph.App.Commands
       _nugetLogger = nugetLogger;
       _dependencyGraphFactoryFactory = dependencyGraphFactoryFactory;
 
-      _projectFileArgument = new Argument<FileInfo?>("project file", "The project file you want to analyze.")
+      _projectFileArgument = new Argument<FileInfo?>("project file")
       {
+        Description = "The project file you want to analyze.",
         Arity = ArgumentArity.ZeroOrOne
       };
-      AddArgument(_projectFileArgument);
+      Arguments.Add(_projectFileArgument);
 
-      _dependencyNameArgument = new Argument<string>("dependency name", "The name of the dependency to be traced. Can include the wildcard characters ? and *.");
-      AddArgument(_dependencyNameArgument);
+      _dependencyNameArgument = new Argument<string>("dependency name")
+      {
+        Description = "The name of the dependency to be traced. Can include the wildcard characters ? and *."
+      };
+      Arguments.Add(_dependencyNameArgument);
 
-      _versionRangeOption = new Option<VersionRange?>(["--version", "-v"], description: "Specify a version range for the traced dependency (NuGet packages only; see https://learn.microsoft.com/en-us/nuget/concepts/package-versioning?tabs=semver20sort#version-ranges for details).", parseArgument: ParseVersionRange);
-      AddOption(_versionRangeOption);
+      _versionRangeOption = new Option<VersionRange?>("--version", "-v")
+      {
+        Description = "Specify a version range for the traced dependency (NuGet packages only; see https://learn.microsoft.com/en-us/nuget/concepts/package-versioning?tabs=semver20sort#version-ranges for details).",
+        CustomParser = ParseVersionRange
+      };
+      Options.Add(_versionRangeOption);
 
-      _noRestoreOption = new Option<bool?>(["--no-restore"], description: "Do not restore the project.");
-      AddOption(_noRestoreOption);
+      _noRestoreOption = new Option<bool?>("--no-restore")
+      {
+        Description = "Do not restore the project."
+      };
+      Options.Add(_noRestoreOption);
 
-      this.SetHandler(HandleCommand, _projectFileArgument, _dependencyNameArgument, _versionRangeOption, _noRestoreOption);
+      this.SetAction(HandleCommand);
     }
 
     private static VersionRange? ParseVersionRange(ArgumentResult argumentResult)
@@ -52,12 +63,17 @@ namespace DependencyGraph.App.Commands
       if (VersionRange.TryParse(value, out var versionRange))
         return versionRange;
 
-      argumentResult.ErrorMessage = $"'{value}' is not a valid NuGet version range.";
+      argumentResult.AddError($"'{value}' is not a valid NuGet version range.");
       return null;
     }
 
-    private async Task HandleCommand(FileInfo? projectFile, string dependencyNamePattern, VersionRange? versionRange, bool? noRestore)
+    private async Task HandleCommand(ParseResult parseResult, CancellationToken cancellationToken)
     {
+      var projectFile = parseResult.GetValue(_projectFileArgument);
+      var dependencyNamePattern = parseResult.GetValue(_dependencyNameArgument)!;
+      var versionRange = parseResult.GetValue(_versionRangeOption);
+      var noRestore = parseResult.GetValue(_noRestoreOption);
+
       projectFile ??= GetSingleProjectFile();
 
       if (!projectFile.Exists)

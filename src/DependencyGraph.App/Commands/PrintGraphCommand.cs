@@ -35,41 +35,64 @@ namespace DependencyGraph.App.Commands
       _dependencyGraphFactoryFactory = dependencyGraphFactoryFactory;
       _dependencyGraphVisualizerFactory = dependencyGraphVisualizerFactory;
 
-      _projectOrSolutionFileArgument = new Argument<FileInfo?>("project or solution file", "The project or solution file you want to analyze.")
+      _projectOrSolutionFileArgument = new Argument<FileInfo?>("project or solution file")
       {
+        Description = "The project or solution file you want to analyze.",
         Arity = ArgumentArity.ZeroOrOne
       };
-      AddArgument(_projectOrSolutionFileArgument);
+      Arguments.Add(_projectOrSolutionFileArgument);
 
-      _visualizerOption = new Option<VisualizerType>(["--visualizer", "-v"], description: "Selects a visualizer for the output.");
-      AddOption(_visualizerOption);
-
-      _outputFileOption = new Option<FileInfo?>(["--output", "-o"], "The output file path. Must be specified if the DGML visualizer is used. Overwrites the file if it already exists.");
-      AddOption(_outputFileOption);
-
-      _includeOption = new Option<string[]?>(["--include", "-i"], description: "Include dependencies matching one of the filters. Can include the wildcard characters ? and *.")
+      _visualizerOption = new Option<VisualizerType>("--visualizer", "-v")
       {
+        Description = "Selects a visualizer for the output."
+      };
+      Options.Add(_visualizerOption);
+
+      _outputFileOption = new Option<FileInfo?>("--output", "-o")
+      {
+        Description = "The output file path. Must be specified if the DGML visualizer is used. Overwrites the file if it already exists."
+      };
+      Options.Add(_outputFileOption);
+
+      _includeOption = new Option<string[]?>("--include", "-i")
+      {
+        Description = "Include dependencies matching one of the filters. Can include the wildcard characters ? and *.",
         AllowMultipleArgumentsPerToken = true
       };
-      AddOption(_includeOption);
+      Options.Add(_includeOption);
 
-      _excludeOption = new Option<string[]?>(["--exclude", "-e"], description: "Explicitly exclude dependencies matching one of the filters. Can include the wildcard characters ? and *.")
+      _excludeOption = new Option<string[]?>("--exclude", "-e")
       {
+        Description = "Explicitly exclude dependencies matching one of the filters. Can include the wildcard characters ? and *.",
         AllowMultipleArgumentsPerToken = true
       };
-      AddOption(_excludeOption);
+      Options.Add(_excludeOption);
 
-      _maxDepthOption = new Option<int?>(["--max-depth", "-d"], description: "The maximum depth if dependencies to retrieve.");
-      AddOption(_maxDepthOption);
+      _maxDepthOption = new Option<int?>("--max-depth", "-d")
+      {
+        Description = "The maximum depth if dependencies to retrieve."
+      };
+      Options.Add(_maxDepthOption);
 
-      _noRestoreOption = new Option<bool?>(["--no-restore"], description: "Do not restore the project.");
-      AddOption(_noRestoreOption);
+      _noRestoreOption = new Option<bool?>("--no-restore")
+      {
+        Description = "Do not restore the project."
+      };
+      Options.Add(_noRestoreOption);
 
-      this.SetHandler(HandleCommand, _projectOrSolutionFileArgument, _visualizerOption, _outputFileOption, _includeOption, _excludeOption, _maxDepthOption, _noRestoreOption);
+      this.SetAction(HandleCommand);
     }
 
-    private async Task HandleCommand(FileInfo? projectOrSolutionFile, VisualizerType visualizerType, FileInfo? outputFile, string[]? includes, string[]? excludes, int? maxDepth, bool? noRestore)
+    private async Task HandleCommand(ParseResult parseResult, CancellationToken cancellationToken)
     {
+      var projectOrSolutionFile = parseResult.GetValue(_projectOrSolutionFileArgument);
+      var visualizerType = parseResult.GetValue(_visualizerOption);
+      var outputFile = parseResult.GetValue(_outputFileOption);
+      var includes = parseResult.GetValue(_includeOption);
+      var excludes = parseResult.GetValue(_excludeOption);
+      var maxDepth = parseResult.GetValue(_maxDepthOption);
+      var noRestore = parseResult.GetValue(_noRestoreOption);
+
       projectOrSolutionFile ??= GetSingleProjectFile();
 
       if (includes == null || includes.Length == 0)
