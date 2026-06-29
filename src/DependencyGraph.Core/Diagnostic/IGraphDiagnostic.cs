@@ -6,7 +6,7 @@ using DependencyGraph.Core.Graph;
 
 namespace DependencyGraph.Core.Diagnostic
 {
-  public interface IGraphDiagnostic<TResult>
+  public interface IGraphDiagnostic<out TResult>
   {
     TResult Perform(IDependencyGraph dependencyGraph);
   }
