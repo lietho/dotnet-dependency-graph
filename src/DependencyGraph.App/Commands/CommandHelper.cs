@@ -24,18 +24,21 @@ namespace DependencyGraph.App.Commands
       return allFiles[0];
     }
 
-    internal static async Task RestoreIfNecessary(FileInfo projectOrSolutionFile, bool? noRestore)
+    internal static Task RestoreIfNecessary(FileInfo projectOrSolutionFile, bool? noRestore) =>
+      RestoreIfNecessary(projectOrSolutionFile, noRestore, Console.Out);
+
+    internal static async Task RestoreIfNecessary(FileInfo projectOrSolutionFile, bool? noRestore, TextWriter output)
     {
       if (noRestore.GetValueOrDefault() == true)
       {
-        await Console.Out.WriteLineAsync($"Skipping restore...{Environment.NewLine}{Environment.NewLine}");
+        await output.WriteLineAsync($"Skipping restore...{Environment.NewLine}{Environment.NewLine}");
         return;
       }
 
-      await RunRestore(projectOrSolutionFile);
+      await RunRestore(projectOrSolutionFile, output);
     }
 
-    private static async Task RunRestore(FileInfo projectOrSolutionFile)
+    private static async Task RunRestore(FileInfo projectOrSolutionFile, TextWriter output)
     {
       var restoreProcess = new Process();
 
@@ -44,7 +47,7 @@ namespace DependencyGraph.App.Commands
       restoreProcess.StartInfo.UseShellExecute = false;
       restoreProcess.StartInfo.RedirectStandardOutput = true;
       restoreProcess.StartInfo.RedirectStandardError = true;
-      restoreProcess.OutputDataReceived += (_, args) => Console.WriteLine(args.Data?.Trim());
+      restoreProcess.OutputDataReceived += (_, args) => output.WriteLine(args.Data?.Trim());
       restoreProcess.ErrorDataReceived += (_, args) => Console.Error.WriteLine(args.Data?.Trim());
       restoreProcess.Start();
       restoreProcess.BeginOutputReadLine();
