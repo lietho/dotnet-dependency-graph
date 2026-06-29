@@ -1,0 +1,71 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "Remotion/8.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.0",
+          "System.Configuration.ConfigurationManager": "10.0.9"
+        },
+        "compile": {
+          "lib/net10.0/Remotion.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0/Remotion.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/10.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Remotion/8.0.8": {
+      "sha512": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+      "type": "package",
+      "path": "remotion/8.0.8",
+      "files": [
+        "lib/net10.0/Remotion.dll"
+      ]
+    },
+    "Microsoft.Extensions.Logging.Abstractions/10.0.0": {
+      "sha512": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB==",
+      "type": "package",
+      "path": "microsoft.extensions.logging.abstractions/10.0.0",
+      "files": [
+        "lib/net10.0/Microsoft.Extensions.Logging.Abstractions.dll"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v10.0": [
+      "Remotion >= 8.0.8"
+    ]
+  },
+  "packageFolders": {},
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectName": "FrameworkProvided",
+      "projectStyle": "PackageReference"
+    },
+    "frameworks": {
+      "net10.0": {
+        "targetAlias": "net10.0",
+        "dependencies": {
+          "Remotion": {
+            "target": "Package",
+            "version": "[8.0.8, )"
+          }
+        }
+      }
+    }
+  }
+}
