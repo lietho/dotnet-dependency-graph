@@ -36,6 +36,11 @@
 ..\bin\Debug\dependency-graph.exe print FrameworkProvided\FrameworkProvided.csproj -v dgml -o FrameworkProvided.csproj_ExcludeFrameworkProvided.dgml --exclude-framework-provided --no-restore
 ..\bin\Debug\dependency-graph.exe print FrameworkProvided\FrameworkProvided.csproj -v console --no-restore > FrameworkProvided.csproj.txt
 ..\bin\Debug\dependency-graph.exe print FrameworkProvided\FrameworkProvided.csproj -v console --exclude-framework-provided --no-restore > FrameworkProvided.csproj_ExcludeFrameworkProvided.txt
+
+# platform framework matching (dependency group framework without platform version)
+..\bin\Debug\dependency-graph.exe print WindowsPlatform\WindowsPlatform.csproj -v dgml -o WindowsPlatform.csproj.dgml --no-restore
+..\bin\Debug\dependency-graph.exe print WindowsPlatform\WindowsPlatform.csproj -v console --no-restore > WindowsPlatform.csproj.txt
+
 # trace
 ..\bin\Debug\dependency-graph.exe trace TestSolution\WebApplication\WebApplication.csproj System.Runtime.CompilerServices* --no-restore > WebApplication.csproj_Trace_Pattern.txt
 ..\bin\Debug\dependency-graph.exe trace TestSolution\ClassLibrary\ClassLibrary.csproj AutoMapper --no-restore > ClassLibrary.csproj_Trace.txt
