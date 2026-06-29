@@ -26,6 +26,14 @@ namespace DependencyGraph.App.IntegrationTests
         yield return new TestCaseData("TestSolution.sln_Include.dgml", new[] { "print", "../../TestFiles/TestSolution/TestSolution.sln", "-v", "dgml", "-o", "graph.dgml", "-i", "ClassLibrary*", "*Mapper*", "--no-restore" });
 
         yield return new TestCaseData("TestSolution.sln_MaxDepth.dgml", new[] { "print", "../../TestFiles/TestSolution/TestSolution.sln", "-v", "dgml", "-o", "graph.dgml", "-d", "2", "--no-restore" });
+
+        yield return new TestCaseData("TestSolution.slnx.dgml", new[] { "print", "../../TestFiles/TestSolution/TestSolution.slnx", "-v", "dgml", "-o", "graph.dgml", "--no-restore" });
+
+        yield return new TestCaseData("TestSolution.slnx_Exclude.dgml", new[] { "print", "../../TestFiles/TestSolution/TestSolution.slnx", "-v", "dgml", "-o", "graph.dgml", "-e", "Microsoft.Extensions*", "--no-restore" });
+
+        yield return new TestCaseData("TestSolution.slnx_Include.dgml", new[] { "print", "../../TestFiles/TestSolution/TestSolution.slnx", "-v", "dgml", "-o", "graph.dgml", "-i", "ClassLibrary*", "*Mapper*", "--no-restore" });
+
+        yield return new TestCaseData("TestSolution.slnx_MaxDepth.dgml", new[] { "print", "../../TestFiles/TestSolution/TestSolution.slnx", "-v", "dgml", "-o", "graph.dgml", "-d", "2", "--no-restore" });
       }
     }
 
@@ -56,6 +64,14 @@ namespace DependencyGraph.App.IntegrationTests
         yield return new TestCaseData("TestSolution.sln_Include.txt", new[] { "print", "../../TestFiles/TestSolution/TestSolution.sln", "-v", "console", "-i", "ClassLibrary*", "*Mapper*", "--no-restore" });
 
         yield return new TestCaseData("TestSolution.sln_MaxDepth.txt", new[] { "print", "../../TestFiles/TestSolution/TestSolution.sln", "-v", "console", "-d", "2", "--no-restore" });
+
+        yield return new TestCaseData("TestSolution.slnx.txt", new[] { "print", "../../TestFiles/TestSolution/TestSolution.slnx", "-v", "console", "--no-restore" });
+
+        yield return new TestCaseData("TestSolution.slnx_Exclude.txt", new[] { "print", "../../TestFiles/TestSolution/TestSolution.slnx", "-v", "console", "-e", "Microsoft.Extensions*", "--no-restore" });
+
+        yield return new TestCaseData("TestSolution.slnx_Include.txt", new[] { "print", "../../TestFiles/TestSolution/TestSolution.slnx", "-v", "console", "-i", "ClassLibrary*", "*Mapper*", "--no-restore" });
+
+        yield return new TestCaseData("TestSolution.slnx_MaxDepth.txt", new[] { "print", "../../TestFiles/TestSolution/TestSolution.slnx", "-v", "console", "-d", "2", "--no-restore" });
       }
     }
 
@@ -76,6 +92,10 @@ namespace DependencyGraph.App.IntegrationTests
         yield return new TestCaseData("ClassLibrary.csproj_Trace.txt", new[] { "trace", "../../TestFiles/TestSolution/ClassLibrary/ClassLibrary.csproj", "AutoMapper", "--no-restore" });
 
         yield return new TestCaseData("WebApplication.csproj_Trace_MinVersion.txt", new[] { "trace", "../../TestFiles/TestSolution/WebApplication/WebApplication.csproj", "AutoMapper", "-v", "12.0", "--no-restore" });
+
+        yield return new TestCaseData("TestSolution.sln_Trace.txt", new[] { "trace", "../../TestFiles/TestSolution/TestSolution.sln", "AutoMapper", "--no-restore" });
+
+        yield return new TestCaseData("TestSolution.slnx_Trace.txt", new[] { "trace", "../../TestFiles/TestSolution/TestSolution.slnx", "AutoMapper", "--no-restore" });
       }
     }
 

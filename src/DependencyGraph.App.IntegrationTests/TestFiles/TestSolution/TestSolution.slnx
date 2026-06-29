@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ClassLibrary/ClassLibrary.csproj" />
+  <Project Path="ConsoleApp/ConsoleApp.csproj" />
+  <Project Path="ClassLibrary.UnitTests/ClassLibrary.UnitTests.csproj" />
+  <Project Path="WebApplication/WebApplication.csproj" />
+  <Project Path="WpfApp/WpfApp.csproj" />
+</Solution>

@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DependencyGraph.Core.Graph;
-using Microsoft.Build.Locator;
 using NuGet.Common;
 
 namespace DependencyGraph.App.Commands
@@ -114,33 +113,15 @@ namespace DependencyGraph.App.Commands
         MaxDepth = maxDepth
       });
 
-      if (IsSolutionFile(projectOrSolutionFile))
-      {
-        try
-        {
-          // call must be done before Microsoft.Build assembly needs to be loaded
-          if (!MSBuildLocator.IsRegistered)
-            MSBuildLocator.RegisterDefaults();
-        }
-        catch (Exception ex)
-        {
-          throw new CommandException($"Could not detect a suitable .NET SDK ({ex.Message}).", ex);
-        }
-
-        graph = dependencyGraphFactory.FromSolutionFile(projectOrSolutionFile);
-      }
-      else
-        graph = CommandHelper.CreateGraphForProjectFile(projectOrSolutionFile, dependencyGraphFactory, _nugetLogger);
+      graph = CommandHelper.CreateGraph(projectOrSolutionFile, dependencyGraphFactory, _nugetLogger);
 
       await _dependencyGraphVisualizerFactory.Create(visualizerType, outputFile).VisualizeAsync(graph);
     }
 
     private static FileInfo GetSingleProjectFile() =>
       CommandHelper.GetSingleFile(
-        ["*.csproj", "*.vbproj", "*.sln"],
+        ["*.csproj", "*.vbproj", "*.sln", "*.slnx"],
         "Specify a project or solution file. The current working directory does not contain a project or solution file.",
         "Specify which project or solution file to use because the current working directory contains more than one project or solution file.");
-
-    private static bool IsSolutionFile(FileInfo projectOrSolutionFile) => projectOrSolutionFile.Extension.Equals(".sln", StringComparison.OrdinalIgnoreCase);
   }
 }

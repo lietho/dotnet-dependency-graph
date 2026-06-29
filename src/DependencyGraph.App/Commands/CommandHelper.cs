@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using DependencyGraph.Core.Graph;
 using DependencyGraph.Core.Graph.Factory;
+using Microsoft.Build.Locator;
 using NuGet.Common;
 using NuGet.ProjectModel;
 
@@ -56,6 +57,29 @@ namespace DependencyGraph.App.Commands
     }
 
     internal static string WildcardToRegex(string pattern) => $"^{Regex.Escape(pattern).Replace(@"\*", ".*").Replace(@"\?", ".")}$";
+
+    internal static bool IsSolutionFile(FileInfo file) =>
+      file.Extension.Equals(".sln", StringComparison.OrdinalIgnoreCase) ||
+      file.Extension.Equals(".slnx", StringComparison.OrdinalIgnoreCase);
+
+    internal static IDependencyGraph CreateGraph(FileInfo file, IDependencyGraphFactory dependencyGraphFactory, ILogger nugetLogger)
+    {
+      if (!IsSolutionFile(file))
+        return CreateGraphForProjectFile(file, dependencyGraphFactory, nugetLogger);
+
+      try
+      {
+        // call must be done before Microsoft.Build assembly needs to be loaded
+        if (!MSBuildLocator.IsRegistered)
+          MSBuildLocator.RegisterDefaults();
+      }
+      catch (Exception ex)
+      {
+        throw new CommandException($"Could not detect a suitable .NET SDK ({ex.Message}).", ex);
+      }
+
+      return dependencyGraphFactory.FromSolutionFile(file);
+    }
 
     internal static IDependencyGraph CreateGraphForProjectFile(FileInfo projectFile, IDependencyGraphFactory dependencyGraphFactory, ILogger nugetLogger)
     {
