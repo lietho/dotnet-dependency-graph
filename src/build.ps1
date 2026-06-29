@@ -13,8 +13,8 @@ $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 # CONFIGURATION
 ###########################################################################
 
-$BuildProjectFile = "$PSScriptRoot\_build\_build.csproj"
-$TempDirectory = "$PSScriptRoot\.nuke\temp"
+$BuildProjectFile = "$PSScriptRoot\build\Build.csproj"
+$TempDirectory = Join-Path ([System.IO.Path]::GetTempPath()) "DependencyGraph-build"
 
 $DotNetGlobalFile = "$PSScriptRoot\global.json"
 $DotNetInstallUrl = "https://dot.net/v1/dotnet-install.ps1"
@@ -64,11 +64,6 @@ else {
 }
 
 Write-Output "Microsoft (R) .NET SDK version $(& $env:DOTNET_EXE --version)"
-
-if (Test-Path env:NUKE_ENTERPRISE_TOKEN) {
-    & $env:DOTNET_EXE nuget remove source "nuke-enterprise" > $null
-    & $env:DOTNET_EXE nuget add source "https://f.feedz.io/nuke/enterprise/nuget" --name "nuke-enterprise" --username "PAT" --password $env:NUKE_ENTERPRISE_TOKEN > $null
-}
 
 ExecSafe { & $env:DOTNET_EXE build $BuildProjectFile /nodeReuse:false /p:UseSharedCompilation=false -nologo -clp:NoSummary --verbosity quiet }
 ExecSafe { & $env:DOTNET_EXE run --project $BuildProjectFile --no-build -- $BuildArguments }
