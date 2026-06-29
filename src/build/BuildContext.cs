@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Xml.Linq;
 using Cake.Common;
 using Cake.Common.Build;
@@ -54,7 +54,7 @@ public sealed class BuildContext : FrostingContext
     NugetToken = Resolve(context, "nuget-token", "NugetToken") ?? NugetTestToken;
 
     RootDirectory = FindRootDirectory(context.Environment.WorkingDirectory);
-    SolutionPath = RootDirectory.CombineWithFilePath("src/DependencyGraph.sln");
+    SolutionPath = RootDirectory.CombineWithFilePath("src/DependencyGraph.slnx");
     OutputDirectory = RootDirectory.Combine("_output");
   }
 
