@@ -5,6 +5,8 @@
     <Node Id="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Category="FrameworkDependency" Label="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" />
     <Node Id="ClassLibrary" Category="ProjectDependency" Label="ClassLibrary" />
     <Node Id="AutoMapper@10.1.1" Category="PackageDependency" Label="AutoMapper@10.1.1" />
+    <Node Id="Microsoft.CSharp@4.7.0" Category="PackageDependency" Label="Microsoft.CSharp@4.7.0" />
+    <Node Id="System.Reflection.Emit@4.7.0" Category="PackageDependency" Label="System.Reflection.Emit@4.7.0" />
     <Node Id="Serilog@4.0.0" Category="PackageDependency" Label="Serilog@4.0.0" />
     <Node Id="System.Diagnostics.DiagnosticSource@8.0.1" Category="PackageDependency" Label="System.Diagnostics.DiagnosticSource@8.0.1" />
     <Node Id="System.Memory@4.5.5" Category="PackageDependency" Label="System.Memory@4.5.5" />
@@ -20,6 +22,10 @@
     <Node Id="System.ValueTuple@4.5.0" Category="PackageDependency" Label="System.ValueTuple@4.5.0" />
     <Node Id="Microsoft.NET.Test.Sdk@17.11.1" Category="PackageDependency" Label="Microsoft.NET.Test.Sdk@17.11.1" />
     <Node Id="Microsoft.CodeCoverage@17.11.1" Category="PackageDependency" Label="Microsoft.CodeCoverage@17.11.1" />
+    <Node Id="Microsoft.TestPlatform.TestHost@17.11.1" Category="PackageDependency" Label="Microsoft.TestPlatform.TestHost@17.11.1" />
+    <Node Id="Microsoft.TestPlatform.ObjectModel@17.11.1" Category="PackageDependency" Label="Microsoft.TestPlatform.ObjectModel@17.11.1" />
+    <Node Id="System.Reflection.Metadata@1.6.0" Category="PackageDependency" Label="System.Reflection.Metadata@1.6.0" />
+    <Node Id="Newtonsoft.Json@13.0.1" Category="PackageDependency" Label="Newtonsoft.Json@13.0.1" />
     <Node Id="NUnit@4.2.2" Category="PackageDependency" Label="NUnit@4.2.2" />
     <Node Id="NUnit.Analyzers@4.4.0" Category="PackageDependency" Label="NUnit.Analyzers@4.4.0" />
     <Node Id="NUnit3TestAdapter@4.6.0" Category="PackageDependency" Label="NUnit3TestAdapter@4.6.0" />
@@ -43,6 +49,8 @@
     <Link Source="ClassLibrary.UnitTests" Target="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" />
     <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="ClassLibrary" />
     <Link Source="ClassLibrary" Target="AutoMapper@10.1.1" />
+    <Link Source="AutoMapper@10.1.1" Target="Microsoft.CSharp@4.7.0" />
+    <Link Source="AutoMapper@10.1.1" Target="System.Reflection.Emit@4.7.0" />
     <Link Source="ClassLibrary" Target="Serilog@4.0.0" />
     <Link Source="Serilog@4.0.0" Target="System.Diagnostics.DiagnosticSource@8.0.1" />
     <Link Source="System.Diagnostics.DiagnosticSource@8.0.1" Target="System.Memory@4.5.5" />
@@ -71,6 +79,10 @@
     <Link Source="System.Text.Json@9.0.0" Target="System.ValueTuple@4.5.0" />
     <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="Microsoft.NET.Test.Sdk@17.11.1" />
     <Link Source="Microsoft.NET.Test.Sdk@17.11.1" Target="Microsoft.CodeCoverage@17.11.1" />
+    <Link Source="Microsoft.NET.Test.Sdk@17.11.1" Target="Microsoft.TestPlatform.TestHost@17.11.1" />
+    <Link Source="Microsoft.TestPlatform.TestHost@17.11.1" Target="Microsoft.TestPlatform.ObjectModel@17.11.1" />
+    <Link Source="Microsoft.TestPlatform.ObjectModel@17.11.1" Target="System.Reflection.Metadata@1.6.0" />
+    <Link Source="Microsoft.TestPlatform.TestHost@17.11.1" Target="Newtonsoft.Json@13.0.1" />
     <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="NUnit@4.2.2" />
     <Link Source="NUnit@4.2.2" Target="System.Memory@4.5.5" />
     <Link Source="NUnit@4.2.2" Target="System.Threading.Tasks.Extensions@4.5.4" />
