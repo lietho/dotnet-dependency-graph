@@ -136,6 +136,7 @@ namespace DependencyGraph.Core.Graph.Factory
     private TargetFrameworkDependencyGraphNode CreateNodeForDependencyGroup(DependencyGraph graph, ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, LockFile lockFile)
     {
       var node = new TargetFrameworkDependencyGraphNode(lockFile.PackageSpec.RestoreMetadata.ProjectName, dependencyGroup.FrameworkName);
+      var visited = new HashSet<DependencyGraphNodeBase>();
 
       foreach (var dependency in dependencyGroup.Dependencies)
       {
@@ -144,7 +145,7 @@ namespace DependencyGraph.Core.Graph.Factory
         if (ShouldInclude(libraryName, _options) == false)
           continue;
 
-        var directDependencyNode = CreateNodeForLibrary(graph, libraryName, lockFileTarget, _options, 1);
+        var directDependencyNode = CreateNodeForLibrary(graph, libraryName, lockFileTarget, _options, 1, visited);
 
         graph.AddDependency(node, directDependencyNode);
       }
@@ -155,15 +156,18 @@ namespace DependencyGraph.Core.Graph.Factory
     private static bool ShouldInclude(string libraryName, DependencyGraphFactoryOptions options)
       => options.Includes.Any(_ => Regex.IsMatch(libraryName, _, RegexOptions.IgnoreCase)) && options.Excludes.Any(_ => Regex.IsMatch(libraryName, _, RegexOptions.IgnoreCase)) == false;
 
-    private static DependencyGraphNodeBase CreateNodeForLibrary(DependencyGraph graph, string name, LockFileTarget lockFileTarget, DependencyGraphFactoryOptions options, int currentDepth)
+    private static DependencyGraphNodeBase CreateNodeForLibrary(DependencyGraph graph, string name, LockFileTarget lockFileTarget, DependencyGraphFactoryOptions options, int currentDepth, ISet<DependencyGraphNodeBase> visited)
     {
       var library = lockFileTarget.GetTargetLibrary(name) ?? throw new ApplicationException($"Target library with name '{name}' could not be resolved.");
       var node = CreateNode(library);
 
+      // Reuse the shared instance so dependencies merge onto the same node across target frameworks.
       if (graph.TryGetExistingNode(node, out var existingNode))
-        return existingNode!;
+        node = existingNode!;
 
-      if (currentDepth >= (options.MaxDepth ?? int.MaxValue))
+      // Stop at max depth, and process each node at most once per target traversal (prevents redundant
+      // re-walks and infinite recursion). visited.Add is only evaluated when under the depth limit.
+      if (currentDepth >= (options.MaxDepth ?? int.MaxValue) || visited.Add(node) == false)
         return node;
 
       foreach (var dependency in library.Dependencies)
@@ -171,7 +175,7 @@ namespace DependencyGraph.Core.Graph.Factory
         if (ShouldInclude(dependency.Id, options) == false)
           continue;
 
-        graph.AddDependency(node, CreateNodeForLibrary(graph, dependency.Id, lockFileTarget, options, currentDepth + 1));
+        graph.AddDependency(node, CreateNodeForLibrary(graph, dependency.Id, lockFileTarget, options, currentDepth + 1, visited));
       }
 
       return node;

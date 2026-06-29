@@ -9,6 +9,7 @@
     <Node Id="System.Text.Json@9.0.0" Category="PackageDependency" Label="System.Text.Json@9.0.0" />
     <Node Id="Microsoft.NET.Test.Sdk@17.11.1" Category="PackageDependency" Label="Microsoft.NET.Test.Sdk@17.11.1" />
     <Node Id="Microsoft.CodeCoverage@17.11.1" Category="PackageDependency" Label="Microsoft.CodeCoverage@17.11.1" />
+    <Node Id="Microsoft.TestPlatform.TestHost@17.11.1" Category="PackageDependency" Label="Microsoft.TestPlatform.TestHost@17.11.1" />
     <Node Id="NUnit@4.2.2" Category="PackageDependency" Label="NUnit@4.2.2" />
     <Node Id="System.Memory@4.5.5" Category="PackageDependency" Label="System.Memory@4.5.5" />
     <Node Id="System.Threading.Tasks.Extensions@4.5.4" Category="PackageDependency" Label="System.Threading.Tasks.Extensions@4.5.4" />
@@ -20,6 +21,8 @@
     <Node Id="ConsoleApp" Category="ProjectDependency" Label="ConsoleApp" />
     <Node Id="ConsoleApp/.NETFramework,Version=v4.8" Category="FrameworkDependency" Label="ConsoleApp/.NETFramework,Version=v4.8" />
     <Node Id="Serilog@4.1.0" Category="PackageDependency" Label="Serilog@4.1.0" />
+    <Node Id="System.Diagnostics.DiagnosticSource@8.0.1" Category="PackageDependency" Label="System.Diagnostics.DiagnosticSource@8.0.1" />
+    <Node Id="System.Threading.Channels@8.0.0" Category="PackageDependency" Label="System.Threading.Channels@8.0.0" />
     <Node Id="WebApplication" Category="ProjectDependency" Label="WebApplication" />
     <Node Id="WebApplication/net8.0" Category="FrameworkDependency" Label="WebApplication/net8.0" />
     <Node Id="AutoMapper@13.0.1" Category="PackageDependency" Label="AutoMapper@13.0.1" />
@@ -37,6 +40,7 @@
     <Link Source="ClassLibrary" Target="System.Text.Json@9.0.0" />
     <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="Microsoft.NET.Test.Sdk@17.11.1" />
     <Link Source="Microsoft.NET.Test.Sdk@17.11.1" Target="Microsoft.CodeCoverage@17.11.1" />
+    <Link Source="Microsoft.NET.Test.Sdk@17.11.1" Target="Microsoft.TestPlatform.TestHost@17.11.1" />
     <Link Source="ClassLibrary.UnitTests/.NETFramework,Version=v4.7.2" Target="NUnit@4.2.2" />
     <Link Source="NUnit@4.2.2" Target="System.Memory@4.5.5" />
     <Link Source="NUnit@4.2.2" Target="System.Threading.Tasks.Extensions@4.5.4" />
@@ -54,6 +58,8 @@
     <Link Source="ConsoleApp" Target="ConsoleApp/.NETFramework,Version=v4.8" />
     <Link Source="ConsoleApp/.NETFramework,Version=v4.8" Target="ClassLibrary" />
     <Link Source="ClassLibrary" Target="Serilog@4.1.0" />
+    <Link Source="Serilog@4.1.0" Target="System.Diagnostics.DiagnosticSource@8.0.1" />
+    <Link Source="Serilog@4.1.0" Target="System.Threading.Channels@8.0.0" />
     <Link Source="ConsoleApp/.NETFramework,Version=v4.8" Target="Serilog@4.1.0" />
     <Link Source="WebApplication" Target="WebApplication/net8.0" />
     <Link Source="WebApplication/net8.0" Target="AutoMapper@13.0.1" />
