@@ -16,7 +16,7 @@ namespace DependencyGraph.App.Commands
     {
       // add child commands
       foreach (var command in commands)
-        AddCommand(command);
+        Subcommands.Add(command);
     }
   }
 }

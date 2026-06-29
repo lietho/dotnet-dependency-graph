@@ -2,8 +2,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System.CommandLine;
-using System.CommandLine.Builder;
-using System.CommandLine.Parsing;
 using DependencyGraph.App.Commands;
 
 namespace DependencyGraph.App
@@ -19,27 +17,26 @@ namespace DependencyGraph.App
 
     public async Task RunAsync(string[] args)
     {
-      var commandLineBuilder = new CommandLineBuilder(_rootCommand);
-
-      commandLineBuilder.AddMiddleware(async (context, next) =>
+      // Disable the built-in exception handler so we can handle our own exception types explicitly.
+      var configuration = new InvocationConfiguration
       {
-        try
-        {
-          await next(context);
-        }
-        catch (CommandException ex)
-        {
-          await Console.Error.WriteLineAsync(ex.Message);
-        }
-        catch (ApplicationException ex)
-        {
-          await Console.Error.WriteLineAsync(ex.Message);
-        }
-      });
+        EnableDefaultExceptionHandler = false
+      };
 
-      commandLineBuilder.UseDefaults();
-      var parser = commandLineBuilder.Build();
-      await parser.InvokeAsync(args);
+      var parseResult = _rootCommand.Parse(args);
+
+      try
+      {
+        await parseResult.InvokeAsync(configuration);
+      }
+      catch (CommandException ex)
+      {
+        await Console.Error.WriteLineAsync(ex.Message);
+      }
+      catch (ApplicationException ex)
+      {
+        await Console.Error.WriteLineAsync(ex.Message);
+      }
     }
   }
 }
