@@ -24,6 +24,7 @@ namespace DependencyGraph.App.Commands
     private readonly Option<string[]?> _includeOption;
     private readonly Option<string[]?> _excludeOption;
     private readonly Option<int?> _maxDepthOption;
+    private readonly Option<bool?> _excludeFrameworkProvidedOption;
 
     public PrintGraphCommand(
       ILogger nugetLogger,
@@ -73,6 +74,12 @@ namespace DependencyGraph.App.Commands
       };
       Options.Add(_maxDepthOption);
 
+      _excludeFrameworkProvidedOption = new Option<bool?>("--exclude-framework-provided")
+      {
+        Description = "Exclude dependencies that are provided by the shared framework (pruned packages) from the graph."
+      };
+      Options.Add(_excludeFrameworkProvidedOption);
+
       _noRestoreOption = new Option<bool?>("--no-restore")
       {
         Description = "Do not restore the project."
@@ -90,6 +97,7 @@ namespace DependencyGraph.App.Commands
       var includes = parseResult.GetValue(_includeOption);
       var excludes = parseResult.GetValue(_excludeOption);
       var maxDepth = parseResult.GetValue(_maxDepthOption);
+      var excludeFrameworkProvided = parseResult.GetValue(_excludeFrameworkProvidedOption);
       var noRestore = parseResult.GetValue(_noRestoreOption);
 
       projectOrSolutionFile ??= GetSingleProjectFile();
@@ -110,7 +118,8 @@ namespace DependencyGraph.App.Commands
       {
         Includes = (includes ?? ["*"]).Select(CommandHelper.WildcardToRegex).ToArray(),
         Excludes = (excludes ?? []).Select(CommandHelper.WildcardToRegex).ToArray(),
-        MaxDepth = maxDepth
+        MaxDepth = maxDepth,
+        ExcludeFrameworkProvidedDependencies = excludeFrameworkProvided.GetValueOrDefault()
       });
 
       graph = CommandHelper.CreateGraph(projectOrSolutionFile, dependencyGraphFactory, _nugetLogger);

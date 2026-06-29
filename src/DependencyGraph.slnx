@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../.config/dotnet-tools.json" />
+    <File Path="../.github/dependabot.yml" />
+    <File Path="GitVersion.yml" />
+    <File Path="global.json" />
+    <File Path="nuget.config" />
+    <File Path="testEnvironments.json" />
+  </Folder>
+  <Folder Name="/Solution Items/Workflows/">
+    <File Path="../.github/workflows/dotnet.yml" />
+  </Folder>
+  <Project Path="build/Build.csproj">
+    <Build Project="false" />
+  </Project>
+  <Project Path="DependencyGraph.App.IntegrationTests/DependencyGraph.App.IntegrationTests.csproj" />
+  <Project Path="DependencyGraph.App/DependencyGraph.App.csproj" />
+  <Project Path="DependencyGraph.Core/DependencyGraph.Core.csproj" />
+</Solution>

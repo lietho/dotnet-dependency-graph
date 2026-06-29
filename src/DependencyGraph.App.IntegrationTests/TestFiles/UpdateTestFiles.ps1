@@ -31,6 +31,11 @@
 ..\bin\Debug\dependency-graph.exe print TestSolution\TestSolution.slnx -v console -d 2 --no-restore > TestSolution.slnx_MaxDepth.txt
 
 
+# framework-provided dependencies (.NET package pruning)
+..\bin\Debug\dependency-graph.exe print FrameworkProvided\FrameworkProvided.csproj -v dgml -o FrameworkProvided.csproj.dgml --no-restore
+..\bin\Debug\dependency-graph.exe print FrameworkProvided\FrameworkProvided.csproj -v dgml -o FrameworkProvided.csproj_ExcludeFrameworkProvided.dgml --exclude-framework-provided --no-restore
+..\bin\Debug\dependency-graph.exe print FrameworkProvided\FrameworkProvided.csproj -v console --no-restore > FrameworkProvided.csproj.txt
+..\bin\Debug\dependency-graph.exe print FrameworkProvided\FrameworkProvided.csproj -v console --exclude-framework-provided --no-restore > FrameworkProvided.csproj_ExcludeFrameworkProvided.txt
 # trace
 ..\bin\Debug\dependency-graph.exe trace TestSolution\WebApplication\WebApplication.csproj System.Runtime.CompilerServices* --no-restore > WebApplication.csproj_Trace_Pattern.txt
 ..\bin\Debug\dependency-graph.exe trace TestSolution\ClassLibrary\ClassLibrary.csproj AutoMapper --no-restore > ClassLibrary.csproj_Trace.txt
@@ -39,3 +44,4 @@
 # trace (solution)
 ..\bin\Debug\dependency-graph.exe trace TestSolution\TestSolution.sln AutoMapper --no-restore > TestSolution.sln_Trace.txt
 ..\bin\Debug\dependency-graph.exe trace TestSolution\TestSolution.slnx AutoMapper --no-restore > TestSolution.slnx_Trace.txt
+..\bin\Debug\dependency-graph.exe trace FrameworkProvided\FrameworkProvided.csproj System.Configuration.ConfigurationManager --no-restore > FrameworkProvided.csproj_Trace.txt

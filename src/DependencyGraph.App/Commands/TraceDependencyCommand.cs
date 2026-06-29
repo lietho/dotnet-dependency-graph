@@ -18,6 +18,7 @@ namespace DependencyGraph.App.Commands
     private readonly Argument<FileInfo?> _projectOrSolutionFileArgument;
     private Argument<string> _dependencyNameArgument;
     private readonly Option<VersionRange?> _versionRangeOption;
+    private readonly Option<bool?> _excludeFrameworkProvidedOption;
     private readonly Option<bool?> _noRestoreOption;
 
     public TraceDependencyCommand(ILogger nugetLogger, DependencyGraphFactoryFactory dependencyGraphFactoryFactory) : base("trace", "Traces the paths from the root nodes to a specified dependency in the dependency graph.")
@@ -44,6 +45,12 @@ namespace DependencyGraph.App.Commands
         CustomParser = ParseVersionRange
       };
       Options.Add(_versionRangeOption);
+
+      _excludeFrameworkProvidedOption = new Option<bool?>("--exclude-framework-provided")
+      {
+        Description = "Exclude dependencies that are provided by the shared framework (pruned packages) from the graph."
+      };
+      Options.Add(_excludeFrameworkProvidedOption);
 
       _noRestoreOption = new Option<bool?>("--no-restore")
       {
@@ -72,6 +79,7 @@ namespace DependencyGraph.App.Commands
       var projectOrSolutionFile = parseResult.GetValue(_projectOrSolutionFileArgument);
       var dependencyNamePattern = parseResult.GetValue(_dependencyNameArgument)!;
       var versionRange = parseResult.GetValue(_versionRangeOption);
+      var excludeFrameworkProvided = parseResult.GetValue(_excludeFrameworkProvidedOption);
       var noRestore = parseResult.GetValue(_noRestoreOption);
 
       projectOrSolutionFile ??= GetSingleProjectFile();
@@ -81,7 +89,10 @@ namespace DependencyGraph.App.Commands
 
       await CommandHelper.RestoreIfNecessary(projectOrSolutionFile, noRestore);
 
-      var dependencyGraphFactory = _dependencyGraphFactoryFactory.Create(new());
+      var dependencyGraphFactory = _dependencyGraphFactoryFactory.Create(new()
+      {
+        ExcludeFrameworkProvidedDependencies = excludeFrameworkProvided.GetValueOrDefault()
+      });
       var graph = CommandHelper.CreateGraph(projectOrSolutionFile, dependencyGraphFactory, _nugetLogger);
       var diagnostic = new TraceDependencyGraphDiagnostic(CommandHelper.WildcardToRegex(dependencyNamePattern), versionRange);
       var paths = diagnostic.Perform(graph).ToList();

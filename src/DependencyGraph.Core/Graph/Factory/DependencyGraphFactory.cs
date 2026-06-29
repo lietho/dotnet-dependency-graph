@@ -147,7 +147,8 @@ namespace DependencyGraph.Core.Graph.Factory
 
         var directDependencyNode = CreateNodeForLibrary(graph, libraryName, lockFileTarget, _options, 1, visited);
 
-        graph.AddDependency(node, directDependencyNode);
+        if (directDependencyNode != null)
+          graph.AddDependency(node, directDependencyNode);
       }
 
       return node;
@@ -156,9 +157,15 @@ namespace DependencyGraph.Core.Graph.Factory
     private static bool ShouldInclude(string libraryName, DependencyGraphFactoryOptions options)
       => options.Includes.Any(_ => Regex.IsMatch(libraryName, _, RegexOptions.IgnoreCase)) && options.Excludes.Any(_ => Regex.IsMatch(libraryName, _, RegexOptions.IgnoreCase)) == false;
 
-    private static DependencyGraphNodeBase CreateNodeForLibrary(DependencyGraph graph, string name, LockFileTarget lockFileTarget, DependencyGraphFactoryOptions options, int currentDepth, ISet<DependencyGraphNodeBase> visited)
+    private static DependencyGraphNodeBase? CreateNodeForLibrary(DependencyGraph graph, string name, LockFileTarget lockFileTarget, DependencyGraphFactoryOptions options, int currentDepth, ISet<DependencyGraphNodeBase> visited)
     {
-      var library = lockFileTarget.GetTargetLibrary(name) ?? throw new ApplicationException($"Target library with name '{name}' could not be resolved.");
+      var library = lockFileTarget.GetTargetLibrary(name);
+
+      // A declared dependency may be absent from the target's libraries because it is provided by the shared
+      // framework (.NET package pruning). Represent it as a leaf node unless the caller opted to exclude these.
+      if (library == null)
+        return options.ExcludeFrameworkProvidedDependencies ? null : new FrameworkProvidedDependencyGraphNode(name);
+
       var node = CreateNode(library);
 
       // Reuse the shared instance so dependencies merge onto the same node across target frameworks.
@@ -175,7 +182,10 @@ namespace DependencyGraph.Core.Graph.Factory
         if (ShouldInclude(dependency.Id, options) == false)
           continue;
 
-        graph.AddDependency(node, CreateNodeForLibrary(graph, dependency.Id, lockFileTarget, options, currentDepth + 1, visited));
+        var dependencyNode = CreateNodeForLibrary(graph, dependency.Id, lockFileTarget, options, currentDepth + 1, visited);
+
+        if (dependencyNode != null)
+          graph.AddDependency(node, dependencyNode);
       }
 
       return node;

@@ -114,5 +114,6 @@
     <Category Id="FrameworkDependency" BasedOn="Dependency" Background="#FF502CCD" />
     <Category Id="ProjectDependency" BasedOn="Dependency" Background="DarkOrange" />
     <Category Id="PackageDependency" BasedOn="Dependency" Background="#FF06487D" />
+    <Category Id="FrameworkProvidedDependency" BasedOn="Dependency" Background="Gray" />
   </Categories>
 </DirectedGraph>
