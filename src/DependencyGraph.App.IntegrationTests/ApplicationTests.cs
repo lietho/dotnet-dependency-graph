@@ -38,6 +38,8 @@ namespace DependencyGraph.App.IntegrationTests
         yield return new TestCaseData("FrameworkProvided.csproj.dgml", new[] { "print", "../../TestFiles/FrameworkProvided/FrameworkProvided.csproj", "-v", "dgml", "-o", "graph.dgml", "--no-restore" });
 
         yield return new TestCaseData("FrameworkProvided.csproj_ExcludeFrameworkProvided.dgml", new[] { "print", "../../TestFiles/FrameworkProvided/FrameworkProvided.csproj", "-v", "dgml", "-o", "graph.dgml", "--exclude-framework-provided", "--no-restore" });
+
+        yield return new TestCaseData("WindowsPlatform.csproj.dgml", new[] { "print", "../../TestFiles/WindowsPlatform/WindowsPlatform.csproj", "-v", "dgml", "-o", "graph.dgml", "--no-restore" });
       }
     }
 
@@ -80,6 +82,8 @@ namespace DependencyGraph.App.IntegrationTests
         yield return new TestCaseData("FrameworkProvided.csproj.txt", new[] { "print", "../../TestFiles/FrameworkProvided/FrameworkProvided.csproj", "-v", "console", "--no-restore" });
 
         yield return new TestCaseData("FrameworkProvided.csproj_ExcludeFrameworkProvided.txt", new[] { "print", "../../TestFiles/FrameworkProvided/FrameworkProvided.csproj", "-v", "console", "--exclude-framework-provided", "--no-restore" });
+
+        yield return new TestCaseData("WindowsPlatform.csproj.txt", new[] { "print", "../../TestFiles/WindowsPlatform/WindowsPlatform.csproj", "-v", "console", "--no-restore" });
       }
     }
 
@@ -104,6 +108,7 @@ namespace DependencyGraph.App.IntegrationTests
         yield return new TestCaseData("TestSolution.sln_Trace.txt", new[] { "trace", "../../TestFiles/TestSolution/TestSolution.sln", "AutoMapper", "--no-restore" });
 
         yield return new TestCaseData("TestSolution.slnx_Trace.txt", new[] { "trace", "../../TestFiles/TestSolution/TestSolution.slnx", "AutoMapper", "--no-restore" });
+
         yield return new TestCaseData("FrameworkProvided.csproj_Trace.txt", new[] { "trace", "../../TestFiles/FrameworkProvided/FrameworkProvided.csproj", "System.Configuration.ConfigurationManager", "--no-restore" });
       }
     }

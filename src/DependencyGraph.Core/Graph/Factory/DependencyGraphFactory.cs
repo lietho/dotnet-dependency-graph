@@ -124,6 +124,12 @@ namespace DependencyGraph.Core.Graph.Factory
     {
       var matchingTargets = lockFile.Targets.Where(lockFileTarget => lockFileTarget.TargetFramework.Equals(nuGetFramework)).ToList();
 
+      // The project file dependency groups may identify a platform framework without its platform version
+      // (e.g. 'net10.0-windows') while the targets carry the resolved platform version (e.g. 'net10.0-windows7.0').
+      // Fall back to matching the framework and platform while ignoring the platform version when there is no exact match.
+      if (matchingTargets.Count == 0)
+        matchingTargets = lockFile.Targets.Where(lockFileTarget => MatchesIgnoringPlatformVersion(lockFileTarget.TargetFramework, nuGetFramework)).ToList();
+
       if (matchingTargets.Count == 0)
         throw new ApplicationException($"Could not find matching lock file target for framework '{nuGetFramework}'");
 
@@ -132,6 +138,11 @@ namespace DependencyGraph.Core.Graph.Factory
 
       return matchingTargets.First(t => string.IsNullOrEmpty(t.RuntimeIdentifier));
     }
+
+    private static bool MatchesIgnoringPlatformVersion(NuGetFramework target, NuGetFramework requested)
+      => string.Equals(target.Framework, requested.Framework, StringComparison.OrdinalIgnoreCase) &&
+         target.Version == requested.Version &&
+         string.Equals(target.Platform, requested.Platform, StringComparison.OrdinalIgnoreCase);
 
     private TargetFrameworkDependencyGraphNode CreateNodeForDependencyGroup(DependencyGraph graph, ProjectFileDependencyGroup dependencyGroup, LockFileTarget lockFileTarget, LockFile lockFile)
     {

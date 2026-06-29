@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Title="Dependencies of TODO" GraphDirection="TopToBottom" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="WindowsPlatform" Category="ProjectDependency" Label="WindowsPlatform" />
+    <Node Id="WindowsPlatform/net10.0-windows" Category="FrameworkDependency" Label="WindowsPlatform/net10.0-windows" />
+    <Node Id="Newtonsoft.Json@13.0.3" Category="PackageDependency" Label="Newtonsoft.Json@13.0.3" />
+  </Nodes>
+  <Links>
+    <Link Source="WindowsPlatform" Target="WindowsPlatform/net10.0-windows" />
+    <Link Source="WindowsPlatform/net10.0-windows" Target="Newtonsoft.Json@13.0.3" />
+  </Links>
+  <Categories>
+    <Category Id="Dependency" Stroke="Black" />
+    <Category Id="FrameworkDependency" BasedOn="Dependency" Background="#FF502CCD" />
+    <Category Id="ProjectDependency" BasedOn="Dependency" Background="DarkOrange" />
+    <Category Id="PackageDependency" BasedOn="Dependency" Background="#FF06487D" />
+    <Category Id="FrameworkProvidedDependency" BasedOn="Dependency" Background="Gray" />
+  </Categories>
+</DirectedGraph>
