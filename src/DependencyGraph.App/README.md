@@ -59,6 +59,8 @@ You can also explicitly specify a project file:
 dependency-graph print .\DependencyGraph.App\DependencyGraph.App.csproj
 ```
 
+Both the `print` and `trace` commands accept solution files in the classic `.sln` and the newer XML-based `.slnx` format in addition to project files.
+
 #### Use the DGML visualizer
 
 Printing large dependency graphs to the console can be hard to comprehend. A better option may be to use the DGML visualizer. It creates a DGML file that can be viewed in Visual Studios DGML viewer. To use the DGML visualizer use the `-v dgml` or `--visualizer dgml` option. In this case, you must also specify an output file. The command
