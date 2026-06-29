@@ -14,6 +14,7 @@ namespace DependencyGraph.Core.Visualizer.Dgml
     private const string TargetFrameworkDependencyCategoryId = "FrameworkDependency";
     private const string ProjectDependencyCategoryId = "ProjectDependency";
     private const string PackageDependencyCategoryId = "PackageDependency";
+    private const string FrameworkProvidedDependencyCategoryId = "FrameworkProvidedDependency";
 
     public DgmlDependencyGraphVisualizerOptions(string outputFilePath)
     {
@@ -47,6 +48,12 @@ namespace DependencyGraph.Core.Visualizer.Dgml
           Id = PackageDependencyCategoryId,
           BasedOn = DependencyId,
           Background = "#FF06487D"
+        },
+        new DirectedGraphCategory
+        {
+          Id = FrameworkProvidedDependencyCategoryId,
+          BasedOn = DependencyId,
+          Background = "Gray"
         }
       };
 
@@ -56,6 +63,7 @@ namespace DependencyGraph.Core.Visualizer.Dgml
         TargetFrameworkDependencyGraphNode _ => TargetFrameworkDependencyCategoryId,
         ProjectDependencyGraphNode _ => ProjectDependencyCategoryId,
         PackageDependencyGraphNode _ => PackageDependencyCategoryId,
+        FrameworkProvidedDependencyGraphNode _ => FrameworkProvidedDependencyCategoryId,
         _ => null
       };
   }
